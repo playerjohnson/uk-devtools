@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Calculator Hub — Free Business, Tax & Employment Calculators</title>
+    <meta name="description" content="Free UK calculators for employers, businesses and individuals. Calculate employer NI, true employee costs, VAT, stamp duty and more. Updated for 2025/26 tax year.">
+    <meta name="keywords" content="UK calculator, employer NI calculator, tax calculator UK, business calculator, employment cost calculator, 2025 2026">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.co.uk/">
+    <meta property="og:title" content="UK Calculator Hub — Free Business, Tax & Employment Calculators">
+    <meta property="og:description" content="Free UK calculators updated for 2025/26. Employer NI, employee costs, tax, and more.">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "UK Calculator Hub",
+        "description": "Free UK business, tax and employment calculators updated for 2025/26.",
+        "url": "https://yourdomain.co.uk"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+
+    <style>
+        /* ── HOMEPAGE HERO ── */
+        .home-hero {
+            background: var(--ink);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -15%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(196,93,62,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .home-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(59,107,154,0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: var(--max-width-wide);
+            margin: 0 auto;
+            padding: 72px 24px 64px;
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .hero-eyebrow .line {
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        .home-hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            max-width: 700px;
+        }
+
+        .home-hero .hero-sub {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.55);
+            max-width: 540px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-stat-item {
+            text-align: left;
+        }
+
+        .hero-stat-item .num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .hero-stat-item .desc {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 2px;
+        }
+
+        /* ── TOOLS SECTION ── */
+        .tools-section {
+            padding: 56px 0 80px;
+        }
+
+        .tools-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .tools-header h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        /* Category filters */
+        .category-filters {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--ink-muted);
+            color: var(--ink);
+        }
+
+        .filter-btn.active {
+            background: var(--ink);
+            color: white;
+            border-color: var(--ink);
+        }
+
+        /* Tool cards */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            display: flex;
+            gap: 18px;
+            padding: 24px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--ink);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--tool-color, var(--accent));
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            color: var(--ink);
+        }
+
+        .tool-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .tool-card-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tool-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .tool-card-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .tool-badge-new {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 3px 8px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        .tool-card p {
+            font-size: 0.85rem;
+            color: var(--ink-muted);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .tool-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tool-category {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink-muted);
+            background: var(--surface);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .tool-arrow {
+            font-size: 1.1rem;
+            color: var(--tool-color, var(--accent));
+            transition: transform 0.2s;
+        }
+
+        .tool-card:hover .tool-arrow {
+            transform: translateX(4px);
+        }
+
+        .tool-card--soon {
+            cursor: default;
+            opacity: 0.75;
+        }
+
+        .tool-card--soon:hover {
+            transform: none;
+            border-color: var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tool-badge-soon {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--blue-light);
+            color: var(--blue);
+            padding: 3px 8px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        /* ── COMING SOON / CTA ── */
+        .cta-section {
+            padding: 0 0 80px;
+        }
+
+        .cta-card {
+            background: var(--ink);
+            border-radius: var(--radius);
+            padding: 48px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(196,93,62,0.1) 0%, transparent 60%);
+        }
+
+        .cta-card h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .cta-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.55);
+            max-width: 480px;
+            margin: 0 auto 24px;
+            position: relative;
+        }
+
+        .cta-email-form {
+            display: flex;
+            gap: 10px;
+            max-width: 420px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cta-email-form input[type="email"] {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        .cta-email-form input::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .cta-email-form input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(196,93,62,0.2);
+        }
+
+        /* ── SEO CONTENT BLOCK ── */
+        .seo-content {
+            padding: 0 0 64px;
+        }
+
+        .seo-inner {
+            max-width: 680px;
+        }
+
+        .seo-inner h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 14px;
+            margin-top: 36px;
+        }
+
+        .seo-inner h2:first-child { margin-top: 0; }
+
+        .seo-inner p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--ink-light);
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 640px) {
+            .hero-inner { padding: 48px 20px 44px; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .tool-grid { grid-template-columns: 1fr; }
+            .cta-card { padding: 32px 20px; }
+            .cta-email-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-mark">£</span>
+                UK Calculator Hub
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/tools/true-cost-employee.html">Employee Cost</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="home-hero">
+        <div class="hero-inner">
+            <div class="hero-eyebrow"><span class="line"></span> Free &amp; Updated for 2025/26</div>
+            <h1>UK Calculators That Actually Help You Make Decisions</h1>
+            <p class="hero-sub">Fast, accurate, no-signup calculators for UK employers, business owners, and individuals. Updated with the latest HMRC rates and thresholds.</p>
+
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <div class="num">100%</div>
+                    <div class="desc">Free, no registration</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="num">2025/26</div>
+                    <div class="desc">Latest tax year rates</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="num">Instant</div>
+                    <div class="desc">Results in seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="tools-section">
+        <div class="container-wide">
+            <div class="tools-header">
+                <h2>Calculators</h2>
+                <div class="category-filters" id="categoryFilters"></div>
+            </div>
+            <div class="tool-grid" id="toolGrid"></div>
+        </div>
+    </section>
+
+    <!-- CTA / EMAIL CAPTURE -->
+    <section class="cta-section">
+        <div class="container-wide">
+            <div class="cta-card">
+                <h2>New Calculators Every Week</h2>
+                <p>Get notified when we launch new tools. No spam — just a quick heads-up when something useful drops.</p>
+                <div class="cta-email-form">
+                    <input type="email" placeholder="you@company.co.uk" aria-label="Email address">
+                    <button class="btn btn-primary">Notify Me</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO CONTENT -->
+    <section class="seo-content">
+        <div class="container">
+            <div class="seo-inner">
+                <h2>Why Use Our Calculators?</h2>
+                <p>
+                    UK tax rules change regularly, and the April 2025 changes were some of the most significant in years. Employer National Insurance rose to 15%, the threshold dropped to £5,000, and businesses across the country found themselves paying hundreds more per employee per year. Our calculators are built by UK developers and updated as soon as new rates are announced, so you always get accurate figures when planning your budget.
+                </p>
+                <p>
+                    Every tool on this site is free, requires no registration, and works instantly in your browser. We don't store your data or require you to hand over your email to see results. The calculators are designed for speed — enter your numbers, get your answer, and get on with your day.
+                </p>
+
+                <h2>Built for UK Employers and Businesses</h2>
+                <p>
+                    Whether you're a sole trader hiring your first employee, an SME budgeting for the new tax year, or an accountant running numbers for multiple clients, these tools are designed for the decisions you actually need to make. We focus on UK-specific calculations using HMRC-published rates and thresholds, so you're not trying to adapt a generic international calculator to British tax rules.
+                </p>
+                <p>
+                    We're adding new calculators regularly across categories including employment costs, tax planning, property transactions, and business finance. Each one is built to solve a specific problem cleanly and accurately.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo">
+                    <span class="logo-mark">£</span>
+                    UK Calculator Hub
+                </a>
+                <p>Free, fast, accurate UK calculators for employers, businesses and individuals. Updated for the 2025/26 tax year with the latest HMRC rates.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Calculators</h4>
+                <ul>
+                    <li><a href="/tools/true-cost-employee.html">True Cost of Employee</a></li>
+                    <!-- Add new tool links here -->
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="https://www.gov.uk/government/publications/rates-and-allowances-national-insurance-contributions/rates-and-allowances-national-insurance-contributions" target="_blank" rel="noopener">HMRC NI Rates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>All calculators are for estimation purposes only and do not constitute financial or tax advice. Consult a qualified accountant for professional guidance. © 2026 UK Calculator Hub.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — UK Calculator Hub | Employer NI, Tax & Business Guides</title>
+    <meta name="description" content="Guides and insights on UK employer costs, National Insurance changes, tax planning, and business finance. Updated for 2025/26.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .blog-hero {
+            background: var(--ink); color: white;
+            padding: 56px 0; position: relative; overflow: hidden;
+        }
+        .blog-hero::before {
+            content: ''; position: absolute; top: -40%; right: -15%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59,107,154,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .blog-hero-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; position: relative; }
+        .blog-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            margin-bottom: 10px;
+        }
+        .blog-hero p { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 480px; }
+
+        .blog-list { max-width: var(--max-width); margin: 0 auto; padding: 40px 24px 80px; }
+
+        .blog-card {
+            display: block; padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none; color: var(--ink);
+            transition: opacity 0.2s;
+        }
+        .blog-card:first-child { border-top: 1px solid var(--border); }
+        .blog-card:hover { opacity: 0.75; color: var(--ink); }
+
+        .blog-card .meta {
+            font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            color: var(--ink-muted); margin-bottom: 8px;
+            display: flex; gap: 16px;
+        }
+        .blog-card .meta .cat { color: var(--accent); }
+        .blog-card h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; line-height: 1.35; }
+        .blog-card p { font-size: 0.9rem; color: var(--ink-light); line-height: 1.55; max-width: 600px; }
+
+        .coming-soon {
+            text-align: center; padding: 64px 24px;
+            color: var(--ink-muted); font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/true-cost-employee.html">Employee Cost</a></li>
+                <li><a href="/blog/" class="active">Blog</a></li>
+            </ul>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <section class="blog-hero">
+        <div class="blog-hero-inner">
+            <h1>Guides &amp; Insights</h1>
+            <p>Plain-English guides on UK employer costs, tax changes, and business finance decisions.</p>
+        </div>
+    </section>
+
+    <div class="blog-list">
+        <!-- Blog posts go here — each is a separate HTML file in /blog/ -->
+        <!-- Example structure for when you add posts: -->
+        <!--
+        <a href="/blog/employer-ni-increase-2025-what-it-costs.html" class="blog-card">
+            <div class="meta"><span class="cat">Employment</span><span>Feb 2026</span><span>5 min read</span></div>
+            <h2>The April 2025 Employer NI Increase: What It Actually Costs Your Business</h2>
+            <p>A breakdown of how the employer NI rate rise from 13.8% to 15% and the threshold drop to £5,000 affects real businesses at different sizes.</p>
+        </a>
+        -->
+
+        <div class="coming-soon">
+            <p>Blog posts coming soon. We're writing guides on employer NI changes, hiring costs, and tax planning for UK businesses.</p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a>
+                <p>Free UK calculators for employers, businesses and individuals.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Calculators</h4>
+                <ul><li><a href="/tools/true-cost-employee.html">True Cost of Employee</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul><li><a href="/blog/">Blog</a></li></ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 UK Calculator Hub. All calculators are for estimation purposes only.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Cost of an Employee Calculator UK 2025/26 | Salary, NI, Pension & More</title>
+    <meta name="description" content="Calculate the true total cost of employing someone in the UK for 2025/26. Includes employer NI at 15%, pension, holiday pay, and year-on-year comparison. Free, instant results.">
+    <meta name="keywords" content="true cost of employee UK, employer NI calculator, employer national insurance 2025, cost of employment calculator, employer pension contributions, hiring cost calculator UK">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.co.uk/tools/true-cost-employee.html">
+    <meta property="og:title" content="True Cost of an Employee Calculator UK 2025/26">
+    <meta property="og:description" content="See the real cost of employing someone in the UK. Salary + Employer NI + Pension + Holiday = your true cost.">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "True Cost of an Employee Calculator UK 2025/26",
+        "description": "Calculate the true total cost of employing someone in the UK including salary, employer NI, pension contributions, holiday pay and more.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+
+    <style>
+        .tool-main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .calc-card {
+            margin-top: -20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .calc-actions {
+            padding: 24px 36px 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .checkbox-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--ink-light);
+            user-select: none;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px; height: 18px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .results-container { display: none; margin-top: 28px; }
+        .results-container.visible { display: block; animation: fadeSlideUp 0.4s ease; }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--ink-muted); margin-bottom: 6px;
+        }
+
+        .stat-card .stat-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.35rem; color: var(--ink);
+        }
+
+        .stat-card .stat-note {
+            font-size: 0.75rem; color: var(--ink-muted); margin-top: 4px;
+        }
+
+        /* Bar chart */
+        .bar-chart-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+        }
+
+        .bar-chart-card h3 {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--ink-muted); margin-bottom: 16px;
+        }
+
+        .bar-item {
+            display: flex; align-items: center;
+            gap: 12px; margin-bottom: 10px;
+        }
+
+        .bar-label {
+            font-size: 0.82rem; font-weight: 500;
+            color: var(--ink-light); width: 110px;
+            flex-shrink: 0; text-align: right;
+        }
+
+        .bar-track {
+            flex: 1; height: 28px;
+            background: var(--surface);
+            border-radius: 6px; overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%; border-radius: 6px;
+            transition: width 0.6s ease;
+            display: flex; align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 0.75rem; font-weight: 700;
+            color: white; min-width: fit-content;
+        }
+
+        .bar-fill.salary  { background: var(--ink); }
+        .bar-fill.ni      { background: var(--accent); }
+        .bar-fill.pension  { background: var(--blue); }
+        .bar-fill.other    { background: var(--green); }
+
+        .bar-amount {
+            font-size: 0.82rem; font-weight: 700;
+            color: var(--ink); width: 80px;
+            text-align: right; flex-shrink: 0;
+        }
+
+        /* Comparison */
+        .comparison-card {
+            background: var(--warning-light);
+            border: 1px solid #eddbb3;
+            border-radius: var(--radius);
+            padding: 24px; margin-bottom: 20px;
+        }
+
+        .comparison-title {
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--warning); margin-bottom: 12px;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .comparison-item { text-align: center; }
+
+        .comparison-item .comp-label {
+            font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--ink-muted);
+            font-weight: 600; margin-bottom: 4px;
+        }
+
+        .comparison-item .comp-value {
+            font-size: 1.15rem; font-weight: 700; color: var(--ink);
+        }
+
+        .comparison-item .comp-value.increase { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .calc-actions { padding: 20px; }
+            .stats-row { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr; gap: 10px; }
+            .comparison-item {
+                display: flex; justify-content: space-between;
+                align-items: center; text-align: left;
+            }
+            .bar-label { width: 80px; font-size: 0.75rem; }
+            .bar-amount { width: 65px; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-mark">£</span>
+                UK Calculator Hub
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/true-cost-employee.html" class="active">Employee Cost</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span><a href="/">Calculators</a><span class="sep">›</span>Employee Cost</div>
+            <div class="badge"><span class="dot"></span> Updated for 2025/26 Tax Year</div>
+            <h1>True Cost of an Employee<br>Calculator UK</h1>
+            <p class="subtitle">See what an employee really costs your business — beyond just their salary. Includes employer NI at the new 15% rate, pension, holiday pay, and more.</p>
+        </div>
+    </header>
+
+    <!-- CALCULATOR -->
+    <main class="tool-main">
+        <div class="calc-card card card-elevated">
+            <div class="card-section">
+                <div class="section-label">Employee Details</div>
+                <div class="input-grid">
+                    <div class="input-group full-width">
+                        <label for="salary">Annual Gross Salary</label>
+                        <div class="input-wrap">
+                            <span class="prefix">£</span>
+                            <input type="number" id="salary" class="has-prefix" value="35000" min="0" step="500">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="pension">Employer Pension Contribution</label>
+                        <div class="hint">Minimum 3% for auto-enrolment</div>
+                        <div class="input-wrap">
+                            <input type="number" id="pension" class="has-suffix" value="3" min="0" max="100" step="0.5">
+                            <span class="suffix">%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="pensionBasis">Pension Calculated On</label>
+                        <select id="pensionBasis">
+                            <option value="qualifying">Qualifying Earnings</option>
+                            <option value="gross">Full Gross Salary</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="holidays">Paid Holiday Days</label>
+                        <div class="hint">Statutory minimum is 28 days</div>
+                        <div class="input-wrap">
+                            <input type="number" id="holidays" class="has-suffix" value="28" min="0" max="50">
+                            <span class="suffix">days</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="niCategory">NI Category</label>
+                        <select id="niCategory">
+                            <option value="A">A — Standard</option>
+                            <option value="H">H — Apprentice (under 25)</option>
+                            <option value="M">M — Under 21</option>
+                            <option value="V">V — Veteran (first year)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-section">
+                <div class="section-label">Optional Costs to Include</div>
+                <div class="checkbox-row">
+                    <label class="checkbox-item"><input type="checkbox" id="includeRecruit" checked> Recruitment Costs</label>
+                    <label class="checkbox-item"><input type="checkbox" id="includeEquipment" checked> Equipment &amp; Setup</label>
+                    <label class="checkbox-item"><input type="checkbox" id="includeTraining"> Annual Training</label>
+                </div>
+                <div class="input-grid" style="margin-top: 16px;">
+                    <div class="input-group" id="recruitGroup">
+                        <label for="recruitCost">Recruitment Cost (one-off)</label>
+                        <div class="input-wrap">
+                            <span class="prefix">£</span>
+                            <input type="number" id="recruitCost" class="has-prefix" value="2000" min="0" step="100">
+                        </div>
+                    </div>
+                    <div class="input-group" id="equipmentGroup">
+                        <label for="equipmentCost">Equipment &amp; Setup Cost</label>
+                        <div class="input-wrap">
+                            <span class="prefix">£</span>
+                            <input type="number" id="equipmentCost" class="has-prefix" value="1500" min="0" step="100">
+                        </div>
+                    </div>
+                    <div class="input-group" id="trainingGroup" style="display: none;">
+                        <label for="trainingCost">Annual Training Budget</label>
+                        <div class="input-wrap">
+                            <span class="prefix">£</span>
+                            <input type="number" id="trainingCost" class="has-prefix" value="1000" min="0" step="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-actions">
+                <button class="btn btn-primary btn-full btn-lg" onclick="calculate()">Calculate True Cost</button>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results-container" id="results">
+            <div class="hero-stat" style="margin-bottom: 20px;">
+                <div class="hero-stat-label">Total Annual Cost to Employ</div>
+                <div class="hero-stat-value" id="totalCost">—</div>
+                <div class="hero-stat-sub"><span id="monthlyTotal">—</span> per month</div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-label">Salary as % of Total</div>
+                    <div class="stat-value" id="salaryPercent">—</div>
+                    <div class="stat-note">What goes to the employee</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Overhead per Employee</div>
+                    <div class="stat-value" id="overheadAmount">—</div>
+                    <div class="stat-note">On top of salary</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Effective Daily Cost</div>
+                    <div class="stat-value" id="dailyCost">—</div>
+                    <div class="stat-note">Based on working days</div>
+                </div>
+            </div>
+
+            <div class="bar-chart-card">
+                <h3>Cost Breakdown — Where Your Money Goes</h3>
+                <div id="barChart"></div>
+            </div>
+
+            <div class="breakdown-card" style="margin-bottom: 20px;">
+                <div class="breakdown-header">Detailed Annual Breakdown</div>
+                <div id="breakdownRows"></div>
+            </div>
+
+            <div class="comparison-card" id="comparisonCard">
+                <div class="comparison-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Impact of April 2025 NI Changes
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <div class="comp-label">2024/25 Cost</div>
+                        <div class="comp-value" id="prevYearCost">—</div>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="comp-label">2025/26 Cost</div>
+                        <div class="comp-value" id="currYearCost">—</div>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="comp-label">Annual Increase</div>
+                        <div class="comp-value increase" id="yearIncrease">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO CONTENT -->
+        <div class="prose" style="margin-top: 48px;">
+            <h2>How Much Does an Employee Really Cost?</h2>
+            <p>Most employers know that hiring someone costs more than just their salary. But few realise exactly how much more. The true cost of an employee in the UK typically runs 20–40% above their gross salary once you factor in employer National Insurance contributions, pension obligations, holiday pay, and the practical costs of recruitment and equipment.</p>
+            <p>Since April 2025, the cost has increased further. The employer NI rate rose from 13.8% to 15%, and the threshold dropped from £9,100 to £5,000. For a business with 10 employees on average salaries, that's an additional £8,000–10,000 per year in NI alone.</p>
+            <p>This calculator helps you see the complete picture so you can plan your hiring budget accurately, compare the cost of employees versus contractors, and understand the financial impact of the 2025 NI changes on your business.</p>
+
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">What is included in the "true cost" of an employee?</div>
+                    <div class="faq-a">The true cost includes the employee's gross salary, employer National Insurance contributions (15% on earnings above £5,000 for 2025/26), employer pension contributions (minimum 3% of qualifying earnings for auto-enrolment), the cost of paid holidays, and optional extras like recruitment fees, equipment, and training.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">What changed with employer NI in April 2025?</div>
+                    <div class="faq-a">Two things changed: the employer NI rate increased from 13.8% to 15%, and the secondary threshold dropped from £9,100 to £5,000 per year. The Employment Allowance also increased from £5,000 to £10,500, which helps offset some of the increase for smaller businesses.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">What are qualifying earnings for pension auto-enrolment?</div>
+                    <div class="faq-a">For 2025/26, qualifying earnings are the band between £6,240 and £50,270 per year. The minimum employer contribution is 3% of qualifying earnings, not the full salary. Some employers calculate pension on full gross salary instead, which is more generous. This calculator supports both methods.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Does the Employment Allowance reduce my NI bill?</div>
+                    <div class="faq-a">Yes. From April 2025, eligible employers can claim up to £10,500 off their annual employer NI bill. The previous £100,000 cap has been removed. You cannot claim it if you're the sole employee of your own limited company. This calculator shows NI per employee — apply the Employment Allowance across your total NI bill separately.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">How does this compare to hiring a contractor?</div>
+                    <div class="faq-a">Contractors charge a day rate that covers their own tax, pension, holiday, and business costs. While the headline rate looks higher, you don't pay employer NI, pension, holiday pay, sick pay, or recruitment costs. Use the effective daily cost figure from this calculator to compare directly against contractor day rates.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo">
+                    <span class="logo-mark">£</span>
+                    UK Calculator Hub
+                </a>
+                <p>Free, fast, accurate UK calculators for employers, businesses and individuals. Updated for the 2025/26 tax year.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Calculators</h4>
+                <ul>
+                    <li><a href="/tools/true-cost-employee.html">True Cost of Employee</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="https://www.gov.uk/government/publications/rates-and-allowances-national-insurance-contributions" target="_blank" rel="noopener">HMRC NI Rates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>All calculators are for estimation purposes only and do not constitute financial or tax advice. Consult a qualified accountant for professional guidance. © 2026 UK Calculator Hub.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/core.js"></script>
+    <script>
+        const TAX_2526 = { ni_rate: 0.15, ni_threshold: 5000, pension_lower: 6240, pension_upper: 50270, ust: 50270 };
+        const TAX_2425 = { ni_rate: 0.138, ni_threshold: 9100, pension_lower: 6240, pension_upper: 50270 };
+
+        document.getElementById('includeRecruit').addEventListener('change', function() {
+            document.getElementById('recruitGroup').style.display = this.checked ? '' : 'none';
+        });
+        document.getElementById('includeEquipment').addEventListener('change', function() {
+            document.getElementById('equipmentGroup').style.display = this.checked ? '' : 'none';
+        });
+        document.getElementById('includeTraining').addEventListener('change', function() {
+            document.getElementById('trainingGroup').style.display = this.checked ? 'block' : 'none';
+        });
+
+        function calcEmployerNI(salary, tax, niCat) {
+            const threshold = (niCat === 'H' || niCat === 'M' || niCat === 'V') ? TAX_2526.ust : tax.ni_threshold;
+            return salary <= threshold ? 0 : (salary - threshold) * tax.ni_rate;
+        }
+
+        function calcPension(salary, rate, basis) {
+            if (basis === 'qualifying') {
+                return Math.max(0, Math.min(salary, TAX_2526.pension_upper) - TAX_2526.pension_lower) * (rate / 100);
+            }
+            return salary * (rate / 100);
+        }
+
+        function calculate() {
+            const salary = parseFloat(document.getElementById('salary').value) || 0;
+            const pensionRate = parseFloat(document.getElementById('pension').value) || 0;
+            const pensionBasis = document.getElementById('pensionBasis').value;
+            const holidays = parseInt(document.getElementById('holidays').value) || 0;
+            const niCat = document.getElementById('niCategory').value;
+
+            const recruitCost = document.getElementById('includeRecruit').checked ? (parseFloat(document.getElementById('recruitCost').value) || 0) : 0;
+            const equipmentCost = document.getElementById('includeEquipment').checked ? (parseFloat(document.getElementById('equipmentCost').value) || 0) : 0;
+            const trainingCost = document.getElementById('includeTraining').checked ? (parseFloat(document.getElementById('trainingCost').value) || 0) : 0;
+
+            const employerNI = calcEmployerNI(salary, TAX_2526, niCat);
+            const pension = calcPension(salary, pensionRate, pensionBasis);
+            const workingDays = 260;
+            const totalAnnual = salary + employerNI + pension + recruitCost + equipmentCost + trainingCost;
+            const recurringCost = salary + employerNI + pension;
+
+            const prevNI = calcEmployerNI(salary, TAX_2425, 'A');
+            const prevPension = calcPension(salary, pensionRate, pensionBasis);
+            const prevTotal = salary + prevNI + prevPension + recruitCost + equipmentCost + trainingCost;
+
+            const resultsEl = document.getElementById('results');
+            resultsEl.classList.add('visible');
+
+            document.getElementById('totalCost').textContent = formatCurrency(totalAnnual);
+            document.getElementById('monthlyTotal').textContent = formatCurrency(totalAnnual / 12);
+
+            document.getElementById('salaryPercent').textContent = totalAnnual > 0 ? ((salary / totalAnnual) * 100).toFixed(1) + '%' : '0%';
+            document.getElementById('overheadAmount').textContent = formatCurrency(totalAnnual - salary);
+            document.getElementById('dailyCost').textContent = formatCurrency(recurringCost / (workingDays - holidays));
+
+            // Bar chart
+            const barData = [
+                { label: 'Salary', value: salary, cls: 'salary' },
+                { label: 'Employer NI', value: employerNI, cls: 'ni' },
+                { label: 'Pension', value: pension, cls: 'pension' },
+            ];
+            const otherCosts = recruitCost + equipmentCost + trainingCost;
+            if (otherCosts > 0) barData.push({ label: 'Other Costs', value: otherCosts, cls: 'other' });
+
+            document.getElementById('barChart').innerHTML = barData.map(d => {
+                const pct = salary > 0 ? Math.max(2, (d.value / salary) * 100) : 0;
+                return `<div class="bar-item">
+                    <div class="bar-label">${d.label}</div>
+                    <div class="bar-track"><div class="bar-fill ${d.cls}" style="width: ${Math.min(pct, 100)}%"></div></div>
+                    <div class="bar-amount">${formatCurrency(d.value)}</div>
+                </div>`;
+            }).join('');
+
+            // Breakdown
+            const rows = [
+                { label: 'Gross Salary', value: salary, color: 'var(--ink)' },
+                { label: 'Employer NI (15% above £5,000)', value: employerNI, color: 'var(--accent)' },
+                { label: `Employer Pension (${pensionRate}%)`, value: pension, color: 'var(--blue)' },
+            ];
+            if (recruitCost > 0) rows.push({ label: 'Recruitment (one-off)', value: recruitCost, color: 'var(--green)' });
+            if (equipmentCost > 0) rows.push({ label: 'Equipment & Setup', value: equipmentCost, color: 'var(--green)' });
+            if (trainingCost > 0) rows.push({ label: 'Training Budget', value: trainingCost, color: 'var(--green)' });
+
+            document.getElementById('breakdownRows').innerHTML = rows.map(r => `
+                <div class="breakdown-row">
+                    <div class="label"><span class="icon" style="background: ${r.color}"></span>${r.label}</div>
+                    <div class="value">${formatCurrency(r.value)}</div>
+                </div>`).join('') + `
+                <div class="breakdown-row total-row">
+                    <div class="label">Total Annual Cost</div>
+                    <div class="value">${formatCurrency(totalAnnual)}</div>
+                </div>`;
+
+            // Comparison
+            if (niCat === 'A') {
+                document.getElementById('comparisonCard').style.display = '';
+                document.getElementById('prevYearCost').textContent = formatCurrency(prevTotal);
+                document.getElementById('currYearCost').textContent = formatCurrency(totalAnnual);
+                document.getElementById('yearIncrease').textContent = '+' + formatCurrency(totalAnnual - prevTotal);
+            } else {
+                document.getElementById('comparisonCard').style.display = 'none';
+            }
+
+            resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        calculate();
+    </script>
+</body>
+</html>
