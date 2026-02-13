@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourdomain.co.uk/sitemap.xml
+Sitemap: https://ukdevtools.netlify.app/sitemap.xml
