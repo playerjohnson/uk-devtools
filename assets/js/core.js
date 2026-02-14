@@ -395,9 +395,45 @@ function formatCurrency(amount) {
     return '£' + amount.toFixed(2);
 }
 
+// ── Cookie Consent ──
+function initCookieConsent() {
+    const consent = localStorage.getItem('cookie_consent');
+    if (consent === 'accepted' || consent === 'rejected') {
+        if (consent === 'rejected') disableTracking();
+        return;
+    }
+    const banner = document.createElement('div');
+    banner.id = 'cookieBanner';
+    banner.innerHTML = `
+        <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--ink,#111);border-top:1px solid rgba(255,255,255,0.1);padding:16px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;font-size:.85rem;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif">
+            <span>We use cookies for analytics and advertising. <a href="${BASE_PATH}privacy.html" style="color:#C45D3E;text-decoration:underline">Privacy Policy</a></span>
+            <button onclick="acceptCookies()" style="background:#C45D3E;color:white;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.84rem">Accept All</button>
+            <button onclick="rejectCookies()" style="background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.84rem">Reject Non-Essential</button>
+        </div>`;
+    document.body.appendChild(banner);
+}
+function acceptCookies() {
+    localStorage.setItem('cookie_consent', 'accepted');
+    document.getElementById('cookieBanner')?.remove();
+}
+function rejectCookies() {
+    localStorage.setItem('cookie_consent', 'rejected');
+    document.getElementById('cookieBanner')?.remove();
+    disableTracking();
+}
+function disableTracking() {
+    window['ga-disable-G-GSVNXL004D'] = true;
+    document.querySelectorAll('.adsbygoogle').forEach(el => el.style.display = 'none');
+}
+function resetCookieConsent() {
+    localStorage.removeItem('cookie_consent');
+    location.reload();
+}
+
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
     initNav();
     initCategoryFilter();
     renderToolGrid('toolGrid');
+    initCookieConsent();
 });
