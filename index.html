@@ -465,10 +465,22 @@
             <div class="cta-card">
                 <h2>New Calculators Every Week</h2>
                 <p>Get notified when we launch new tools. No spam — just a quick heads-up when something useful drops.</p>
-                <div class="cta-email-form">
-                    <input type="email" placeholder="you@company.co.uk" aria-label="Email address">
-                    <button class="btn btn-primary">Notify Me</button>
-                </div>
+                <form name="notify" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="cta-email-form" id="notifyForm">
+                    <input type="hidden" name="form-name" value="notify">
+                    <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                    <input type="email" name="email" placeholder="you@company.co.uk" aria-label="Email address" required>
+                    <button type="submit" class="btn btn-primary">Notify Me</button>
+                </form>
+                <p id="notifySuccess" style="display:none;color:#4ade80;font-size:.9rem;margin-top:12px">✓ You're on the list! We'll email you when new tools launch.</p>
+                <script>
+                document.getElementById('notifyForm').addEventListener('submit',function(e){
+                    e.preventDefault();
+                    const form=e.target;
+                    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+                    .then(()=>{form.style.display='none';document.getElementById('notifySuccess').style.display='block';})
+                    .catch(()=>form.submit());
+                });
+                </script>
             </div>
         </div>
     </section>
