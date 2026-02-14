@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension Contribution Calculator UK 2025/26 | UK Calculator Hub</title>
+    <meta name="description" content="Calculate your workplace pension contributions for 2025/26. See employee and employer contributions, tax relief, and projected pension pot growth over time.">
+    <meta name="keywords" content="pension calculator UK, pension contributions calculator, workplace pension, auto enrolment pension, pension tax relief, pension pot calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/pension-calculator.html">
+    <meta property="og:title" content="Pension Contribution Calculator UK 2025/26"><meta property="og:description" content="See your pension contributions, tax relief, and projected pot growth."><meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pension Contribution Calculator UK 2025/26","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px;border-bottom:1px solid var(--border)}.input-section:last-child{border-bottom:none}
+        .section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .currency-wrap{position:relative}.currency-wrap::before{content:'£';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-muted);font-weight:600;pointer-events:none}.currency-wrap input{padding-left:30px;width:100%;box-sizing:border-box}
+        .calc-actions{padding:24px 36px 32px;border-top:1px solid var(--border)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-sm)}
+        .stat-card .stat-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:6px}
+        .stat-card .stat-value{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--ink)}.stat-card .stat-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .stat-card.highlight .stat-value{color:#059669}
+        .breakdown-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+        .breakdown-card h3{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:16px}
+        .bd-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}.bd-row:last-child{border-bottom:none}.bd-row .bd-label{color:var(--ink-light)}.bd-row .bd-value{font-weight:700}
+        .bd-total{display:flex;justify-content:space-between;padding:12px 0 0;margin-top:4px;border-top:2px solid var(--ink);font-weight:700;font-size:.92rem}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid{grid-template-columns:1fr}.input-section{padding:20px}.calc-actions{padding:20px 20px 24px}.stats-row{grid-template-columns:1fr 1fr}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Check</a></li><li><a href="/blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span>Calculators<span class="sep">›</span>Pension Calculator</div>
+        <div class="badge"><span class="dot"></span> 2025/26</div>
+        <h1>Pension Contribution<br>Calculator UK</h1>
+        <p class="subtitle">See your annual pension contributions (employee + employer), the tax relief you get, and what your pension pot could grow to over time.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="input-grid">
+                    <div class="input-group"><label for="salary">Annual Gross Salary</label><div class="currency-wrap"><input type="number" id="salary" value="35000" min="0" max="500000" step="1000"></div></div>
+                    <div class="input-group"><label for="empPct">Your Contribution (%)</label><select id="empPct"><option value="3">3%</option><option value="5" selected>5% (standard auto-enrolment)</option><option value="8">8%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option></select></div>
+                    <div class="input-group"><label for="erPct">Employer Contribution (%)</label><select id="erPct"><option value="3" selected>3% (minimum)</option><option value="5">5%</option><option value="8">8%</option><option value="10">10%</option><option value="15">15%</option></select></div>
+                    <div class="input-group"><label for="years">Years Until Retirement</label><input type="number" id="years" value="25" min="1" max="50"></div>
+                    <div class="input-group"><label for="existingPot">Existing Pension Pot</label><div class="currency-wrap"><input type="number" id="existingPot" value="0" min="0" max="5000000" step="1000"></div></div>
+                    <div class="input-group"><label for="growth">Assumed Growth Rate (%)</label><select id="growth"><option value="3">3% (conservative)</option><option value="5" selected>5% (moderate)</option><option value="7">7% (optimistic)</option></select></div>
+                </div>
+            </div>
+            <div class="calc-actions"><button class="btn btn-primary btn-lg" onclick="calculate()" style="width:100%">Calculate Pension →</button></div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="stats-row">
+                <div class="stat-card"><div class="stat-label">Your Annual Contribution</div><div class="stat-value" id="empContrib">£1,438</div></div>
+                <div class="stat-card"><div class="stat-label">Employer Annual</div><div class="stat-value" id="erContrib">£863</div></div>
+                <div class="stat-card"><div class="stat-label">Tax Relief (annual)</div><div class="stat-value" id="taxRelief">£288</div></div>
+                <div class="stat-card highlight"><div class="stat-label">Projected Pot at Retirement</div><div class="stat-value" id="projectedPot">£158,000</div></div>
+            </div>
+            <div class="breakdown-card"><h3>📊 Annual Contributions Breakdown</h3><div id="breakdown"></div></div>
+        </div>
+        <div class="ad-unit ad-unit--article" style="padding:0;max-width:100%;margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>Workplace Pension Explained</h2>
+            <p>Under auto-enrolment, minimum contributions are 8% of qualifying earnings (employee 5% + employer 3%). Qualifying earnings for 2025/26 are between £6,240 and £50,270.</p>
+            <p><strong>Tax relief:</strong> Your pension contributions receive tax relief at your marginal rate. A basic rate taxpayer gets 20% relief — meaning a £100 contribution only costs you £80 from your take-home pay.</p>
+            <p><strong>Annual Allowance:</strong> You can contribute up to £60,000 per year (or 100% of earnings, whichever is lower) and receive tax relief. This was increased from £40,000 in April 2023.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What are qualifying earnings?</div><div class="faq-a"><p>For 2025/26, qualifying earnings are the portion of your salary between £6,240 and £50,270. Pension contributions are calculated on this band, not your full salary. So on a £35,000 salary, qualifying earnings are £28,760.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I increase my contributions?</div><div class="faq-a"><p>If your employer matches additional contributions, increasing yours is essentially free money. Even without matching, the tax relief makes pensions one of the most tax-efficient savings vehicles available. Consider using our <a href="/tools/salary-sacrifice.html">Salary Sacrifice Calculator</a> to see if sacrificing salary for pension saves even more.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Calculators</h4><ul><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-sacrifice.html">Salary Sacrifice</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="/blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="/assets/js/core.js"></script>
+    <script>
+        function calculate(){
+            const salary=+document.getElementById('salary').value||0;
+            const empPct=+document.getElementById('empPct').value/100;
+            const erPct=+document.getElementById('erPct').value/100;
+            const years=+document.getElementById('years').value||25;
+            const existing=+document.getElementById('existingPot').value||0;
+            const growth=+document.getElementById('growth').value/100;
+            const qeLower=6240,qeUpper=50270;
+            const qe=Math.max(0,Math.min(salary,qeUpper)-qeLower);
+            const empContrib=qe*empPct;
+            const erContrib=qe*erPct;
+            const totalAnnual=empContrib+erContrib;
+            // Tax relief (basic rate for simplicity — already applied via net pay)
+            const taxRate=salary>50270?0.40:0.20;
+            const taxRelief=empContrib*taxRate;
+            // Projection: compound growth
+            const monthlyContrib=totalAnnual/12;
+            const monthlyRate=growth/12;
+            const months=years*12;
+            let pot=existing;
+            for(let i=0;i<months;i++){pot=(pot+monthlyContrib)*(1+monthlyRate);}
+
+            document.getElementById('empContrib').textContent=formatCurrency(empContrib);
+            document.getElementById('erContrib').textContent=formatCurrency(erContrib);
+            document.getElementById('taxRelief').textContent=formatCurrency(taxRelief);
+            document.getElementById('projectedPot').textContent=formatCurrency(pot);
+
+            const totalContribs=totalAnnual*years+existing;
+            const growthAmt=pot-totalContribs;
+            document.getElementById('breakdown').innerHTML=[
+                {l:'Qualifying Earnings',v:formatCurrency(qe)},
+                {l:'Your Contribution ('+Math.round(empPct*100)+'%)',v:formatCurrency(empContrib)+'/yr ('+formatCurrency(empContrib/12)+'/mo)'},
+                {l:'Employer Contribution ('+Math.round(erPct*100)+'%)',v:formatCurrency(erContrib)+'/yr'},
+                {l:'Tax Relief at '+Math.round(taxRate*100)+'%',v:formatCurrency(taxRelief)+'/yr'},
+                {l:'Total Going In',v:formatCurrency(totalAnnual)+'/yr'},
+            ].map(r=>`<div class="bd-row"><div class="bd-label">${r.l}</div><div class="bd-value">${r.v}</div></div>`).join('')+
+            `<div class="bd-total"><span>Projected Pot (${years} years, ${Math.round(growth*100)}% growth)</span><span>${formatCurrency(pot)}</span></div>`;
+
+            document.getElementById('results').classList.add('visible');
+            document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+        }
+        calculate();
+    </script>
+</body>
+</html>

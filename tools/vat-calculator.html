@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Calculator UK 2025/26 — Add or Remove VAT Instantly | UK Calculator Hub</title>
+    <meta name="description" content="Free UK VAT calculator. Add or remove VAT at 20%, 5% or 0%. See net, VAT and gross amounts instantly. Supports all UK VAT rates for 2025/26.">
+    <meta name="keywords" content="VAT calculator UK, add VAT, remove VAT, reverse VAT calculator, 20% VAT, UK VAT rate 2025, VAT calculation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/vat-calculator.html">
+    <meta property="og:title" content="VAT Calculator UK 2025/26 — Add or Remove VAT Instantly">
+    <meta property="og:description" content="Add or remove VAT at 20%, 5% or 0%. Free UK VAT calculator with instant results.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VAT Calculator UK 2025/26","description":"Add or remove VAT at standard, reduced or zero rate.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}
+        .section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .currency-wrap{position:relative}.currency-wrap::before{content:'£';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-muted);font-weight:600;pointer-events:none}.currency-wrap input{padding-left:30px;width:100%;box-sizing:border-box}
+        .results-container{margin-top:28px;animation:fadeSlideUp .4s ease}
+        .vat-results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .vat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
+        .vat-card .vc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px}
+        .vat-card .vc-value{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--ink)}
+        .vat-card.highlight{border-color:var(--accent);background:linear-gradient(135deg,rgba(196,93,62,.05),rgba(196,93,62,.02))}
+        .vat-card.highlight .vc-value{color:var(--accent)}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid,.vat-results{grid-template-columns:1fr}.input-section{padding:20px}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Check</a></li><li><a href="/blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span>Calculators<span class="sep">›</span>VAT Calculator</div>
+        <div class="badge"><span class="dot"></span> UK VAT Rates 2025/26</div>
+        <h1>VAT Calculator UK</h1>
+        <p class="subtitle">Add or remove VAT instantly. Enter an amount, choose your VAT rate, and see the net, VAT and gross figures straight away.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="input-grid">
+                    <div class="input-group"><label for="amount">Amount (£)</label><div class="currency-wrap"><input type="number" id="amount" value="1000" min="0" step="0.01" oninput="calculate()"></div></div>
+                    <div class="input-group"><label for="direction">Direction</label><select id="direction" onchange="calculate()"><option value="add" selected>Add VAT (net → gross)</option><option value="remove">Remove VAT (gross → net)</option></select></div>
+                    <div class="input-group"><label for="rate">VAT Rate</label><select id="rate" onchange="calculate()"><option value="20" selected>20% (Standard)</option><option value="5">5% (Reduced)</option><option value="12.5">12.5% (Hospitality — historic)</option><option value="0">0% (Zero-rated)</option></select></div>
+                </div>
+            </div>
+        </div>
+        <div class="results-container">
+            <div class="vat-results">
+                <div class="vat-card"><div class="vc-label">Net (exc. VAT)</div><div class="vc-value" id="resNet">£1,000.00</div></div>
+                <div class="vat-card highlight"><div class="vc-label">VAT Amount</div><div class="vc-value" id="resVat">£200.00</div></div>
+                <div class="vat-card"><div class="vc-label">Gross (inc. VAT)</div><div class="vc-value" id="resGross">£1,200.00</div></div>
+            </div>
+        </div>
+        <div class="ad-unit ad-unit--article" style="padding:0;max-width:100%;margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>UK VAT Rates Explained</h2>
+            <p><strong>Standard Rate (20%):</strong> Applies to most goods and services in the UK. This has been 20% since January 2011.</p>
+            <p><strong>Reduced Rate (5%):</strong> Applies to certain goods and services including home energy, children's car seats, and some energy-saving materials.</p>
+            <p><strong>Zero Rate (0%):</strong> Items are VAT-taxable but at 0%. Includes most food, children's clothing, books, newspapers, and public transport.</p>
+            <p><strong>VAT Registration Threshold:</strong> For 2025/26, businesses must register for VAT when taxable turnover exceeds £90,000 in any 12-month period.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I add VAT to a price?</div><div class="faq-a"><p>Multiply the net price by 1.20 for standard rate. For example, £100 × 1.20 = £120 including VAT. The VAT amount is £100 × 0.20 = £20.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I remove VAT from a price?</div><div class="faq-a"><p>Divide the gross price by 1.20 for standard rate. For example, £120 ÷ 1.20 = £100 net. The VAT element is £120 − £100 = £20. This is sometimes called a "reverse VAT calculation".</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When do I need to register for VAT?</div><div class="faq-a"><p>You must register when your VAT-taxable turnover exceeds £90,000 in any rolling 12-month period, or if you expect it to exceed £90,000 in the next 30 days alone.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Calculators</h4><ul><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Reality Check</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="/blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="/assets/js/core.js"></script>
+    <script>
+        function calculate() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const direction = document.getElementById('direction').value;
+            const rate = parseFloat(document.getElementById('rate').value) / 100;
+            let net, vat, gross;
+            if (direction === 'add') {
+                net = amount; vat = amount * rate; gross = amount + vat;
+            } else {
+                gross = amount; net = amount / (1 + rate); vat = gross - net;
+            }
+            document.getElementById('resNet').textContent = '£' + net.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('resVat').textContent = '£' + vat.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('resGross').textContent = '£' + gross.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+        calculate();
+    </script>
+</body>
+</html>

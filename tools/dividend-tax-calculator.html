@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dividend Tax Calculator UK 2025/26 | UK Calculator Hub</title>
+    <meta name="description" content="Calculate dividend tax for 2025/26. See tax on dividends at basic, higher and additional rates with the £500 dividend allowance. Free instant results.">
+    <meta name="keywords" content="dividend tax calculator UK, dividend tax rate 2025, dividend allowance, tax on dividends UK, company director dividends">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/dividend-tax-calculator.html">
+    <meta property="og:title" content="Dividend Tax Calculator UK 2025/26"><meta property="og:description" content="Calculate tax on your dividends for 2025/26."><meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Dividend Tax Calculator UK 2025/26","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .currency-wrap{position:relative}.currency-wrap::before{content:'£';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-muted);font-weight:600;pointer-events:none}.currency-wrap input{padding-left:30px;width:100%;box-sizing:border-box}
+        .calc-actions{padding:24px 36px 32px;border-top:1px solid var(--border)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-sm)}
+        .stat-card .stat-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:6px}
+        .stat-card .stat-value{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--ink)}.stat-card .stat-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .breakdown-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+        .breakdown-card h3{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:16px}
+        .bd-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}.bd-row:last-child{border-bottom:none}.bd-row .bd-label{color:var(--ink-light)}.bd-row .bd-value{font-weight:700}
+        .bd-total{display:flex;justify-content:space-between;padding:12px 0 0;margin-top:4px;border-top:2px solid var(--ink);font-weight:700;font-size:.92rem}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid{grid-template-columns:1fr}.input-section{padding:20px}.calc-actions{padding:20px 20px 24px}.stats-row{grid-template-columns:1fr}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Check</a></li><li><a href="/blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span>Calculators<span class="sep">›</span>Dividend Tax</div>
+        <div class="badge"><span class="dot"></span> 2025/26 Tax Year</div>
+        <h1>Dividend Tax<br>Calculator UK</h1>
+        <p class="subtitle">Calculate the tax you'll pay on dividends for 2025/26. Enter your salary and dividend income to see your total tax bill, effective rate, and net income after tax.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="input-grid">
+                    <div class="input-group"><label for="salary">Annual Salary (if any)</label><div class="currency-wrap"><input type="number" id="salary" value="12570" min="0" max="500000" step="100"></div><span class="hint">Many directors take £12,570 salary</span></div>
+                    <div class="input-group"><label for="dividends">Annual Dividends</label><div class="currency-wrap"><input type="number" id="dividends" value="40000" min="0" max="1000000" step="1000"></div></div>
+                    <div class="input-group"><label for="otherIncome">Other Taxable Income</label><div class="currency-wrap"><input type="number" id="otherIncome" value="0" min="0" max="500000" step="100"></div><span class="hint">Rental income, interest, etc.</span></div>
+                    <div class="input-group"><label for="taxCode">Tax Situation</label><select id="taxCode"><option value="standard" selected>Standard (England/Wales/NI)</option><option value="scotland">Scottish Tax Rates</option></select></div>
+                </div>
+            </div>
+            <div class="calc-actions"><button class="btn btn-primary btn-lg" onclick="calculate()" style="width:100%">Calculate Dividend Tax →</button></div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="stats-row">
+                <div class="stat-card"><div class="stat-label">Total Tax on Dividends</div><div class="stat-value" id="divTax">£3,364</div></div>
+                <div class="stat-card"><div class="stat-label">Effective Dividend Tax Rate</div><div class="stat-value" id="effRate">8.4%</div></div>
+                <div class="stat-card"><div class="stat-label">Net Dividend Income</div><div class="stat-value" id="netDiv">£36,636</div></div>
+            </div>
+            <div class="breakdown-card">
+                <h3>📊 Full Tax Breakdown</h3>
+                <div id="breakdown"></div>
+            </div>
+        </div>
+        <div class="ad-unit ad-unit--article" style="padding:0;max-width:100%;margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>UK Dividend Tax Rates 2025/26</h2>
+            <p><strong>Dividend Allowance:</strong> The first £500 of dividend income is tax-free (reduced from £1,000 in 2023/24 and £2,000 in 2022/23).</p>
+            <p><strong>Basic Rate (8.75%):</strong> Dividends falling within the basic rate band (up to £50,270 total income).</p>
+            <p><strong>Higher Rate (33.75%):</strong> Dividends falling within the higher rate band (£50,270–£125,140).</p>
+            <p><strong>Additional Rate (39.35%):</strong> Dividends above £125,140 total income.</p>
+            <p>Dividends are taxed after salary and other income, using up your personal allowance and basic rate band first. This is why many limited company directors take a salary of £12,570 (using the full personal allowance) and then take the rest as dividends.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What's the most tax-efficient salary/dividend split?</div><div class="faq-a"><p>For 2025/26, many accountants recommend a salary of £12,570 (uses personal allowance, no tax, minimal NI) plus dividends for the rest. This keeps dividend income within the basic rate band where possible, taxed at just 8.75%.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I pay NI on dividends?</div><div class="faq-a"><p>No. National Insurance is not payable on dividend income — only on employment earnings. This is one of the key tax advantages of the salary-plus-dividends structure for company directors.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Calculators</h4><ul><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Reality Check</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="/blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="/assets/js/core.js"></script>
+    <script>
+        function calculate() {
+            const salary = +document.getElementById('salary').value||0;
+            const dividends = +document.getElementById('dividends').value||0;
+            const other = +document.getElementById('otherIncome').value||0;
+            const totalIncome = salary + dividends + other;
+            let pa = 12570;
+            if(totalIncome>100000) pa = Math.max(0,pa-Math.floor((totalIncome-100000)/2));
+
+            // Tax on salary + other income first
+            const nonDivIncome = salary + other;
+            const taxableNonDiv = Math.max(0, nonDivIncome - pa);
+            let salaryTax=0;
+            const b1=50270-12570,b2=125140-50270;
+            if(taxableNonDiv<=b1)salaryTax=taxableNonDiv*.20;
+            else if(taxableNonDiv<=b1+b2)salaryTax=b1*.20+(taxableNonDiv-b1)*.40;
+            else salaryTax=b1*.20+b2*.40+(taxableNonDiv-b1-b2)*.45;
+
+            // NI on salary only
+            let ni=0;
+            if(salary>12570){ni=(Math.min(salary,50270)-12570)*.08;if(salary>50270)ni+=(salary-50270)*.02;}
+
+            // Dividend tax
+            const paUsed = Math.min(pa, nonDivIncome);
+            const paRemaining = Math.max(0, pa - nonDivIncome);
+            const taxableDividends = Math.max(0, dividends - paRemaining);
+            const afterAllowance = Math.max(0, taxableDividends - 500); // £500 dividend allowance
+
+            // Where do dividends start in the bands?
+            const nonDivTaxable = Math.max(0, nonDivIncome - pa);
+            const basicRemaining = Math.max(0, (50270-pa) - nonDivTaxable);
+            const higherRemaining = Math.max(0, (125140-pa) - Math.max(nonDivTaxable, 50270-pa));
+
+            let divTax = 0;
+            let remaining = afterAllowance;
+            const divBands = [];
+
+            // Basic rate dividends (8.75%)
+            const inBasic = Math.min(remaining, basicRemaining);
+            if(inBasic>0){divTax+=inBasic*0.0875;divBands.push({l:'Basic Rate (8.75%)',amt:inBasic,tax:inBasic*0.0875});remaining-=inBasic;}
+
+            // Higher rate dividends (33.75%)
+            const higherBand = 125140-50270;
+            const higherUsed = Math.max(0, nonDivTaxable-(50270-pa));
+            const higherAvail = Math.max(0, higherBand-higherUsed);
+            const inHigher = Math.min(remaining, higherAvail);
+            if(inHigher>0){divTax+=inHigher*0.3375;divBands.push({l:'Higher Rate (33.75%)',amt:inHigher,tax:inHigher*0.3375});remaining-=inHigher;}
+
+            // Additional rate dividends (39.35%)
+            if(remaining>0){divTax+=remaining*0.3935;divBands.push({l:'Additional Rate (39.35%)',amt:remaining,tax:remaining*0.3935});}
+
+            const effRate = dividends>0?((divTax/dividends)*100).toFixed(1):'0.0';
+            document.getElementById('divTax').textContent = formatCurrency(divTax);
+            document.getElementById('effRate').textContent = effRate+'%';
+            document.getElementById('netDiv').textContent = formatCurrency(dividends-divTax);
+
+            let rows = [{l:'Total Income',v:totalIncome},{l:'Personal Allowance',v:'-'+formatCurrency(pa)+'*'}];
+            if(salaryTax>0)rows.push({l:'Income Tax on Salary/Other',v:salaryTax});
+            if(ni>0)rows.push({l:'Employee NI on Salary',v:ni});
+            rows.push({l:'Dividend Allowance (tax-free)',v:'£500'});
+            divBands.forEach(b=>rows.push({l:'Dividends at '+b.l.split('(')[0]+'('+formatCurrency(b.amt)+')',v:b.tax}));
+
+            document.getElementById('breakdown').innerHTML = rows.map(r=>{
+                const isStr=typeof r.v==='string';
+                return `<div class="bd-row"><div class="bd-label">${r.l}</div><div class="bd-value">${isStr?r.v:formatCurrency(r.v)}</div></div>`;
+            }).join('')+`<div class="bd-total"><span>Total Tax + NI</span><span>${formatCurrency(salaryTax+ni+divTax)}</span></div><div class="bd-total" style="border-top:none;padding-top:4px"><span>Total Net Income</span><span>${formatCurrency(totalIncome-salaryTax-ni-divTax)}</span></div>`;
+
+            document.getElementById('results').classList.add('visible');
+            document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+        }
+        calculate();
+    </script>
+</body>
+</html>

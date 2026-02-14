@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stamp Duty Calculator UK 2025/26 — SDLT on Property Purchases | UK Calculator Hub</title>
+    <meta name="description" content="Calculate Stamp Duty Land Tax (SDLT) on UK property purchases for 2025/26. Covers first-time buyers, additional properties, and non-UK residents.">
+    <meta name="keywords" content="stamp duty calculator UK, SDLT calculator, stamp duty first time buyer, stamp duty second home, stamp duty rates 2025, property tax calculator UK">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/stamp-duty-calculator.html">
+    <meta property="og:title" content="Stamp Duty Calculator UK 2025/26"><meta property="og:description" content="Calculate SDLT on your property purchase instantly."><meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Stamp Duty Calculator UK 2025/26","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .currency-wrap{position:relative}.currency-wrap::before{content:'£';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-muted);font-weight:600;pointer-events:none}.currency-wrap input{padding-left:30px;width:100%;box-sizing:border-box}
+        .calc-actions{padding:24px 36px 32px;border-top:1px solid var(--border)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-sm)}
+        .stat-card .stat-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:6px}
+        .stat-card .stat-value{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--ink)}.stat-card .stat-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .breakdown-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+        .breakdown-card h3{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:16px}
+        .bd-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}.bd-row:last-child{border-bottom:none}.bd-row .bd-label{color:var(--ink-light)}.bd-row .bd-value{font-weight:700}
+        .bd-total{display:flex;justify-content:space-between;padding:12px 0 0;margin-top:4px;border-top:2px solid var(--ink);font-weight:700;font-size:.92rem}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid{grid-template-columns:1fr}.input-section{padding:20px}.calc-actions{padding:20px 20px 24px}.stats-row{grid-template-columns:1fr}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Check</a></li><li><a href="/blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span>Calculators<span class="sep">›</span>Stamp Duty</div>
+        <div class="badge"><span class="dot"></span> Updated April 2025</div>
+        <h1>Stamp Duty Calculator<br>UK (SDLT)</h1>
+        <p class="subtitle">Calculate Stamp Duty Land Tax on your property purchase. Covers standard rates, first-time buyer relief, additional property surcharge, and the non-UK resident surcharge.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="input-grid">
+                    <div class="input-group"><label for="price">Property Price</label><div class="currency-wrap"><input type="number" id="price" value="300000" min="0" max="50000000" step="5000"></div></div>
+                    <div class="input-group"><label for="buyerType">Buyer Type</label><select id="buyerType"><option value="standard" selected>Standard (moving home)</option><option value="ftb">First-Time Buyer</option><option value="additional">Additional Property (+5%)</option><option value="nonuk">Non-UK Resident (+2%)</option><option value="additional_nonuk">Additional + Non-UK (+7%)</option></select></div>
+                </div>
+            </div>
+            <div class="calc-actions"><button class="btn btn-primary btn-lg" onclick="calculate()" style="width:100%">Calculate Stamp Duty →</button></div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="stats-row">
+                <div class="stat-card"><div class="stat-label">Stamp Duty to Pay</div><div class="stat-value" id="totalSDLT">£5,000</div></div>
+                <div class="stat-card"><div class="stat-label">Effective Rate</div><div class="stat-value" id="effRate">1.67%</div></div>
+                <div class="stat-card"><div class="stat-label">Total Purchase Cost</div><div class="stat-value" id="totalCost">£305,000</div></div>
+            </div>
+            <div class="breakdown-card"><h3>📊 SDLT Band Breakdown</h3><div id="breakdown"></div></div>
+        </div>
+        <div class="ad-unit ad-unit--article" style="padding:0;max-width:100%;margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>SDLT Rates from April 2025</h2>
+            <p>From 1 April 2025, the temporary SDLT thresholds reverted to their permanent levels. The nil-rate band returned to £125,000 (from £250,000), and the first-time buyer nil-rate band returned to £300,000 (from £425,000).</p>
+            <p><strong>Standard rates:</strong> 0% up to £125,000, 2% on £125,001–£250,000, 5% on £250,001–£925,000, 10% on £925,001–£1,500,000, 12% above £1,500,000.</p>
+            <p><strong>First-time buyers:</strong> 0% up to £300,000, 5% on £300,001–£500,000. Properties over £500,000 use standard rates.</p>
+            <p><strong>Additional properties:</strong> A 5% surcharge applies on top of standard rates (increased from 3% in October 2024).</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When is SDLT due?</div><div class="faq-a"><p>SDLT must be paid within 14 days of completion. Your solicitor or conveyancer usually handles this on your behalf.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does this apply in Scotland or Wales?</div><div class="faq-a"><p>No — Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT). This calculator covers England and Northern Ireland only.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Calculators</h4><ul><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Reality Check</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="/blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="/assets/js/core.js"></script>
+    <script>
+        function calculate(){
+            const price=+document.getElementById('price').value||0;
+            const type=document.getElementById('buyerType').value;
+            // Standard bands from April 2025
+            const stdBands=[{to:125000,rate:0},{to:250000,rate:0.02},{to:925000,rate:0.05},{to:1500000,rate:0.10},{to:Infinity,rate:0.12}];
+            const ftbBands=[{to:300000,rate:0},{to:500000,rate:0.05}]; // FTB relief only up to £500k
+            let surcharge=0;
+            if(type==='additional')surcharge=0.05;
+            else if(type==='nonuk')surcharge=0.02;
+            else if(type==='additional_nonuk')surcharge=0.07;
+
+            let bands = (type==='ftb'&&price<=500000)?ftbBands:stdBands;
+            let total=0, prev=0;
+            const rows=[];
+            for(const band of bands){
+                const bandTop=Math.min(price,band.to);
+                const inBand=Math.max(0,bandTop-prev);
+                if(inBand<=0)continue;
+                const rate=band.rate+surcharge;
+                const tax=inBand*rate;
+                total+=tax;
+                rows.push({l:formatCurrency(prev)+' – '+formatCurrency(bandTop)+' @ '+(rate*100).toFixed(0)+'%',v:tax,amt:inBand});
+                prev=bandTop;
+                if(bandTop>=price)break;
+            }
+
+            const effRate=price>0?((total/price)*100).toFixed(2):'0.00';
+            document.getElementById('totalSDLT').textContent=formatCurrency(total);
+            document.getElementById('effRate').textContent=effRate+'%';
+            document.getElementById('totalCost').textContent=formatCurrency(price+total);
+
+            document.getElementById('breakdown').innerHTML=rows.map(r=>`<div class="bd-row"><div class="bd-label">${r.l}</div><div class="bd-value">${formatCurrency(r.v)}</div></div>`).join('')+`<div class="bd-total"><span>Total SDLT</span><span>${formatCurrency(total)}</span></div>`;
+
+            document.getElementById('results').classList.add('visible');
+            document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+        }
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Day Rate Calculator UK 2025/26 | UK Calculator Hub</title>
+    <meta name="description" content="Calculate what day rate you need to charge as a freelancer or contractor to match your target income. Accounts for tax, NI, pension, holidays, and business costs.">
+    <meta name="keywords" content="freelancer day rate calculator, contractor day rate calculator UK, what day rate should I charge, freelance rate calculator, how to calculate day rate">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/day-rate-calculator.html">
+    <meta property="og:title" content="Freelancer Day Rate Calculator UK 2025/26"><meta property="og:description" content="Calculate what day rate to charge as a freelancer or contractor."><meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Freelancer Day Rate Calculator UK 2025/26","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px;border-bottom:1px solid var(--border)}.input-section:last-child{border-bottom:none}
+        .section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .currency-wrap{position:relative}.currency-wrap::before{content:'£';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-muted);font-weight:600;pointer-events:none}.currency-wrap input{padding-left:30px;width:100%;box-sizing:border-box}
+        .calc-actions{padding:24px 36px 32px;border-top:1px solid var(--border)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .rate-banner{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:var(--radius);padding:32px;text-align:center;margin-bottom:20px}
+        .rate-banner .rb-label{font-size:.82rem;opacity:.8;margin-bottom:4px}.rate-banner .rb-amount{font-family:'DM Serif Display',serif;font-size:2.8rem;margin:4px 0}
+        .rate-banner .rb-sub{font-size:.88rem;opacity:.7}
+        .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-sm)}
+        .stat-card .stat-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:6px}
+        .stat-card .stat-value{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--ink)}.stat-card .stat-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .breakdown-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+        .breakdown-card h3{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:16px}
+        .bd-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}.bd-row:last-child{border-bottom:none}.bd-row .bd-label{color:var(--ink-light)}.bd-row .bd-value{font-weight:700}
+        .bd-total{display:flex;justify-content:space-between;padding:12px 0 0;margin-top:4px;border-top:2px solid var(--ink);font-weight:700;font-size:.92rem}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid{grid-template-columns:1fr}.input-section{padding:20px}.calc-actions{padding:20px 20px 24px}.stats-row{grid-template-columns:1fr}.rate-banner .rb-amount{font-size:2rem}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Check</a></li><li><a href="/blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span>Calculators<span class="sep">›</span>Day Rate Calculator</div>
+        <div class="badge"><span class="dot"></span> 2025/26</div>
+        <h1>Freelancer Day Rate<br>Calculator UK</h1>
+        <p class="subtitle">Work out what daily rate you need to charge to hit your income target — factoring in tax, holidays, sick days, business expenses, pension, and the days you won't be billing.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="section-label">🎯 Income Target</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="targetNet">Target Annual Take-Home Pay</label><div class="currency-wrap"><input type="number" id="targetNet" value="50000" min="0" max="500000" step="1000"></div><span class="hint">What you want in your pocket after everything</span></div>
+                    <div class="input-group"><label for="method">Calculation Method</label><select id="method"><option value="target" selected>From target take-home (work backwards)</option><option value="equivalent">From equivalent salary (match a perm role)</option></select></div>
+                </div>
+            </div>
+            <div class="input-section">
+                <div class="section-label">📅 Working Assumptions</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="holidayDays">Holiday Days</label><input type="number" id="holidayDays" value="25" min="0" max="60"><span class="hint">As a freelancer, you fund your own holidays</span></div>
+                    <div class="input-group"><label for="sickDays">Buffer/Sick Days</label><input type="number" id="sickDays" value="5" min="0" max="30"></div>
+                    <div class="input-group"><label for="gapDays">Days Between Contracts</label><input type="number" id="gapDays" value="10" min="0" max="60"><span class="hint">Time finding new work, admin, etc.</span></div>
+                    <div class="input-group"><label for="bizCosts">Annual Business Costs</label><div class="currency-wrap"><input type="number" id="bizCosts" value="5000" min="0" max="100000" step="500"></div><span class="hint">Insurance, accountant, software, equipment</span></div>
+                </div>
+            </div>
+            <div class="calc-actions"><button class="btn btn-primary btn-lg" onclick="calculate()" style="width:100%">Calculate My Day Rate →</button></div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="rate-banner"><div class="rb-label">You should charge at least</div><div class="rb-amount" id="dayRate">£350</div><div class="rb-sub" id="rateSub">per day (exc. VAT) · £43.75/hour based on 8hr day</div></div>
+            <div class="stats-row">
+                <div class="stat-card"><div class="stat-label">Billable Days</div><div class="stat-value" id="billDays">220</div></div>
+                <div class="stat-card"><div class="stat-label">Annual Revenue Needed</div><div class="stat-value" id="annualRev">£77,000</div></div>
+                <div class="stat-card"><div class="stat-label">Daily Rate inc. VAT</div><div class="stat-value" id="dayRateVat">£420</div></div>
+            </div>
+            <div class="breakdown-card"><h3>📊 How It Breaks Down</h3><div id="breakdown"></div></div>
+        </div>
+        <div class="ad-unit ad-unit--article" style="padding:0;max-width:100%;margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>Setting Your Freelance Rate</h2>
+            <p>Most freelancers undercharge because they simply convert their salary to a day rate without accounting for all the hidden costs of self-employment: no paid holidays, no employer pension, no sick pay, business insurance, accountancy fees, and gaps between contracts.</p>
+            <p>A good rule of thumb: your day rate should be roughly 1.5–2× what you'd earn per day as an employee, to account for all these extras. This calculator does the exact maths for your situation.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I add VAT to my day rate?</div><div class="faq-a"><p>If you're VAT-registered (required above £90k turnover), you must charge VAT on top of your rate. Most B2B clients can reclaim VAT, so it doesn't affect their cost. Quote your rate "plus VAT" or "exc. VAT" to keep things clear.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many billable days is realistic?</div><div class="faq-a"><p>There are 260 weekdays in a year. After holidays (25), sick/buffer days (5), and gaps between contracts (10-20), most freelancers bill 210-225 days. New freelancers should estimate conservatively at 200 days.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Calculators</h4><ul><li><a href="/tools/ir35-calculator.html">IR35 Calculator</a></li><li><a href="/tools/contractor-vs-employee.html">Contractor vs Employee</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="/blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="/assets/js/core.js"></script>
+    <script>
+        function calculate(){
+            const targetNet=+document.getElementById('targetNet').value||0;
+            const holidays=+document.getElementById('holidayDays').value||0;
+            const sick=+document.getElementById('sickDays').value||0;
+            const gaps=+document.getElementById('gapDays').value||0;
+            const bizCosts=+document.getElementById('bizCosts').value||0;
+            const billableDays=260-holidays-sick-gaps;
+
+            // Work backwards: target net → required gross (iterative)
+            function grossForNet(targetNet){
+                let gross=targetNet;
+                for(let i=0;i<20;i++){
+                    let pa=12570;if(gross>100000)pa=Math.max(0,pa-Math.floor((gross-100000)/2));
+                    const taxable=Math.max(0,gross-pa);
+                    let tax=0;const b1=50270-12570,b2=125140-50270;
+                    if(taxable<=b1)tax=taxable*.20;else if(taxable<=b1+b2)tax=b1*.20+(taxable-b1)*.40;else tax=b1*.20+b2*.40+(taxable-b1-b2)*.45;
+                    let ni=0;if(gross>12570){ni=(Math.min(gross,50270)-12570)*.08;if(gross>50270)ni+=(gross-50270)*.02;}
+                    const net=gross-tax-ni;
+                    gross+=(targetNet-net)*.8;
+                }
+                return Math.ceil(gross);
+            }
+
+            const requiredGross=grossForNet(targetNet);
+            const requiredRevenue=requiredGross+bizCosts;
+            const dayRate=Math.ceil(requiredRevenue/billableDays);
+            const hourlyRate=(dayRate/8).toFixed(2);
+            const dayRateVAT=Math.ceil(dayRate*1.20);
+
+            document.getElementById('dayRate').textContent='£'+dayRate.toLocaleString();
+            document.getElementById('rateSub').textContent='per day (exc. VAT) · £'+hourlyRate+'/hour based on 8hr day';
+            document.getElementById('billDays').textContent=billableDays;
+            document.getElementById('annualRev').textContent=formatCurrency(requiredRevenue);
+            document.getElementById('dayRateVat').textContent=formatCurrency(dayRateVAT);
+
+            document.getElementById('breakdown').innerHTML=[
+                {l:'Target Take-Home',v:formatCurrency(targetNet)},
+                {l:'Gross Income Needed (for tax/NI)',v:formatCurrency(requiredGross)},
+                {l:'Business Costs',v:formatCurrency(bizCosts)},
+                {l:'Total Revenue Needed',v:formatCurrency(requiredRevenue)},
+                {l:'Total weekdays (year)',v:'260'},
+                {l:'Less: Holidays',v:'−'+holidays},
+                {l:'Less: Sick/Buffer Days',v:'−'+sick},
+                {l:'Less: Contract Gaps',v:'−'+gaps},
+                {l:'Billable Days',v:billableDays},
+            ].map(r=>`<div class="bd-row"><div class="bd-label">${r.l}</div><div class="bd-value">${r.v}</div></div>`).join('')+`<div class="bd-total"><span>Minimum Day Rate</span><span>£${dayRate}/day</span></div>`;
+
+            document.getElementById('results').classList.add('visible');
+            document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+        }
+        calculate();
+    </script>
+</body>
+</html>
