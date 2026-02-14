@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pip Value Calculator — Forex Pip Value in GBP, USD, EUR | UK Calculator Hub</title>
+    <meta name="description" content="Calculate the value of a pip for any forex pair and lot size. See pip values in GBP, USD or EUR for standard, mini and micro lots.">
+    <link rel="canonical" href="https://playerjohnson.github.io/uk-devtools/tools/pip-value-calculator.html">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pip Value Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}.section-label .section-icon{font-size:1rem}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
+        .result-card .rc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px}
+        .result-card .rc-value{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink)}.result-card .rc-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .result-card.highlight{border-color:var(--accent);background:rgba(196,93,62,.04)}.result-card.highlight .rc-value{color:var(--accent)}
+        .pair-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:.88rem}.pair-table th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted)}.pair-table td{padding:10px 12px;border-bottom:1px solid var(--border)}.pair-table .right{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid,.result-grid{grid-template-columns:1fr}.input-section{padding:20px}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="../">Home</a></li><li><a href="../blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="../">Home</a><span class="sep">›</span>Tools<span class="sep">›</span>Pip Value Calculator</div>
+        <div class="badge"><span class="dot"></span> Free Trading Tool</div>
+        <h1>Pip Value<br>Calculator</h1>
+        <p class="subtitle">Find the monetary value of one pip for any forex pair and lot size. Essential for calculating position sizes and managing risk.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">💱</span> Pair & Lot Size</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="pair">Currency Pair</label><select id="pair" onchange="calculate()"><option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="USDCHF">USD/CHF</option><option value="AUDUSD">AUD/USD</option><option value="NZDUSD">NZD/USD</option><option value="USDCAD">USD/CAD</option><option value="EURGBP">EUR/GBP</option><option value="EURJPY">EUR/JPY</option><option value="GBPJPY">GBP/JPY</option><option value="XAUUSD">XAU/USD (Gold)</option></select></div>
+                    <div class="input-group"><label for="lotSize">Lot Size</label><input type="number" id="lotSize" value="1.00" min="0.01" step="0.01" oninput="calculate()"><p class="hint">1.00 = standard, 0.10 = mini, 0.01 = micro</p></div>
+                    <div class="input-group"><label for="acctCurr">Account Currency</label><select id="acctCurr" onchange="calculate()"><option value="USD">USD ($)</option><option value="GBP" selected>GBP (£)</option><option value="EUR">EUR (€)</option></select></div>
+                </div>
+            </div>
+        </div>
+        <div class="results-container visible" id="results">
+            <div class="result-grid">
+                <div class="result-card highlight"><div class="rc-label">Pip Value</div><div class="rc-value" id="rPipVal">—</div><div class="rc-sub">per pip movement</div></div>
+                <div class="result-card"><div class="rc-label">10 Pip Move</div><div class="rc-value" id="r10Pip">—</div><div class="rc-sub">typical scalp target</div></div>
+                <div class="result-card"><div class="rc-label">50 Pip Move</div><div class="rc-value" id="r50Pip">—</div><div class="rc-sub">typical swing target</div></div>
+            </div>
+            <table class="pair-table" style="margin-top:20px">
+                <thead><tr><th>Lot Type</th><th>Size</th><th class="right">Pip Value (USD)</th><th class="right">Pip Value (GBP)*</th></tr></thead>
+                <tbody id="lotTable"></tbody>
+            </table>
+            <p style="font-size:.72rem;color:var(--ink-muted);margin-top:8px">*GBP values are approximate, based on a GBP/USD rate of ~1.26. Actual values vary with exchange rates.</p>
+        </div>
+        <div class="ad-unit" style="margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>How Pip Value Is Calculated</h2>
+            <p>A pip (percentage in point) is the smallest standard price move in forex. For most pairs it's 0.0001 (the 4th decimal). For JPY pairs it's 0.01 (the 2nd decimal). For gold (XAU/USD) it's 0.01.</p>
+            <p><strong>Formula:</strong> Pip Value = (Pip Size ÷ Exchange Rate) × Lot Size in units. For pairs where USD is the quote currency (EUR/USD, GBP/USD), one pip on a standard lot always equals $10.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Why does pip value change between pairs?</div><div class="faq-a"><p>Because pip value depends on the quote currency. For pairs ending in USD, it's straightforward ($10/pip per standard lot). For cross pairs or pairs where USD is the base, the pip value fluctuates with the exchange rate.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What's a pipette?</div><div class="faq-a"><p>A pipette is 1/10th of a pip — the 5th decimal place on most pairs (3rd on JPY pairs). Some brokers quote prices with pipettes for more precision. A pipette on a standard lot of EUR/USD = $1.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Trading Tools</h4><ul><li><a href="../tools/position-size-calculator.html">Position Size</a></li><li><a href="../tools/risk-reward-calculator.html">Risk/Reward</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>Trading involves significant risk of loss. Not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="../assets/js/core.js"></script>
+    <script>
+        // Approximate pip values per standard lot in USD
+        const PAIRS = {
+            EURUSD:{pipUSD:10,label:'EUR/USD'},GBPUSD:{pipUSD:10,label:'GBP/USD'},USDJPY:{pipUSD:6.67,label:'USD/JPY'},
+            USDCHF:{pipUSD:11.24,label:'USD/CHF'},AUDUSD:{pipUSD:10,label:'AUD/USD'},NZDUSD:{pipUSD:10,label:'NZD/USD'},
+            USDCAD:{pipUSD:7.35,label:'USD/CAD'},EURGBP:{pipUSD:12.60,label:'EUR/GBP'},EURJPY:{pipUSD:6.67,label:'EUR/JPY'},
+            GBPJPY:{pipUSD:6.67,label:'GBP/JPY'},XAUUSD:{pipUSD:1,label:'XAU/USD'}
+        };
+        const FX = {GBP:1.26, EUR:1.08, USD:1};
+        function calculate(){
+            const pair = document.getElementById('pair').value;
+            const lots = parseFloat(document.getElementById('lotSize').value)||1;
+            const acct = document.getElementById('acctCurr').value;
+            const sym = acct==='GBP'?'£':acct==='EUR'?'€':'$';
+            const rate = FX[acct]||1;
+            const pipUSD = PAIRS[pair].pipUSD;
+            const pipAcct = (pipUSD * lots) / rate;
+            document.getElementById('rPipVal').textContent = sym + pipAcct.toFixed(2);
+            document.getElementById('r10Pip').textContent = sym + (pipAcct*10).toFixed(2);
+            document.getElementById('r50Pip').textContent = sym + (pipAcct*50).toFixed(2);
+            // Lot table
+            const rows = [
+                {type:'Micro',size:'0.01',mult:0.01},
+                {type:'Mini',size:'0.10',mult:0.10},
+                {type:'Standard',size:'1.00',mult:1.00},
+                {type:'2 Lots',size:'2.00',mult:2.00},
+                {type:'5 Lots',size:'5.00',mult:5.00},
+            ];
+            document.getElementById('lotTable').innerHTML = rows.map(r=>{
+                const usd = (pipUSD*r.mult).toFixed(2);
+                const gbp = (pipUSD*r.mult/FX.GBP).toFixed(2);
+                return `<tr><td>${r.type}</td><td>${r.size}</td><td class="right">$${usd}</td><td class="right">£${gbp}</td></tr>`;
+            }).join('');
+        }
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margin Calculator — Forex & CFD Required Margin | UK Calculator Hub</title>
+    <meta name="description" content="Calculate required margin for any forex or CFD trade. Enter pair, lot size and leverage to see margin needed, free margin and margin level.">
+    <link rel="canonical" href="https://playerjohnson.github.io/uk-devtools/tools/margin-calculator.html">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Margin Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}.section-label .section-icon{font-size:1rem}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
+        .result-card .rc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px}
+        .result-card .rc-value{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink)}.result-card .rc-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .result-card.highlight{border-color:var(--accent);background:rgba(196,93,62,.04)}.result-card.highlight .rc-value{color:var(--accent)}
+        .result-card.warn{border-color:#f59e0b}.result-card.warn .rc-value{color:#f59e0b}
+        .result-card.danger{border-color:#dc2626}.result-card.danger .rc-value{color:#dc2626}
+        .result-card.safe{border-color:#059669}.result-card.safe .rc-value{color:#059669}
+        .margin-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-top:20px;box-shadow:var(--shadow-sm)}
+        .margin-bar-label{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+        .margin-bar-track{height:32px;background:var(--bg);border-radius:6px;overflow:hidden;position:relative}
+        .margin-bar-used{height:100%;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:.78rem;font-weight:700;transition:width .4s ease}
+        .margin-bar-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--ink-muted)}
+        .lev-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:.88rem}.lev-table th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted)}.lev-table td{padding:10px 12px;border-bottom:1px solid var(--border)}.lev-table .right{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid,.result-grid{grid-template-columns:1fr}.input-section{padding:20px}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="../">Home</a></li><li><a href="../blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="../">Home</a><span class="sep">›</span>Tools<span class="sep">›</span>Margin Calculator</div>
+        <div class="badge"><span class="dot"></span> Free Trading Tool</div>
+        <h1>Margin<br>Calculator</h1>
+        <p class="subtitle">Calculate the required margin to open a trade based on your lot size, leverage and currency pair. See your free margin and margin level instantly.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">🏦</span> Trade Setup</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="balance">Account Balance</label><input type="number" id="balance" value="10000" min="0" step="100" oninput="calculate()"></div>
+                    <div class="input-group"><label for="pair">Currency Pair</label><select id="pair" onchange="calculate()"><option value="1.085" data-label="EUR/USD">EUR/USD (~1.085)</option><option value="1.265" data-label="GBP/USD">GBP/USD (~1.265)</option><option value="155.5" data-label="USD/JPY" data-base="1">USD/JPY (~155.5)</option><option value="0.89" data-label="USD/CHF" data-base="1">USD/CHF (~0.89)</option><option value="0.655" data-label="AUD/USD">AUD/USD (~0.655)</option><option value="2350" data-label="XAU/USD" data-units="100">XAU/USD Gold (~2350)</option></select></div>
+                    <div class="input-group"><label for="lots">Lot Size</label><input type="number" id="lots" value="1.00" min="0.01" step="0.01" oninput="calculate()"><p class="hint">1.00 = 100,000 units</p></div>
+                    <div class="input-group"><label for="leverage">Leverage</label><select id="leverage" onchange="calculate()"><option value="30" selected>1:30 (UK/EU retail)</option><option value="50">1:50</option><option value="100">1:100</option><option value="200">1:200</option><option value="500">1:500</option></select><p class="hint">UK FCA retail max: 1:30 for majors</p></div>
+                    <div class="input-group"><label for="acctCurr">Account Currency</label><select id="acctCurr" onchange="calculate()"><option value="USD">USD ($)</option><option value="GBP" selected>GBP (£)</option><option value="EUR">EUR (€)</option></select></div>
+                </div>
+            </div>
+        </div>
+        <div class="results-container visible" id="results">
+            <div class="result-grid">
+                <div class="result-card highlight"><div class="rc-label">Required Margin</div><div class="rc-value" id="rMargin">—</div><div class="rc-sub">locked for this trade</div></div>
+                <div class="result-card"><div class="rc-label">Free Margin</div><div class="rc-value" id="rFree">—</div><div class="rc-sub">available for new trades</div></div>
+                <div class="result-card" id="levelCard"><div class="rc-label">Margin Level</div><div class="rc-value" id="rLevel">—</div><div class="rc-sub" id="rLevelStatus">—</div></div>
+            </div>
+            <div class="margin-bar">
+                <div class="margin-bar-label">Account Margin Usage</div>
+                <div class="margin-bar-track"><div class="margin-bar-used" id="marginBarUsed">0%</div></div>
+                <div class="margin-bar-labels"><span>0%</span><span id="usedPct">0% used</span><span>100%</span></div>
+            </div>
+            <table class="lev-table" style="margin-top:20px">
+                <thead><tr><th>Leverage</th><th class="right">Margin Required</th><th class="right">Free Margin</th><th class="right">Max Lots</th></tr></thead>
+                <tbody id="levTable"></tbody>
+            </table>
+        </div>
+        <div class="ad-unit" style="margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>Understanding Margin in Trading</h2>
+            <p>Margin is the collateral your broker requires to open and maintain a leveraged position. It's not a fee — it's a portion of your account equity set aside as a deposit. When you close the trade, the margin is released back to your account.</p>
+            <p><strong>Formula:</strong> Required Margin = (Trade Size in units × Price) ÷ Leverage. For 1 lot EUR/USD at 1.085 with 1:30 leverage: (100,000 × 1.085) ÷ 30 = $3,616.67.</p>
+            <p><strong>UK FCA limits:</strong> Retail traders in the UK are limited to 1:30 for major forex pairs, 1:20 for minor pairs, 1:10 for commodities, and 1:2 for crypto. Professional accounts can access higher leverage.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What happens at margin call?</div><div class="faq-a"><p>A margin call occurs when your margin level drops below your broker's threshold (typically 50–100%). The broker may close some or all of your positions to prevent your account going negative. FCA-regulated brokers provide negative balance protection for retail accounts.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What's the difference between margin and leverage?</div><div class="faq-a"><p>They're inversely related. Leverage of 1:30 means you need 1/30th (3.33%) of the trade value as margin. Higher leverage = less margin required = more buying power, but also more risk per pip movement.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators.</p></div><div class="footer-col"><h4>Trading Tools</h4><ul><li><a href="../tools/position-size-calculator.html">Position Size</a></li><li><a href="../tools/risk-reward-calculator.html">Risk/Reward</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>Trading involves significant risk. Not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="../assets/js/core.js"></script>
+    <script>
+        const FX={GBP:1.26,EUR:1.08,USD:1};
+        function calculate(){
+            const balance=parseFloat(document.getElementById('balance').value)||0;
+            const pairEl=document.getElementById('pair');
+            const price=parseFloat(pairEl.value)||1;
+            const lots=parseFloat(document.getElementById('lots').value)||0;
+            const leverage=parseFloat(document.getElementById('leverage').value)||30;
+            const acct=document.getElementById('acctCurr').value;
+            const sym=acct==='GBP'?'£':acct==='EUR'?'€':'$';
+            const rate=FX[acct]||1;
+            const opt=pairEl.options[pairEl.selectedIndex];
+            const units=opt.dataset.units?parseFloat(opt.dataset.units)*lots:lots*100000;
+            const isBaseCurr=opt.dataset.base==='1';
+
+            // Position value in USD
+            let posUSD;
+            if(isBaseCurr) posUSD = units; // USD is base
+            else posUSD = units * price;
+
+            const marginUSD = posUSD / leverage;
+            const marginAcct = marginUSD / rate;
+            const freeMargin = balance - marginAcct;
+            const marginLevel = balance > 0 ? (balance / marginAcct) * 100 : 0;
+            const usedPct = balance > 0 ? (marginAcct / balance) * 100 : 0;
+
+            document.getElementById('rMargin').textContent = sym + marginAcct.toFixed(2);
+            document.getElementById('rFree').textContent = sym + Math.max(0,freeMargin).toFixed(2);
+            document.getElementById('rLevel').textContent = marginLevel.toFixed(0) + '%';
+
+            const levelCard = document.getElementById('levelCard');
+            if(marginLevel > 500) { levelCard.className='result-card safe'; document.getElementById('rLevelStatus').textContent='Healthy — plenty of room'; }
+            else if(marginLevel > 150) { levelCard.className='result-card'; document.getElementById('rLevelStatus').textContent='Moderate — watch closely'; }
+            else if(marginLevel > 100) { levelCard.className='result-card warn'; document.getElementById('rLevelStatus').textContent='Warning — margin call risk'; }
+            else { levelCard.className='result-card danger'; document.getElementById('rLevelStatus').textContent='Danger — stop out likely'; }
+
+            const barWidth = Math.min(usedPct, 100);
+            const bar = document.getElementById('marginBarUsed');
+            bar.style.width = barWidth + '%';
+            bar.textContent = usedPct.toFixed(1) + '%';
+            bar.style.background = usedPct > 80 ? '#dc2626' : usedPct > 50 ? '#f59e0b' : 'var(--accent)';
+            document.getElementById('usedPct').textContent = usedPct.toFixed(1) + '% used';
+
+            // Leverage comparison table
+            const levs = [30,50,100,200,500];
+            document.getElementById('levTable').innerHTML = levs.map(l => {
+                const m = (posUSD / l) / rate;
+                const f = balance - m;
+                const maxL = (balance * l) / (posUSD / lots);
+                return `<tr><td>1:${l}</td><td class="right">${sym}${m.toFixed(2)}</td><td class="right">${sym}${Math.max(0,f).toFixed(2)}</td><td class="right">${maxL.toFixed(2)}</td></tr>`;
+            }).join('');
+
+            document.getElementById('results').classList.add('visible');
+        }
+        calculate();
+    </script>
+</body>
+</html>

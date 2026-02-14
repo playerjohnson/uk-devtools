@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk/Reward Calculator — R:R Ratio & Breakeven Win Rate | UK Calculator Hub</title>
+    <meta name="description" content="Calculate your risk-to-reward ratio and breakeven win rate. Enter entry, stop loss and take profit to see if your trade setup is worth taking.">
+    <meta name="keywords" content="risk reward calculator, risk to reward ratio, R:R calculator, breakeven win rate, trading risk management">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://playerjohnson.github.io/uk-devtools/tools/risk-reward-calculator.html">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Risk/Reward Calculator","description":"Calculate R:R ratio and breakeven win rate for any trade.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}.section-label .section-icon{font-size:1rem}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
+        .result-card .rc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px}
+        .result-card .rc-value{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink)}
+        .result-card .rc-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .result-card.highlight{border-color:var(--accent);background:rgba(196,93,62,.04)}.result-card.highlight .rc-value{color:var(--accent)}
+        .result-card.good{border-color:#059669}.result-card.good .rc-value{color:#059669}
+        .result-card.bad{border-color:#dc2626}.result-card.bad .rc-value{color:#dc2626}
+        .rr-bar{margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+        .rr-bar-inner{display:flex;height:40px;border-radius:6px;overflow:hidden;margin-top:8px}
+        .rr-risk{background:#dc2626;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.82rem}
+        .rr-reward{background:#059669;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.82rem}
+        .rr-bar-label{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid,.result-grid{grid-template-columns:1fr}.input-section{padding:20px}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="../">Home</a></li><li><a href="../blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="../">Home</a><span class="sep">›</span>Tools<span class="sep">›</span>Risk/Reward Calculator</div>
+        <div class="badge"><span class="dot"></span> Free Trading Tool</div>
+        <h1>Risk / Reward<br>Calculator</h1>
+        <p class="subtitle">Enter your entry price, stop loss and take profit to instantly see your R:R ratio, breakeven win rate and whether the trade is worth taking.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">🎯</span> Trade Setup</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="direction">Direction</label><select id="direction" onchange="calculate()"><option value="long">Long (Buy)</option><option value="short">Short (Sell)</option></select></div>
+                    <div class="input-group"><label for="entry">Entry Price</label><input type="number" id="entry" value="1.08500" step="0.00001" oninput="calculate()"></div>
+                    <div class="input-group"><label for="stopLoss">Stop Loss</label><input type="number" id="stopLoss" value="1.08000" step="0.00001" oninput="calculate()"></div>
+                    <div class="input-group"><label for="takeProfit">Take Profit</label><input type="number" id="takeProfit" value="1.09500" step="0.00001" oninput="calculate()"></div>
+                </div>
+            </div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="result-grid">
+                <div class="result-card highlight" id="rrCard"><div class="rc-label">Risk : Reward</div><div class="rc-value" id="rRR">—</div><div class="rc-sub" id="rRRverdict">—</div></div>
+                <div class="result-card"><div class="rc-label">Breakeven Win Rate</div><div class="rc-value" id="rBE">—</div><div class="rc-sub">minimum to be profitable</div></div>
+                <div class="result-card"><div class="rc-label">Risk (pips)</div><div class="rc-value" id="rRiskPips">—</div><div class="rc-sub" id="rRewardPips">—</div></div>
+            </div>
+            <div class="rr-bar">
+                <div class="rr-bar-label">Visual Risk vs Reward</div>
+                <div class="rr-bar-inner"><div class="rr-risk" id="rBarRisk">Risk</div><div class="rr-reward" id="rBarReward">Reward</div></div>
+            </div>
+        </div>
+        <div class="ad-unit" style="margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>Understanding Risk/Reward</h2>
+            <p>The risk-to-reward ratio compares how much you stand to lose (risk) versus how much you stand to gain (reward). A 1:2 R:R means you're risking 1 unit to potentially gain 2 units.</p>
+            <p><strong>The breakeven win rate</strong> tells you the minimum percentage of trades you need to win to break even at that R:R. With a 1:2 ratio, you only need to win 33.3% of trades to break even — meaning you can be wrong two-thirds of the time and still not lose money.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What's a good risk/reward ratio?</div><div class="faq-a"><p>Most traders aim for at least 1:2. ICT methodology often targets 1:3 or higher by identifying high-probability setups at key institutional levels. The higher your R:R, the fewer winning trades you need.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I always use the same R:R?</div><div class="faq-a"><p>Not necessarily. The key is that your average R:R across many trades, combined with your win rate, produces a positive expectancy. Some traders use variable targets based on market structure.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Trading Tools</h4><ul><li><a href="../tools/position-size-calculator.html">Position Size</a></li><li><a href="../tools/profit-loss-calculator.html">Profit/Loss</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>Trading involves significant risk of loss. Not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="../assets/js/core.js"></script>
+    <script>
+        function calculate(){
+            const dir = document.getElementById('direction').value;
+            const entry = parseFloat(document.getElementById('entry').value)||0;
+            const sl = parseFloat(document.getElementById('stopLoss').value)||0;
+            const tp = parseFloat(document.getElementById('takeProfit').value)||0;
+            if(!entry||!sl||!tp) return;
+
+            const risk = Math.abs(entry - sl);
+            const reward = Math.abs(tp - entry);
+            if(risk === 0) return;
+
+            const rr = reward / risk;
+            const bePct = (1 / (1 + rr)) * 100;
+            const decimals = entry.toString().split('.')[1]?.length || 2;
+            const pipMult = Math.pow(10, Math.min(decimals, 4));
+            const riskPips = (risk * pipMult).toFixed(1);
+            const rewardPips = (reward * pipMult).toFixed(1);
+
+            document.getElementById('rRR').textContent = '1 : ' + rr.toFixed(2);
+            const card = document.getElementById('rrCard');
+            card.className = 'result-card ' + (rr >= 2 ? 'good' : rr >= 1 ? 'highlight' : 'bad');
+            document.getElementById('rRRverdict').textContent = rr >= 3 ? 'Excellent setup' : rr >= 2 ? 'Good setup' : rr >= 1 ? 'Acceptable' : 'Poor — consider skipping';
+            document.getElementById('rBE').textContent = bePct.toFixed(1) + '%';
+            document.getElementById('rRiskPips').textContent = riskPips;
+            document.getElementById('rRewardPips').textContent = 'Reward: ' + rewardPips + ' pips';
+
+            const total = risk + reward;
+            const riskWidth = (risk / total * 100).toFixed(1);
+            const rewardWidth = (reward / total * 100).toFixed(1);
+            document.getElementById('rBarRisk').style.width = riskWidth + '%';
+            document.getElementById('rBarRisk').textContent = riskPips + ' pips';
+            document.getElementById('rBarReward').style.width = rewardWidth + '%';
+            document.getElementById('rBarReward').textContent = rewardPips + ' pips';
+
+            document.getElementById('results').classList.add('visible');
+        }
+        calculate();
+    </script>
+</body>
+</html>

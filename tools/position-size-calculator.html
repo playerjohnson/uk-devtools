@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Size Calculator — Forex & CFD Risk Management | UK Calculator Hub</title>
+    <meta name="description" content="Calculate the correct lot size for any trade. Enter your account balance, risk percentage and stop loss to find the optimal position size for forex, indices and commodities.">
+    <meta name="keywords" content="position size calculator, lot size calculator, forex position size, risk management calculator, trading calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://playerjohnson.github.io/uk-devtools/tools/position-size-calculator.html">
+    <meta property="og:title" content="Position Size Calculator — Forex & CFD Risk Management">
+    <meta property="og:description" content="Calculate the correct position size for any trade based on your risk tolerance.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Position Size Calculator","description":"Calculate the correct lot size based on account size, risk % and stop loss.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px;border-bottom:1px solid var(--border)}.input-section:last-child{border-bottom:none}
+        .section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}.section-label .section-icon{font-size:1rem}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);transition:border-color .2s}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--accent)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
+        .result-card .rc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px}
+        .result-card .rc-value{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink)}
+        .result-card .rc-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .result-card.highlight{border-color:var(--accent);background:rgba(196,93,62,.04)}
+        .result-card.highlight .rc-value{color:var(--accent)}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid,.result-grid{grid-template-columns:1fr}.input-section{padding:20px}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="../">Home</a></li><li><a href="../blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="../">Home</a><span class="sep">›</span>Tools<span class="sep">›</span>Position Size Calculator</div>
+        <div class="badge"><span class="dot"></span> Free Trading Tool</div>
+        <h1>Position Size<br>Calculator</h1>
+        <p class="subtitle">Calculate the exact lot size for any trade based on your account balance, risk tolerance and stop loss distance. Never risk more than you intend to.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">📊</span> Trade Parameters</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="balance">Account Balance</label><input type="number" id="balance" value="10000" min="0" step="100"><p class="hint">In your account currency</p></div>
+                    <div class="input-group"><label for="riskPct">Risk Per Trade (%)</label><input type="number" id="riskPct" value="1" min="0.1" max="100" step="0.1"><p class="hint">1-2% recommended</p></div>
+                    <div class="input-group"><label for="stopLoss">Stop Loss (pips)</label><input type="number" id="stopLoss" value="50" min="1" step="1"><p class="hint">Distance from entry to stop</p></div>
+                    <div class="input-group"><label for="pipValue">Pip Value ($)</label><select id="pipValue"><option value="10" selected>$10 (Standard — Major pairs)</option><option value="1">$1 (Mini lot base)</option><option value="0.1">$0.10 (Micro lot base)</option><option value="custom">Custom</option></select></div>
+                    <div class="input-group" id="customPipGroup" style="display:none"><label for="customPip">Custom Pip Value ($)</label><input type="number" id="customPip" value="10" min="0.01" step="0.01"></div>
+                    <div class="input-group"><label for="acctCurrency">Account Currency</label><select id="acctCurrency"><option value="USD" selected>USD ($)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option></select></div>
+                </div>
+            </div>
+            <div style="padding:20px 36px 28px"><button class="btn btn-primary btn-lg" onclick="calculate()" style="width:100%">Calculate Position Size →</button></div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="result-grid">
+                <div class="result-card highlight"><div class="rc-label">Position Size</div><div class="rc-value" id="rLots">—</div><div class="rc-sub" id="rLotsType">Standard lots</div></div>
+                <div class="result-card"><div class="rc-label">Units</div><div class="rc-value" id="rUnits">—</div><div class="rc-sub">Currency units</div></div>
+                <div class="result-card"><div class="rc-label">Risk Amount</div><div class="rc-value" id="rRiskAmt">—</div><div class="rc-sub" id="rRiskPct">of account</div></div>
+            </div>
+            <div class="result-grid" style="margin-top:16px">
+                <div class="result-card"><div class="rc-label">If Trade Wins (1:2 R:R)</div><div class="rc-value" id="rWin">—</div><div class="rc-sub">at 2× stop distance</div></div>
+                <div class="result-card"><div class="rc-label">If Trade Loses</div><div class="rc-value" id="rLose">—</div><div class="rc-sub">max loss at stop</div></div>
+                <div class="result-card"><div class="rc-label">Cost Per Pip</div><div class="rc-value" id="rPipCost">—</div><div class="rc-sub">per pip movement</div></div>
+            </div>
+        </div>
+        <div class="ad-unit" style="margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>How Position Sizing Works</h2>
+            <p>Position sizing is the most important risk management tool in trading. It ensures you never risk more than a fixed percentage of your account on any single trade, protecting your capital during losing streaks.</p>
+            <p><strong>The formula:</strong> Position Size (lots) = (Account Balance × Risk %) ÷ (Stop Loss in pips × Pip Value per standard lot)</p>
+            <p>For example, with a $10,000 account risking 1% with a 50-pip stop on EUR/USD: ($10,000 × 0.01) ÷ (50 × $10) = 0.20 lots (2 mini lots or 20 micro lots).</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What percentage should I risk per trade?</div><div class="faq-a"><p>Most professional traders risk 0.5–2% per trade. The 1% rule is the most common guideline — it means you'd need 100 consecutive losing trades to blow your account. Even aggressive traders rarely exceed 3%.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What's the difference between lots, mini lots and micro lots?</div><div class="faq-a"><p>A standard lot is 100,000 units of the base currency. A mini lot is 10,000 units (0.10 lots). A micro lot is 1,000 units (0.01 lots). For EUR/USD, one pip on a standard lot = $10, mini lot = $1, micro lot = $0.10.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does pip value change between currency pairs?</div><div class="faq-a"><p>Yes. For pairs where USD is the quote currency (EUR/USD, GBP/USD), a pip on a standard lot = $10. For other pairs (USD/JPY, EUR/GBP), the pip value varies based on the exchange rate. Use the custom pip value option for these.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Trading Tools</h4><ul><li><a href="../tools/risk-reward-calculator.html">Risk/Reward</a></li><li><a href="../tools/pip-value-calculator.html">Pip Value</a></li><li><a href="../tools/compound-growth-calculator.html">Compound Growth</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial advice. Trading involves significant risk of loss. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="../assets/js/core.js"></script>
+    <script>
+        document.getElementById('pipValue').addEventListener('change', function(){
+            document.getElementById('customPipGroup').style.display = this.value === 'custom' ? '' : 'none';
+        });
+        function calculate(){
+            const balance = parseFloat(document.getElementById('balance').value)||0;
+            const riskPct = parseFloat(document.getElementById('riskPct').value)||0;
+            const stopPips = parseFloat(document.getElementById('stopLoss').value)||0;
+            const pipSel = document.getElementById('pipValue').value;
+            const pipVal = pipSel === 'custom' ? (parseFloat(document.getElementById('customPip').value)||10) : parseFloat(pipSel);
+            const sym = document.getElementById('acctCurrency').value === 'GBP' ? '£' : document.getElementById('acctCurrency').value === 'EUR' ? '€' : '$';
+
+            if(!balance||!riskPct||!stopPips) return;
+
+            const riskAmt = balance * (riskPct/100);
+            const lots = riskAmt / (stopPips * pipVal);
+            const units = lots * 100000;
+            const pipCost = lots * pipVal;
+            const winAmt = riskAmt * 2;
+
+            document.getElementById('rLots').textContent = lots.toFixed(2);
+            document.getElementById('rLotsType').textContent = lots >= 1 ? 'Standard lots' : lots >= 0.1 ? (lots*10).toFixed(1)+' mini lots' : (lots*100).toFixed(0)+' micro lots';
+            document.getElementById('rUnits').textContent = Math.round(units).toLocaleString();
+            document.getElementById('rRiskAmt').textContent = sym + riskAmt.toFixed(2);
+            document.getElementById('rRiskPct').textContent = riskPct + '% of account';
+            document.getElementById('rWin').textContent = '+' + sym + winAmt.toFixed(2);
+            document.getElementById('rLose').textContent = '-' + sym + riskAmt.toFixed(2);
+            document.getElementById('rPipCost').textContent = sym + pipCost.toFixed(2);
+            document.getElementById('results').classList.add('visible');
+        }
+        calculate();
+    </script>
+</body>
+</html>

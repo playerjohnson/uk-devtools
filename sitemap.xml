@@ -133,4 +133,40 @@
         <priority>0.8</priority>
     </url>
     <!-- Add new tool and blog URLs here as you create them -->
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/tools/position-size-calculator.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/tools/risk-reward-calculator.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/tools/pip-value-calculator.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/tools/profit-loss-calculator.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/tools/compound-growth-calculator.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/tools/margin-calculator.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>

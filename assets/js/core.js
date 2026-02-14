@@ -169,6 +169,84 @@ const TOOLS = [
         isNew: true,
         updated: '2026-02'
     },
+    {
+        id: 'position-size-calculator',
+        title: 'Position Size Calculator',
+        shortTitle: 'Position Size',
+        description: 'Calculate the correct lot size for any trade based on your account balance, risk percentage and stop loss distance.',
+        category: 'Trading',
+        tags: ['position size', 'lot size', 'forex calculator', 'risk management', 'trading'],
+        url: '/tools/position-size-calculator.html',
+        icon: '📊',
+        color: '#059669',
+        isNew: true,
+        updated: '2026-02'
+    },
+    {
+        id: 'risk-reward-calculator',
+        title: 'Risk/Reward Calculator',
+        shortTitle: 'Risk/Reward',
+        description: 'Calculate your R:R ratio and breakeven win rate. See if your trade setup is worth taking before you enter.',
+        category: 'Trading',
+        tags: ['risk reward', 'R:R ratio', 'breakeven win rate', 'trading calculator'],
+        url: '/tools/risk-reward-calculator.html',
+        icon: '🎯',
+        color: '#059669',
+        isNew: true,
+        updated: '2026-02'
+    },
+    {
+        id: 'pip-value-calculator',
+        title: 'Pip Value Calculator',
+        shortTitle: 'Pip Value',
+        description: 'Find the monetary value of one pip for any forex pair and lot size in GBP, USD or EUR.',
+        category: 'Trading',
+        tags: ['pip value', 'forex pip', 'pip calculator', 'currency pair'],
+        url: '/tools/pip-value-calculator.html',
+        icon: '💱',
+        color: '#059669',
+        isNew: true,
+        updated: '2026-02'
+    },
+    {
+        id: 'profit-loss-calculator',
+        title: 'Profit/Loss Calculator',
+        shortTitle: 'Profit/Loss',
+        description: 'Calculate profit or loss on any trade. Enter entry, exit and lot size to see P&L in pips and your account currency.',
+        category: 'Trading',
+        tags: ['profit loss', 'P&L calculator', 'trade calculator', 'forex profit'],
+        url: '/tools/profit-loss-calculator.html',
+        icon: '💰',
+        color: '#059669',
+        isNew: true,
+        updated: '2026-02'
+    },
+    {
+        id: 'compound-growth-calculator',
+        title: 'Compound Growth Calculator',
+        shortTitle: 'Compound Growth',
+        description: 'Project your trading account growth with compound returns. See an interactive equity curve chart with milestones.',
+        category: 'Trading',
+        tags: ['compound growth', 'equity curve', 'trading growth', 'compound interest', 'account growth'],
+        url: '/tools/compound-growth-calculator.html',
+        icon: '📈',
+        color: '#059669',
+        isNew: true,
+        updated: '2026-02'
+    },
+    {
+        id: 'margin-calculator',
+        title: 'Margin Calculator',
+        shortTitle: 'Margin',
+        description: 'Calculate required margin for any forex or CFD trade. See margin level, free margin and leverage comparison.',
+        category: 'Trading',
+        tags: ['margin calculator', 'forex margin', 'leverage', 'required margin', 'margin level'],
+        url: '/tools/margin-calculator.html',
+        icon: '🏦',
+        color: '#059669',
+        isNew: true,
+        updated: '2026-02'
+    },
     // ── ADD NEW TOOLS HERE ──
 ];
 

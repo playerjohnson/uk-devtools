@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Growth Calculator — Trading Account Growth Projector | UK Calculator Hub</title>
+    <meta name="description" content="Project your trading account growth with compound returns. See how consistent monthly gains compound over time with an interactive equity curve chart.">
+    <link rel="canonical" href="https://playerjohnson.github.io/uk-devtools/tools/compound-growth-calculator.html">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Compound Growth Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px}.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}.section-label .section-icon{font-size:1rem}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .input-group input:focus{outline:none;border-color:var(--accent)}
+        .results-container{display:none;margin-top:28px}.results-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
+        .result-card .rc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px}
+        .result-card .rc-value{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink)}.result-card .rc-sub{font-size:.78rem;color:var(--ink-muted);margin-top:4px}
+        .result-card.highlight{border-color:var(--accent);background:rgba(196,93,62,.04)}.result-card.highlight .rc-value{color:var(--accent)}
+        .chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-top:20px;box-shadow:var(--shadow-sm)}
+        .chart-title{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:12px}
+        canvas{width:100%!important;height:300px!important}
+        .milestone-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+        .milestone{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+        .milestone .ms-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted)}.milestone .ms-val{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--ink);margin-top:4px}
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+        @media(max-width:768px){.input-grid,.result-grid,.milestone-list{grid-template-columns:1fr}.input-section{padding:20px}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="../">Home</a></li><li><a href="../blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="../">Home</a><span class="sep">›</span>Tools<span class="sep">›</span>Compound Growth Calculator</div>
+        <div class="badge"><span class="dot"></span> Free Trading Tool</div>
+        <h1>Compound Growth<br>Calculator</h1>
+        <p class="subtitle">See how consistent returns compound over time. Enter your starting balance, monthly return and time horizon to project your equity curve.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">📈</span> Growth Parameters</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="balance">Starting Balance</label><input type="number" id="balance" value="5000" min="0" step="100" oninput="calculate()"><p class="hint">Your current account size</p></div>
+                    <div class="input-group"><label for="monthlyPct">Monthly Return (%)</label><input type="number" id="monthlyPct" value="5" min="0" max="100" step="0.5" oninput="calculate()"><p class="hint">Average monthly gain</p></div>
+                    <div class="input-group"><label for="months">Time Period (months)</label><input type="number" id="months" value="24" min="1" max="120" step="1" oninput="calculate()"><p class="hint">1–120 months</p></div>
+                    <div class="input-group"><label for="deposit">Monthly Deposit</label><input type="number" id="deposit" value="0" min="0" step="50" oninput="calculate()"><p class="hint">Additional monthly contribution</p></div>
+                    <div class="input-group"><label for="withdrawal">Monthly Withdrawal</label><input type="number" id="withdrawal" value="0" min="0" step="50" oninput="calculate()"><p class="hint">Monthly profit taking</p></div>
+                    <div class="input-group"><label for="currency">Currency</label><select id="currency" onchange="calculate()"><option value="£" selected>GBP (£)</option><option value="$">USD ($)</option><option value="€">EUR (€)</option></select></div>
+                </div>
+            </div>
+        </div>
+        <div class="results-container" id="results">
+            <div class="result-grid">
+                <div class="result-card highlight"><div class="rc-label">Final Balance</div><div class="rc-value" id="rFinal">—</div><div class="rc-sub" id="rGrowth">—</div></div>
+                <div class="result-card"><div class="rc-label">Total Profit</div><div class="rc-value" id="rProfit">—</div><div class="rc-sub" id="rProfitPct">—</div></div>
+                <div class="result-card"><div class="rc-label">Annualised Return</div><div class="rc-value" id="rAnnual">—</div><div class="rc-sub">compounded yearly</div></div>
+            </div>
+            <div class="chart-wrap">
+                <div class="chart-title">Equity Curve</div>
+                <canvas id="equityChart"></canvas>
+            </div>
+            <div class="milestone-list" id="milestones"></div>
+        </div>
+        <div class="ad-unit" style="margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+        <div class="explainer">
+            <h2>The Power of Compounding in Trading</h2>
+            <p>Compounding is reinvesting your profits so they generate further returns. A 5% monthly return doesn't mean 60% per year — it means approximately 79.6% because each month's gain is calculated on the growing balance, not just the original amount.</p>
+            <p><strong>Reality check:</strong> consistent monthly returns are extremely difficult to achieve. Professional fund managers average 10–20% per year. If your projected returns seem too good to be true, they probably are. Use this tool for goal setting, but keep expectations realistic.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What's a realistic monthly return for a trader?</div><div class="faq-a"><p>Realistic monthly returns for skilled retail traders range from 2–8%. Anything consistently above 10% monthly is exceptional and rare. Many profitable traders average 3–5% monthly, which compounds to 42–80% annually — far better than traditional investments.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I compound or withdraw profits?</div><div class="faq-a"><p>A balanced approach works best. Many traders reinvest a portion (e.g. 70%) and withdraw the rest. This lets your account grow while providing income. The withdrawal field in this calculator lets you model this.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does this account for losing months?</div><div class="faq-a"><p>This calculator assumes a constant monthly return, which is unrealistic. Real trading has winning and losing months. Think of the monthly return as your average over time, not what you'll make every single month.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators.</p></div><div class="footer-col"><h4>Trading Tools</h4><ul><li><a href="../tools/position-size-calculator.html">Position Size</a></li><li><a href="../tools/risk-reward-calculator.html">Risk/Reward</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>Trading involves significant risk. Past performance doesn't guarantee future results. Not financial advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="../assets/js/core.js"></script>
+    <script>
+        let chart = null;
+        function calculate(){
+            const start = parseFloat(document.getElementById('balance').value)||0;
+            const mPct = parseFloat(document.getElementById('monthlyPct').value)||0;
+            const months = parseInt(document.getElementById('months').value)||1;
+            const deposit = parseFloat(document.getElementById('deposit').value)||0;
+            const withdrawal = parseFloat(document.getElementById('withdrawal').value)||0;
+            const sym = document.getElementById('currency').value;
+            if(!start) return;
+
+            const labels = ['Start'];
+            const data = [start];
+            let bal = start;
+            let totalDeposits = 0;
+
+            for(let i = 1; i <= months; i++){
+                bal = bal * (1 + mPct/100) + deposit - withdrawal;
+                if(bal < 0) bal = 0;
+                totalDeposits += deposit;
+                labels.push('M' + i);
+                data.push(Math.round(bal));
+            }
+
+            const totalIn = start + totalDeposits - (withdrawal * months);
+            const profit = bal - start - totalDeposits + (withdrawal * months);
+            const profitPct = ((bal - start) / start * 100);
+            const annualised = (Math.pow(bal / start, 12/months) - 1) * 100;
+
+            document.getElementById('rFinal').textContent = sym + Math.round(bal).toLocaleString();
+            document.getElementById('rGrowth').textContent = 'from ' + sym + start.toLocaleString();
+            document.getElementById('rProfit').textContent = sym + Math.round(profit).toLocaleString();
+            document.getElementById('rProfitPct').textContent = profitPct.toFixed(1) + '% total growth';
+            document.getElementById('rAnnual').textContent = annualised.toFixed(1) + '%';
+
+            // Milestones
+            const milestones = [];
+            let b = start;
+            const targets = [start*2, start*5, start*10, 10000, 25000, 50000, 100000].sort((a,b)=>a-b);
+            const found = new Set();
+            for(let i = 1; i <= months; i++){
+                b = b * (1 + mPct/100) + deposit - withdrawal;
+                targets.forEach(t => {
+                    if(b >= t && !found.has(t) && t > start){
+                        found.add(t);
+                        milestones.push({label: sym + t.toLocaleString(), month: i});
+                    }
+                });
+            }
+            document.getElementById('milestones').innerHTML = milestones.slice(0,4).map(m =>
+                `<div class="milestone"><div class="ms-label">Reach ${m.label}</div><div class="ms-val">Month ${m.month}</div></div>`
+            ).join('');
+
+            // Chart
+            if(chart) chart.destroy();
+            const ctx = document.getElementById('equityChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type:'line',
+                data:{labels, datasets:[{label:'Balance',data,borderColor:'#C45D3E',backgroundColor:'rgba(196,93,62,0.08)',fill:true,tension:0.3,pointRadius:0,pointHitRadius:10}]},
+                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>sym+v.toLocaleString()},grid:{color:'rgba(255,255,255,0.06)'}},x:{grid:{display:false},ticks:{maxTicksLimit:12}}}}
+            });
+
+            document.getElementById('results').classList.add('visible');
+        }
+        calculate();
+    </script>
+</body>
+</html>
