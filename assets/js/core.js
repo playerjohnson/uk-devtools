@@ -135,6 +135,19 @@ const TOOLS = [
         isNew: true,
         updated: '2026-02'
     },
+    {
+        id: 'day-rate-calculator',
+        title: 'Freelancer Day Rate Calculator',
+        shortTitle: 'Day Rate Calculator',
+        description: 'Work out what day rate to charge as a freelancer — factoring in tax, holidays, sick days, business costs, and non-billable time.',
+        category: 'Business',
+        tags: ['freelancer', 'day rate', 'contractor rate', 'freelance calculator', 'hourly rate'],
+        url: '/tools/day-rate-calculator.html',
+        icon: '📐',
+        color: '#2563eb',
+        isNew: true,
+        updated: '2026-02'
+    },
     // ── ADD NEW TOOLS HERE ──
 ];
 
