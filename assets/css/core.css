@@ -677,3 +677,38 @@ select {
     .input-grid { grid-template-columns: 1fr; }
     .page-header-inner { padding: 36px 20px 32px; }
 }
+
+/* ── AD UNITS ── */
+.ad-unit {
+    max-width: var(--max-width);
+    margin: 24px auto;
+    padding: 0 24px;
+    text-align: center;
+}
+.ad-unit-inner {
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+/* Once AdSense is active, hide the placeholder text */
+.ad-unit-inner ins { width: 100%; }
+.ad-unit-inner .ad-placeholder { display: block; }
+.ad-unit-inner ins + .ad-placeholder { display: none; }
+
+.ad-unit--article {
+    max-width: 720px;
+    padding: 0;
+    margin: 2em auto;
+}
+.ad-unit--slim .ad-unit-inner {
+    min-height: 60px;
+}
