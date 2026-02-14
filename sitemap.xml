@@ -14,9 +14,15 @@
     </url>
     <url>
         <loc>https://ukdevtools.netlify.app/blog/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://ukdevtools.netlify.app/blog/how-much-does-it-cost-to-employ-someone-uk.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
     <!-- Add new tool and blog URLs here as you create them -->
 </urlset>

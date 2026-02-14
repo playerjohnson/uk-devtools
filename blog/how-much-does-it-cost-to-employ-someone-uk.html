@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much Does It Cost to Employ Someone in the UK in 2025/26? | UK Calculator Hub</title>
+    <meta name="description" content="The true cost of employing someone in the UK runs 20–40% above their salary. We break down employer NI at the new 15% rate, pension, holiday pay and hidden costs for 2025/26.">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/blog/how-much-does-it-cost-to-employ-someone-uk.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+
+    <!-- Schema.org Article markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How Much Does It Cost to Employ Someone in the UK in 2025/26?",
+        "description": "The true cost of employing someone in the UK runs 20–40% above their salary. We break down employer NI, pension, holiday pay and hidden costs for 2025/26.",
+        "datePublished": "2026-02-14",
+        "dateModified": "2026-02-14",
+        "author": { "@type": "Organization", "name": "UK Calculator Hub" },
+        "publisher": { "@type": "Organization", "name": "UK Calculator Hub" },
+        "mainEntityOfPage": "https://ukdevtools.netlify.app/blog/how-much-does-it-cost-to-employ-someone-uk.html"
+    }
+    </script>
+
+    <style>
+        .article-hero {
+            background: var(--ink); color: white;
+            padding: 56px 0 48px; position: relative; overflow: hidden;
+        }
+        .article-hero::before {
+            content: ''; position: absolute; top: -40%; right: -15%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59,107,154,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .article-hero-inner {
+            max-width: 720px; margin: 0 auto; padding: 0 24px; position: relative;
+        }
+        .article-hero .breadcrumb {
+            font-size: 0.8rem; margin-bottom: 20px;
+        }
+        .article-hero .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .article-hero .breadcrumb a:hover { color: rgba(255,255,255,0.8); }
+        .article-hero .breadcrumb span { color: rgba(255,255,255,0.35); margin: 0 6px; }
+        .article-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.7rem, 4vw, 2.3rem);
+            line-height: 1.25; margin-bottom: 16px;
+        }
+        .article-meta {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            font-size: 0.8rem; color: rgba(255,255,255,0.45);
+        }
+        .article-meta .cat {
+            color: var(--accent-light, #7bb8e0);
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        .article-body {
+            max-width: 720px; margin: 0 auto; padding: 40px 24px 80px;
+            font-size: 1.02rem; line-height: 1.75; color: var(--ink);
+        }
+        .article-body p { margin-bottom: 1.4em; }
+        .article-body h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.45rem; margin: 2.2em 0 0.7em; line-height: 1.3;
+            color: var(--ink);
+        }
+        .article-body h3 {
+            font-size: 1.1rem; font-weight: 700;
+            margin: 1.8em 0 0.6em; color: var(--ink);
+        }
+
+        .article-body .highlight-box {
+            background: var(--blue-light, #eef4fa);
+            border-left: 4px solid var(--accent, #3b6b9a);
+            padding: 20px 24px; border-radius: 0 8px 8px 0;
+            margin: 1.8em 0; font-size: 0.95rem;
+        }
+        .article-body .highlight-box p { margin-bottom: 0.6em; }
+        .article-body .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-body .cost-table {
+            width: 100%; border-collapse: collapse; margin: 1.5em 0;
+            font-size: 0.92rem;
+        }
+        .article-body .cost-table th {
+            text-align: left; font-weight: 700; padding: 10px 14px;
+            border-bottom: 2px solid var(--ink); font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .article-body .cost-table td {
+            padding: 10px 14px; border-bottom: 1px solid var(--border);
+        }
+        .article-body .cost-table tr:last-child td { border-bottom: 2px solid var(--ink); }
+        .article-body .cost-table .total td { font-weight: 700; }
+        .article-body .cost-table .right { text-align: right; }
+
+        .cta-box {
+            background: var(--ink); color: white; border-radius: 12px;
+            padding: 32px; margin: 2.5em 0; text-align: center;
+        }
+        .cta-box h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem; margin: 0 0 10px; color: white;
+        }
+        .cta-box p { color: rgba(255,255,255,0.65); margin-bottom: 18px; font-size: 0.95rem; }
+        .cta-box a {
+            display: inline-block; background: white; color: var(--ink);
+            padding: 12px 28px; border-radius: 8px; text-decoration: none;
+            font-weight: 700; font-size: 0.95rem; transition: opacity 0.2s;
+        }
+        .cta-box a:hover { opacity: 0.85; }
+
+        .related-posts {
+            max-width: 720px; margin: 0 auto; padding: 0 24px 60px;
+            border-top: 1px solid var(--border); padding-top: 32px;
+        }
+        .related-posts h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+        .related-posts a {
+            display: block; padding: 12px 0; text-decoration: none;
+            color: var(--accent); font-weight: 600; font-size: 0.95rem;
+        }
+        .related-posts a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/true-cost-employee.html">Employee Cost</a></li>
+                <li><a href="/blog/" class="active">Blog</a></li>
+            </ul>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="article-hero-inner">
+            <div class="breadcrumb">
+                <a href="/">Home</a><span>›</span><a href="/blog/">Blog</a><span>›</span> Employment Costs
+            </div>
+            <h1>How Much Does It Cost to Employ Someone in the UK in 2025/26?</h1>
+            <div class="article-meta">
+                <span class="cat">Employment</span>
+                <span>14 February 2026</span>
+                <span>7 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="article-body">
+        <p>If you're hiring your first employee — or your fifteenth — the number on their contract is only part of the story. The true cost of employing someone in the UK typically runs <strong>20% to 40% above their gross salary</strong> once you factor in employer National Insurance, pension contributions, paid holidays, and the practical costs of getting someone set up and productive.</p>
+
+        <p>Since April 2025, those costs have increased further. The employer NI rate rose from 13.8% to 15%, and the threshold at which you start paying dropped sharply from £9,100 to £5,000. For many SMEs, that combination has added hundreds or even thousands of pounds per employee to the annual wage bill.</p>
+
+        <p>This guide breaks down exactly where the money goes, with real numbers at common salary levels, so you can budget with confidence.</p>
+
+        <h2>The headline: salary is only 65–80% of total cost</h2>
+
+        <p>When someone earns £30,000, you don't pay £30,000. You pay their salary plus employer NI, plus pension, plus the cost of the days they're on holiday, plus one-off setup costs. Here's what that looks like at three common salary levels in 2025/26:</p>
+
+        <table class="cost-table">
+            <thead>
+                <tr>
+                    <th>Cost element</th>
+                    <th class="right">£25,000 salary</th>
+                    <th class="right">£35,000 salary</th>
+                    <th class="right">£50,000 salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gross salary</td>
+                    <td class="right">£25,000</td>
+                    <td class="right">£35,000</td>
+                    <td class="right">£50,000</td>
+                </tr>
+                <tr>
+                    <td>Employer NI (15% above £5,000)</td>
+                    <td class="right">£3,000</td>
+                    <td class="right">£4,500</td>
+                    <td class="right">£6,750</td>
+                </tr>
+                <tr>
+                    <td>Pension (3% of qualifying earnings)</td>
+                    <td class="right">£563</td>
+                    <td class="right">£863</td>
+                    <td class="right">£1,321</td>
+                </tr>
+                <tr>
+                    <td>Holiday pay cost (28 days)</td>
+                    <td class="right">£2,692</td>
+                    <td class="right">£3,769</td>
+                    <td class="right">£5,385</td>
+                </tr>
+                <tr>
+                    <td>Recruitment (amortised over 2 years)</td>
+                    <td class="right">£1,500</td>
+                    <td class="right">£2,000</td>
+                    <td class="right">£3,000</td>
+                </tr>
+                <tr>
+                    <td>Equipment &amp; training</td>
+                    <td class="right">£1,500</td>
+                    <td class="right">£1,500</td>
+                    <td class="right">£2,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total annual cost</td>
+                    <td class="right">£34,255</td>
+                    <td class="right">£47,632</td>
+                    <td class="right">£68,456</td>
+                </tr>
+                <tr>
+                    <td>Overhead above salary</td>
+                    <td class="right">37%</td>
+                    <td class="right">36%</td>
+                    <td class="right">37%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Strip out the one-off recruitment and equipment costs and you're still looking at around 25% above salary in recurring costs alone. That's the floor, not the ceiling — many employers offer benefits, pay for training programmes, or contribute more than the 3% pension minimum.</p>
+
+        <div class="highlight-box">
+            <p><strong>Want to see the exact numbers for your situation?</strong> Our <a href="/tools/true-cost-employee.html">True Cost of an Employee Calculator</a> lets you input any salary, pension rate, and optional costs — and shows you the full annual breakdown including the year-on-year impact of the April 2025 NI changes.</p>
+        </div>
+
+        <h2>What changed in April 2025 — and why it matters</h2>
+
+        <p>Two things happened simultaneously. The employer NI rate increased by 1.2 percentage points, from 13.8% to 15%. And the secondary threshold — the point at which you start paying employer NI — dropped from £9,100 to £5,000 per year. That lower threshold is set to remain until at least April 2028.</p>
+
+        <p>The combined effect is significant. For an employee earning £30,000, employer NI in 2024/25 was £2,884. In 2025/26 it's £3,750 — an increase of £866 per person. Scale that across a team of ten and you're looking at nearly £9,000 in additional NI costs before you've changed a single salary.</p>
+
+        <p>Businesses with large numbers of lower-paid or part-time staff are hit hardest. The threshold drop means that even employees earning just above £5,000 now trigger employer NI contributions, where previously no NI was due until £9,100. A business with 50 part-time staff on £9,100 each — previously paying zero employer NI — now faces roughly £30,750 in new contributions.</p>
+
+        <h3>The Employment Allowance: partial relief</h3>
+
+        <p>To soften the blow for smaller employers, the Employment Allowance increased from £5,000 to £10,500 per year. The previous £100,000 eligibility cap has been removed, meaning all eligible businesses can now claim regardless of their total NI bill. HMRC estimates this will mean around 865,000 employers pay no employer NI at all in 2025/26.</p>
+
+        <p>But the allowance is per business, not per employee. A company with four employees on £30,000 each would owe £15,000 in employer NI. The £10,500 allowance reduces that to £4,500, which is helpful — but doesn't eliminate the cost. And single-director companies where the director is the only employee cannot claim it at all.</p>
+
+        <h2>Breaking down each cost component</h2>
+
+        <h3>Employer National Insurance</h3>
+
+        <p>For most employees (NI Category A), you pay 15% on all earnings above £5,000 per year. There's no upper limit — unlike employee NI, which drops to 2% above £50,270. Different NI categories apply to apprentices under 25, employees under 21, and veterans in their first year of civilian employment, all of which have a higher threshold of £50,270 before employer NI kicks in.</p>
+
+        <h3>Pension contributions</h3>
+
+        <p>Under auto-enrolment, the minimum employer contribution is 3% of qualifying earnings — the band between £6,240 and £50,270 for 2025/26. Some employers calculate pension on full gross salary instead, which is more generous but also more costly. On a £30,000 salary, the difference between qualifying earnings and gross salary pension is around £190 per year — modest individually, but it adds up across a larger workforce.</p>
+
+        <h3>Holiday pay</h3>
+
+        <p>Every UK employee is entitled to at least 28 days of paid annual leave (5.6 weeks), which includes bank holidays. During those 28 days, you're paying salary but receiving no productive work. The effective cost depends on how you calculate it, but the simplest way to think about it: roughly 10.8% of salary goes toward paying people to not work. On a £30,000 salary, that's £3,231.</p>
+
+        <h3>Recruitment costs</h3>
+
+        <p>The cost of finding and hiring an employee varies enormously. A basic job board listing might cost a few hundred pounds, while a recruitment agency typically charges 15–25% of the starting salary. For a £35,000 role, that's £5,250 to £8,750. Even handling recruitment in-house costs time — reviewing CVs, conducting interviews, running background checks. Budget somewhere between £1,000 and £8,000 depending on the role and method.</p>
+
+        <h3>Equipment, onboarding and training</h3>
+
+        <p>A laptop, monitor, desk, chair, software licences, phone — the initial setup for an office-based employee typically runs £1,000 to £2,500. Remote workers may need a home office stipend. Annual training budgets vary, but £500 to £1,500 per employee is common for SMEs. Regulated industries often spend considerably more.</p>
+
+        <h2>The costs people forget</h2>
+
+        <p>Beyond the statutory and obvious costs, there are several that often slip through the cracks when budgeting for a hire. Employer's liability insurance is a legal requirement, typically costing £50 to £100 per employee per year. Sick pay is another: statutory sick pay (SSP) at £118.75 per week doesn't sound like much, but the real cost is the disruption and cover required when someone is off. If you offer enhanced sick pay, the cost rises further.</p>
+
+        <p>Then there's the management overhead. Every new hire requires supervision, feedback, and administration. HR software, payroll processing, and compliance all take time and money. These costs are hard to pin down per employee, but they're real — and they scale.</p>
+
+        <h2>How to reduce the cost without reducing the team</h2>
+
+        <p>There are several legitimate ways to manage employment costs more efficiently, especially after the April 2025 changes.</p>
+
+        <p><strong>Claim the Employment Allowance.</strong> If you haven't already, make sure you're claiming the full £10,500 for 2025/26. It's claimed through your payroll submission (EPS) and takes effect immediately — you don't need to wait for HMRC confirmation.</p>
+
+        <p><strong>Consider salary sacrifice.</strong> Salary sacrifice pension arrangements reduce the employee's gross pay, which in turn reduces your employer NI liability. On a team of 10 employees earning £35,000 each with 5% sacrifice, you could save roughly £2,600 per year in employer NI alone. The employee also saves on their NI and income tax, making it a genuine win for both sides.</p>
+
+        <p><strong>Use the right NI categories.</strong> If you employ apprentices under 25, workers under 21, or veterans in their first 12 months of civilian employment, make sure you're using the correct NI category (H, M, or V). These categories have a much higher employer NI threshold of £50,270, potentially saving thousands per employee.</p>
+
+        <p><strong>Review your hiring model.</strong> For short-term or project-based work, contractors may be more cost-effective once you factor in the full employment overhead. There's no employer NI, pension, or holiday pay obligation — though IR35 rules mean this only works if the engagement is genuinely outside employment.</p>
+
+        <div class="cta-box">
+            <h3>Calculate your exact costs</h3>
+            <p>Input any salary, pension rate, NI category, and optional costs to see the full picture — including year-on-year comparison.</p>
+            <a href="/tools/true-cost-employee.html">Use the Employee Cost Calculator →</a>
+        </div>
+
+        <h2>What about the Employment Allowance — will it cover me?</h2>
+
+        <p>It depends on the size of your team and what you pay them. As a rough guide: a business with up to four employees on around £25,000 each will have its entire employer NI bill wiped out by the £10,500 allowance. Once you get to six or seven employees at average salaries, the allowance covers only a portion of the bill.</p>
+
+        <p>The key thing to remember is that the allowance hasn't kept pace with the NI increases for most growing businesses. It helps at the smallest scale, but it's not a permanent shield. If you're planning to grow your team, budget for the full employer NI cost per additional hire.</p>
+
+        <h2>The bottom line</h2>
+
+        <p>Hiring someone on a £30,000 salary will cost your business somewhere between £37,000 and £42,000 in the first year, and £34,000 to £36,000 per year thereafter once you strip out one-off recruitment costs. The April 2025 NI changes added roughly £850 to £950 per employee at that salary level.</p>
+
+        <p>None of this is a reason not to hire — the right person will generate far more value than they cost. But going in with accurate numbers means you can price your services correctly, negotiate salaries confidently, and avoid cash flow surprises.</p>
+
+        <p>Use our <a href="/tools/true-cost-employee.html">True Cost of an Employee Calculator</a> to model your specific situation, including different pension rates, NI categories, and optional costs.</p>
+    </article>
+
+    <div class="related-posts">
+        <h3>Related reading</h3>
+        <a href="/tools/true-cost-employee.html">→ True Cost of an Employee Calculator 2025/26</a>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a>
+                <p>Free, fast, accurate UK calculators for employers, businesses and individuals. Updated for the 2025/26 tax year.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Calculators</h4>
+                <ul><li><a href="/tools/true-cost-employee.html">True Cost of Employee</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="https://www.gov.uk/government/publications/rates-and-allowances-national-insurance-contributions/rates-and-allowances-national-insurance-contributions" target="_blank" rel="noopener">HMRC NI Rates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>All content is for informational purposes only and does not constitute financial or tax advice. Consult a qualified accountant for professional guidance. © 2026 UK Calculator Hub.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/core.js"></script>
+</body>
+</html>
