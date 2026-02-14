@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ukdevtools.netlify.app/sitemap.xml
+Sitemap: https://playerjohnson.github.io/uk-devtools/sitemap.xml
