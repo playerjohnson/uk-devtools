@@ -169,4 +169,40 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/blog/position-sizing-forex-guide.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/blog/risk-reward-ratio-explained.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/blog/forex-margin-leverage-uk.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/blog/compound-trading-returns.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/privacy.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://playerjohnson.github.io/uk-devtools/terms.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
 </urlset>
