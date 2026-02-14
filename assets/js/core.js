@@ -148,6 +148,19 @@ const TOOLS = [
         isNew: true,
         updated: '2026-02'
     },
+    {
+        id: 'invoice-generator',
+        title: 'Free Invoice Generator',
+        shortTitle: 'Invoice Generator',
+        description: 'Create professional UK invoices with VAT, bank details and payment terms. Preview and download as PDF — no sign-up needed.',
+        category: 'Business',
+        tags: ['invoice', 'invoice generator', 'PDF invoice', 'VAT invoice', 'freelancer invoice', 'billing'],
+        url: '/tools/invoice-generator.html',
+        icon: '🧾',
+        color: '#9333ea',
+        isNew: true,
+        updated: '2026-02'
+    },
     // ── ADD NEW TOOLS HERE ──
 ];
 

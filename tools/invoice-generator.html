@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Invoice Generator UK — Create & Download PDF Invoices | UK Calculator Hub</title>
+    <meta name="description" content="Create professional UK invoices for free. Add your business details, line items, VAT, bank details and download as PDF. No sign-up required.">
+    <meta name="keywords" content="free invoice generator UK, invoice template UK, create invoice online, PDF invoice generator, VAT invoice template, freelancer invoice">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/invoice-generator.html">
+    <meta property="og:title" content="Free Invoice Generator UK — Create & Download PDF Invoices">
+    <meta property="og:description" content="Create professional invoices and download as PDF. Free, no sign-up.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Free Invoice Generator UK","description":"Create professional UK invoices with VAT and download as PDF.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+    <style>
+        .tool-main{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}.calc-card{margin-top:-20px;position:relative;z-index:2}
+        .input-section{padding:28px 36px;border-bottom:1px solid var(--border)}.input-section:last-child{border-bottom:none}
+        .section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}.section-label .section-icon{font-size:1rem}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .input-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+        .input-group{display:flex;flex-direction:column;gap:6px}.input-group label{font-size:.82rem;font-weight:600;color:var(--ink-light)}.input-group .hint{font-size:.72rem;color:var(--ink-muted)}
+        .input-group input,.input-group select,.input-group textarea{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);transition:border-color .2s}
+        .input-group input:focus,.input-group select:focus,.input-group textarea:focus{outline:none;border-color:var(--accent)}
+        .input-group textarea{resize:vertical;min-height:70px}
+        .input-full{grid-column:1/-1}
+        .currency-wrap{position:relative}.currency-wrap::before{content:'£';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-muted);font-weight:600;pointer-events:none}.currency-wrap input{padding-left:30px;width:100%;box-sizing:border-box}
+
+        /* Line items table */
+        .line-items-table{width:100%;border-collapse:collapse;margin-top:8px}
+        .line-items-table th{text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted);padding:8px 8px 8px 0;border-bottom:2px solid var(--border)}
+        .line-items-table td{padding:6px 8px 6px 0;vertical-align:top}
+        .line-items-table input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:.88rem;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink)}
+        .line-items-table input:focus{outline:none;border-color:var(--accent)}
+        .line-items-table .col-desc{width:40%}.line-items-table .col-qty{width:12%}.line-items-table .col-rate{width:18%}.line-items-table .col-amount{width:18%}.line-items-table .col-action{width:12%;text-align:center}
+        .line-items-table .amount-cell{font-weight:600;padding:10px 8px;color:var(--ink)}
+        .btn-add-line{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px dashed var(--border);border-radius:8px;background:transparent;color:var(--ink-muted);font-size:.85rem;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:8px;transition:all .2s}
+        .btn-add-line:hover{border-color:var(--accent);color:var(--accent)}
+        .btn-remove{background:none;border:none;color:var(--ink-muted);cursor:pointer;font-size:1.1rem;padding:4px 8px;border-radius:4px;transition:color .2s}
+        .btn-remove:hover{color:#dc2626}
+
+        /* Totals */
+        .totals-section{display:flex;justify-content:flex-end;margin-top:16px}
+        .totals-box{min-width:280px}
+        .totals-row{display:flex;justify-content:space-between;padding:8px 0;font-size:.9rem;border-bottom:1px solid var(--border)}
+        .totals-row:last-child{border-bottom:none}
+        .totals-row .tl{color:var(--ink-light)}.totals-row .tv{font-weight:700}
+        .totals-row.grand{border-top:2px solid var(--ink);font-size:1.05rem;padding-top:12px;margin-top:4px}
+
+        .calc-actions{padding:24px 36px 32px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap}
+
+        /* Invoice Preview */
+        .preview-container{display:none;margin-top:28px}.preview-container.visible{display:block;animation:fadeSlideUp .4s ease}
+        .invoice-preview{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:48px;box-shadow:var(--shadow-sm);color:#1a1a1a;max-width:800px;margin:0 auto}
+        .inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:24px;border-bottom:3px solid #1a1a1a}
+        .inv-from h2{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:4px;color:#1a1a1a}.inv-from p{font-size:.82rem;color:#666;line-height:1.6;white-space:pre-line}
+        .inv-meta{text-align:right}.inv-meta .inv-title{font-family:'DM Serif Display',serif;font-size:1.8rem;color:#1a1a1a;margin-bottom:8px}
+        .inv-meta-row{font-size:.82rem;color:#666;margin-bottom:2px}.inv-meta-row strong{color:#1a1a1a}
+        .inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:28px}
+        .inv-party-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:6px}
+        .inv-party p{font-size:.85rem;color:#333;line-height:1.6;white-space:pre-line}
+        .inv-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+        .inv-table th{text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#999;padding:10px 8px;border-bottom:2px solid #e5e5e5}
+        .inv-table th.r{text-align:right}.inv-table td{padding:10px 8px;border-bottom:1px solid #f0f0f0;font-size:.88rem;color:#333}
+        .inv-table td.r{text-align:right;font-variant-numeric:tabular-nums}
+        .inv-totals{display:flex;justify-content:flex-end;margin-bottom:28px}
+        .inv-totals-box{min-width:260px}
+        .inv-tot-row{display:flex;justify-content:space-between;padding:6px 0;font-size:.88rem;color:#333}
+        .inv-tot-row.grand{border-top:2px solid #1a1a1a;padding-top:10px;margin-top:4px;font-weight:700;font-size:1rem}
+        .inv-footer{border-top:1px solid #e5e5e5;padding-top:20px;font-size:.82rem;color:#666;line-height:1.7}
+        .inv-footer strong{color:#333}
+        .inv-notes{margin-top:16px;font-size:.82rem;color:#666;font-style:italic}
+
+        .explainer{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-top:32px;box-shadow:var(--shadow-sm)}
+        .explainer h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:16px}.explainer p{font-size:.9rem;color:var(--ink-light);line-height:1.7;margin-bottom:12px}
+        .faq-list{margin-top:32px}.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--ink)}.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink-muted)}.faq-item.open .faq-q::after{content:'−'}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-item.open .faq-a{max-height:500px}.faq-a p{padding-bottom:16px;font-size:.88rem;color:var(--ink-light);line-height:1.7}
+
+        @media(max-width:768px){.input-grid,.input-grid-3,.inv-parties{grid-template-columns:1fr}.input-section{padding:20px}.calc-actions{padding:20px;flex-direction:column}.invoice-preview{padding:24px}.inv-header{flex-direction:column;gap:16px}.inv-meta{text-align:left}.line-items-table .col-desc{width:30%}}
+        @media print{.site-nav,.page-header,.calc-card,.ad-unit,.site-footer,.explainer,.calc-actions,.preview-container>div:first-child{display:none!important}.preview-container{display:block!important;margin:0;padding:0}.invoice-preview{border:none;box-shadow:none;padding:20px;max-width:100%}}
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tools/true-cost-employee.html">Employee Cost</a></li><li><a href="/tools/salary-reality-check.html">Salary Check</a></li><li><a href="/blog/">Blog</a></li></ul><button class="nav-hamburger" aria-label="Toggle menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></nav>
+    <header class="page-header"><div class="page-header-inner">
+        <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span>Tools<span class="sep">›</span>Invoice Generator</div>
+        <div class="badge"><span class="dot"></span> Free — No Sign-up</div>
+        <h1>Free Invoice<br>Generator UK</h1>
+        <p class="subtitle">Create professional invoices with VAT, bank details and payment terms. Preview instantly and download as PDF. Your data never leaves your browser.</p>
+    </div></header>
+    <main class="tool-main">
+        <div class="card calc-card">
+            <!-- YOUR DETAILS -->
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">🏢</span> Your Business Details</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="fromName">Business / Your Name</label><input type="text" id="fromName" placeholder="Acme Ltd"></div>
+                    <div class="input-group"><label for="fromEmail">Email</label><input type="email" id="fromEmail" placeholder="hello@acme.co.uk"></div>
+                    <div class="input-group input-full"><label for="fromAddress">Address</label><textarea id="fromAddress" rows="2" placeholder="123 High Street&#10;London, EC1A 1BB"></textarea></div>
+                    <div class="input-group"><label for="fromVAT">VAT Number (optional)</label><input type="text" id="fromVAT" placeholder="GB 123 4567 89"></div>
+                    <div class="input-group"><label for="fromCompanyNo">Company Number (optional)</label><input type="text" id="fromCompanyNo" placeholder="12345678"></div>
+                </div>
+            </div>
+            <!-- CLIENT DETAILS -->
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">👤</span> Bill To (Client)</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="toName">Client Name / Company</label><input type="text" id="toName" placeholder="Client Corp Ltd"></div>
+                    <div class="input-group"><label for="toEmail">Client Email</label><input type="email" id="toEmail" placeholder="accounts@client.co.uk"></div>
+                    <div class="input-group input-full"><label for="toAddress">Client Address</label><textarea id="toAddress" rows="2" placeholder="456 Business Park&#10;Manchester, M1 2AB"></textarea></div>
+                </div>
+            </div>
+            <!-- INVOICE DETAILS -->
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">📄</span> Invoice Details</div>
+                <div class="input-grid-3">
+                    <div class="input-group"><label for="invNumber">Invoice Number</label><input type="text" id="invNumber" value="INV-001"></div>
+                    <div class="input-group"><label for="invDate">Invoice Date</label><input type="date" id="invDate"></div>
+                    <div class="input-group"><label for="dueDate">Due Date</label><input type="date" id="dueDate"></div>
+                    <div class="input-group"><label for="vatRate">VAT Rate</label><select id="vatRate" onchange="recalcLines()"><option value="20" selected>20% (Standard)</option><option value="5">5% (Reduced)</option><option value="0">0% (Zero-rated / Not VAT registered)</option></select></div>
+                    <div class="input-group"><label for="currency">Currency</label><select id="currency"><option value="GBP" selected>£ GBP</option><option value="EUR">€ EUR</option><option value="USD">$ USD</option></select></div>
+                    <div class="input-group"><label for="payTerms">Payment Terms</label><select id="payTerms"><option value="Due on receipt">Due on receipt</option><option value="Net 7">Net 7 days</option><option value="Net 14">Net 14 days</option><option value="Net 30" selected>Net 30 days</option><option value="Net 60">Net 60 days</option></select></div>
+                </div>
+            </div>
+            <!-- LINE ITEMS -->
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">📝</span> Line Items</div>
+                <table class="line-items-table">
+                    <thead><tr><th class="col-desc">Description</th><th class="col-qty">Qty</th><th class="col-rate">Unit Price (£)</th><th class="col-amount">Amount</th><th class="col-action"></th></tr></thead>
+                    <tbody id="lineItems"></tbody>
+                </table>
+                <button class="btn-add-line" onclick="addLine()">+ Add Line Item</button>
+                <div class="totals-section">
+                    <div class="totals-box">
+                        <div class="totals-row"><span class="tl">Subtotal</span><span class="tv" id="subtotal">£0.00</span></div>
+                        <div class="totals-row"><span class="tl">VAT (<span id="vatRateLabel">20</span>%)</span><span class="tv" id="vatAmount">£0.00</span></div>
+                        <div class="totals-row grand"><span class="tl">Total Due</span><span class="tv" id="grandTotal">£0.00</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- PAYMENT & NOTES -->
+            <div class="input-section">
+                <div class="section-label"><span class="section-icon">🏦</span> Payment Details & Notes</div>
+                <div class="input-grid">
+                    <div class="input-group"><label for="bankName">Bank Name</label><input type="text" id="bankName" placeholder="Barclays"></div>
+                    <div class="input-group"><label for="accountName">Account Name</label><input type="text" id="accountName" placeholder="Acme Ltd"></div>
+                    <div class="input-group"><label for="sortCode">Sort Code</label><input type="text" id="sortCode" placeholder="20-00-00"></div>
+                    <div class="input-group"><label for="accountNo">Account Number</label><input type="text" id="accountNo" placeholder="12345678"></div>
+                    <div class="input-group input-full"><label for="notes">Notes (optional)</label><textarea id="notes" rows="2" placeholder="Thank you for your business!"></textarea></div>
+                </div>
+            </div>
+            <div class="calc-actions">
+                <button class="btn btn-primary btn-lg" onclick="generatePreview()" style="flex:1">Preview Invoice →</button>
+                <button class="btn btn-lg" onclick="downloadPDF()" style="flex:1;background:var(--bg);border:2px solid var(--border);color:var(--ink)">⬇ Download PDF</button>
+            </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview-container" id="previewContainer">
+            <div style="text-align:center;margin-bottom:16px">
+                <button class="btn btn-primary" onclick="downloadPDF()">⬇ Download as PDF</button>
+                <button class="btn" onclick="window.print()" style="margin-left:8px;background:var(--bg);border:1px solid var(--border);color:var(--ink)">🖨 Print</button>
+            </div>
+            <div class="invoice-preview" id="invoicePreview"></div>
+        </div>
+
+        <div class="ad-unit ad-unit--article" style="padding:0;max-width:100%;margin-top:24px"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+
+        <div class="explainer">
+            <h2>About This Invoice Generator</h2>
+            <p>This tool creates professional UK invoices that comply with HMRC requirements for VAT invoices. All data is processed in your browser — nothing is sent to any server, and nothing is stored.</p>
+            <p><strong>What a valid UK VAT invoice needs:</strong> your business name and address, VAT registration number, invoice number, invoice date, client details, description of goods/services, unit price and quantity, VAT rate and amount, and the total amount due.</p>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is this invoice legally valid?</div><div class="faq-a"><p>Yes — UK invoices don't require a specific format. As long as they contain the required information (supplier details, client details, unique invoice number, date, description, amounts, and VAT details if registered), they're valid. This generator includes all required fields.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to charge VAT?</div><div class="faq-a"><p>Only if you're VAT-registered (required when turnover exceeds £90,000). If you're not VAT-registered, set the VAT rate to 0% and leave the VAT number field blank. You must not charge VAT if you're not registered.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long should I keep invoices?</div><div class="faq-a"><p>HMRC requires you to keep records for at least 6 years (5 years from the 31 January submission deadline of the relevant tax year). If you're VAT-registered, keep VAT records for 6 years.</p></div></div>
+                <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my data safe?</div><div class="faq-a"><p>Yes. Everything runs in your browser. No data is sent to our servers or stored anywhere. When you close the page, the data is gone. We recommend downloading your PDF immediately after generating it.</p></div></div>
+            </div>
+        </div>
+    </main>
+    <div class="ad-unit"><div class="ad-unit-inner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><span class="ad-placeholder">Ad</span></div></div>
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="/" class="nav-logo"><span class="logo-mark">£</span> UK Calculator Hub</a><p>Free UK calculators. Updated for 2025/26.</p></div><div class="footer-col"><h4>Calculators</h4><ul><li><a href="/tools/vat-calculator.html">VAT Calculator</a></li><li><a href="/tools/day-rate-calculator.html">Day Rate Calculator</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a href="/blog/">Blog</a></li></ul></div></div><div class="footer-bottom"><p>For estimation only — not financial or legal advice. © 2026 UK Calculator Hub.</p></div></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="/assets/js/core.js"></script>
+    <script>
+        let lineCount = 0;
+
+        // Set default dates
+        (function(){
+            const today = new Date();
+            document.getElementById('invDate').value = today.toISOString().split('T')[0];
+            const due = new Date(today); due.setDate(due.getDate() + 30);
+            document.getElementById('dueDate').value = due.toISOString().split('T')[0];
+            addLine(); addLine(); // Start with 2 lines
+        })();
+
+        function addLine() {
+            lineCount++;
+            const tr = document.createElement('tr');
+            tr.id = 'line-' + lineCount;
+            tr.innerHTML = `
+                <td class="col-desc"><input type="text" placeholder="Web development services" oninput="recalcLines()"></td>
+                <td class="col-qty"><input type="number" value="1" min="0" step="1" oninput="recalcLines()"></td>
+                <td class="col-rate"><input type="number" value="0" min="0" step="0.01" oninput="recalcLines()"></td>
+                <td class="col-amount"><span class="amount-cell">£0.00</span></td>
+                <td class="col-action"><button class="btn-remove" onclick="removeLine(this)" title="Remove line">✕</button></td>
+            `;
+            document.getElementById('lineItems').appendChild(tr);
+        }
+
+        function removeLine(btn) {
+            const rows = document.getElementById('lineItems').querySelectorAll('tr');
+            if (rows.length > 1) { btn.closest('tr').remove(); recalcLines(); }
+        }
+
+        function getSymbol() {
+            const c = document.getElementById('currency').value;
+            return c === 'EUR' ? '€' : c === 'USD' ? '$' : '£';
+        }
+
+        function fmt(n) {
+            return getSymbol() + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        function getLines() {
+            const rows = document.getElementById('lineItems').querySelectorAll('tr');
+            const lines = [];
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const desc = inputs[0].value || '';
+                const qty = parseFloat(inputs[1].value) || 0;
+                const rate = parseFloat(inputs[2].value) || 0;
+                const amount = qty * rate;
+                lines.push({ desc, qty, rate, amount });
+            });
+            return lines;
+        }
+
+        function recalcLines() {
+            const rows = document.getElementById('lineItems').querySelectorAll('tr');
+            let subtotal = 0;
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const qty = parseFloat(inputs[1].value) || 0;
+                const rate = parseFloat(inputs[2].value) || 0;
+                const amount = qty * rate;
+                subtotal += amount;
+                row.querySelector('.amount-cell').textContent = fmt(amount);
+            });
+            const vatPct = parseFloat(document.getElementById('vatRate').value) / 100;
+            const vat = subtotal * vatPct;
+            document.getElementById('subtotal').textContent = fmt(subtotal);
+            document.getElementById('vatRateLabel').textContent = document.getElementById('vatRate').value;
+            document.getElementById('vatAmount').textContent = fmt(vat);
+            document.getElementById('grandTotal').textContent = fmt(subtotal + vat);
+        }
+
+        function generatePreview() {
+            const lines = getLines();
+            const vatPct = parseFloat(document.getElementById('vatRate').value) / 100;
+            const subtotal = lines.reduce((s, l) => s + l.amount, 0);
+            const vat = subtotal * vatPct;
+            const total = subtotal + vat;
+
+            const fromName = document.getElementById('fromName').value || 'Your Business';
+            const fromAddr = document.getElementById('fromAddress').value || '';
+            const fromEmail = document.getElementById('fromEmail').value || '';
+            const fromVAT = document.getElementById('fromVAT').value || '';
+            const fromCoNo = document.getElementById('fromCompanyNo').value || '';
+            const toName = document.getElementById('toName').value || 'Client';
+            const toAddr = document.getElementById('toAddress').value || '';
+            const toEmail = document.getElementById('toEmail').value || '';
+            const invNo = document.getElementById('invNumber').value || 'INV-001';
+            const invDate = document.getElementById('invDate').value || '';
+            const dueDate = document.getElementById('dueDate').value || '';
+            const payTerms = document.getElementById('payTerms').value || '';
+            const bankName = document.getElementById('bankName').value || '';
+            const accountName = document.getElementById('accountName').value || '';
+            const sortCode = document.getElementById('sortCode').value || '';
+            const accountNo = document.getElementById('accountNo').value || '';
+            const notes = document.getElementById('notes').value || '';
+
+            const formatDate = (d) => { if(!d) return ''; const dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); };
+
+            let lineRows = lines.filter(l => l.desc || l.amount > 0).map(l =>
+                `<tr><td>${l.desc}</td><td class="r">${l.qty}</td><td class="r">${fmt(l.rate)}</td><td class="r">${fmt(l.amount)}</td></tr>`
+            ).join('');
+
+            let bankSection = '';
+            if (bankName || sortCode || accountNo) {
+                bankSection = `<div class="inv-footer"><strong>Payment Details</strong><br>`;
+                if (bankName) bankSection += `Bank: ${bankName}<br>`;
+                if (accountName) bankSection += `Account Name: ${accountName}<br>`;
+                if (sortCode) bankSection += `Sort Code: ${sortCode}<br>`;
+                if (accountNo) bankSection += `Account Number: ${accountNo}<br>`;
+                bankSection += `</div>`;
+            }
+
+            let regDetails = '';
+            if (fromVAT) regDetails += `VAT: ${fromVAT}<br>`;
+            if (fromCoNo) regDetails += `Company No: ${fromCoNo}`;
+
+            document.getElementById('invoicePreview').innerHTML = `
+                <div class="inv-header">
+                    <div class="inv-from">
+                        <h2>${fromName}</h2>
+                        <p>${fromAddr}${fromEmail ? '\n' + fromEmail : ''}</p>
+                        ${regDetails ? `<p style="margin-top:4px;font-size:.78rem;color:#999">${regDetails}</p>` : ''}
+                    </div>
+                    <div class="inv-meta">
+                        <div class="inv-title">INVOICE</div>
+                        <div class="inv-meta-row"><strong>${invNo}</strong></div>
+                        <div class="inv-meta-row">Date: ${formatDate(invDate)}</div>
+                        <div class="inv-meta-row">Due: ${formatDate(dueDate)}</div>
+                        <div class="inv-meta-row">Terms: ${payTerms}</div>
+                    </div>
+                </div>
+                <div class="inv-parties">
+                    <div><div class="inv-party-label">Bill To</div><div class="inv-party"><p><strong>${toName}</strong>${toAddr ? '\n' + toAddr : ''}${toEmail ? '\n' + toEmail : ''}</p></div></div>
+                    <div><div class="inv-party-label">From</div><div class="inv-party"><p><strong>${fromName}</strong>${fromAddr ? '\n' + fromAddr : ''}</p></div></div>
+                </div>
+                <table class="inv-table">
+                    <thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Unit Price</th><th class="r">Amount</th></tr></thead>
+                    <tbody>${lineRows}</tbody>
+                </table>
+                <div class="inv-totals"><div class="inv-totals-box">
+                    <div class="inv-tot-row"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
+                    ${vatPct > 0 ? `<div class="inv-tot-row"><span>VAT (${document.getElementById('vatRate').value}%)</span><span>${fmt(vat)}</span></div>` : ''}
+                    <div class="inv-tot-row grand"><span>Total Due</span><span>${fmt(total)}</span></div>
+                </div></div>
+                ${bankSection}
+                ${notes ? `<div class="inv-notes">${notes}</div>` : ''}
+            `;
+
+            document.getElementById('previewContainer').classList.add('visible');
+            document.getElementById('previewContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        async function downloadPDF() {
+            generatePreview();
+            await new Promise(r => setTimeout(r, 300)); // Let render settle
+            const el = document.getElementById('invoicePreview');
+            try {
+                const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const margin = 10;
+                const imgWidth = pageWidth - margin * 2;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                // Handle multi-page
+                if (imgHeight <= pageHeight - margin * 2) {
+                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', margin, margin, imgWidth, imgHeight);
+                } else {
+                    let y = 0;
+                    const pageContentHeight = pageHeight - margin * 2;
+                    const sourcePageHeight = (canvas.width * pageContentHeight) / imgWidth;
+                    while (y < canvas.height) {
+                        const pageCanvas = document.createElement('canvas');
+                        pageCanvas.width = canvas.width;
+                        pageCanvas.height = Math.min(sourcePageHeight, canvas.height - y);
+                        const ctx = pageCanvas.getContext('2d');
+                        ctx.drawImage(canvas, 0, y, canvas.width, pageCanvas.height, 0, 0, pageCanvas.width, pageCanvas.height);
+                        const h = (pageCanvas.height * imgWidth) / pageCanvas.width;
+                        if (y > 0) pdf.addPage();
+                        pdf.addImage(pageCanvas.toDataURL('image/png'), 'PNG', margin, margin, imgWidth, h);
+                        y += sourcePageHeight;
+                    }
+                }
+                const invNo = document.getElementById('invNumber').value || 'invoice';
+                pdf.save(invNo + '.pdf');
+            } catch (err) {
+                console.error('PDF generation failed:', err);
+                alert('PDF generation failed. Try using Print (Ctrl+P) and save as PDF instead.');
+            }
+        }
+    </script>
+</body>
+</html>
