@@ -24,5 +24,11 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://ukdevtools.netlify.app/blog/employer-ni-increase-april-2025.html</loc>
+        <lastmod>2026-02-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
     <!-- Add new tool and blog URLs here as you create them -->
 </urlset>
