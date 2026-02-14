@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Reality Check Calculator UK 2025/26 | Take-Home Pay vs Living Costs</title>
+    <meta name="description" content="Enter your salary and UK city to see your real take-home pay vs actual living costs. Find out what's left each month after rent, tax, bills and groceries. Free, instant results.">
+    <meta name="keywords" content="salary calculator UK, cost of living calculator, take home pay UK, is 30k a good salary, salary needed to live in London, can I afford to live in Manchester, salary vs living costs UK">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ukdevtools.netlify.app/tools/salary-reality-check.html">
+    <meta property="og:title" content="Salary Reality Check — Can You Afford Your City? | UK Calculator Hub">
+    <meta property="og:description" content="Enter your salary and UK city. See your real take-home pay vs actual living costs and find out what's left each month.">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Salary Reality Check Calculator UK 2025/26",
+        "description": "Calculate your real take-home pay after tax, NI, pension, and student loans, then compare it against actual living costs in your UK city.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/core.css">
+
+    <style>
+        .tool-main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .calc-card { margin-top: -20px; position: relative; z-index: 2; }
+
+        .results-container { display: none; margin-top: 28px; }
+        .results-container.visible { display: block; animation: fadeSlideUp 0.4s ease; }
+
+        /* Verdict banner */
+        .verdict-banner {
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .verdict-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+        }
+        .verdict-banner .verdict-tier {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.14em; color: rgba(255,255,255,0.85); margin-bottom: 4px;
+        }
+        .verdict-banner .verdict-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem; color: #fff; line-height: 1.2;
+        }
+        .verdict-banner .verdict-sub {
+            font-size: 0.88rem; color: rgba(255,255,255,0.8); margin-top: 8px;
+        }
+        .verdict-banner.tier-surviving { background: linear-gradient(135deg, #b33a3a, #8b2020); }
+        .verdict-banner.tier-tight     { background: linear-gradient(135deg, #d4930a, #a06f00); }
+        .verdict-banner.tier-stable     { background: linear-gradient(135deg, #3b6b9a, #2a4f73); }
+        .verdict-banner.tier-comfortable{ background: linear-gradient(135deg, #2d8f5e, #1a6b3f); }
+        .verdict-banner.tier-thriving   { background: linear-gradient(135deg, #1a7a5e, #0d5c42); }
+
+        /* Stats row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px; margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px;
+            text-align: center; box-shadow: var(--shadow-sm);
+        }
+        .stat-card .stat-label {
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--ink-muted); margin-bottom: 6px;
+        }
+        .stat-card .stat-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.35rem; color: var(--ink);
+        }
+        .stat-card .stat-note {
+            font-size: 0.75rem; color: var(--ink-muted); margin-top: 4px;
+        }
+        .stat-value.positive { color: var(--green); }
+        .stat-value.negative { color: #b33a3a; }
+
+        /* Waterfall chart - income vs expenses */
+        .waterfall-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px;
+            box-shadow: var(--shadow-sm); margin-bottom: 20px;
+        }
+        .waterfall-card h3 {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--ink-muted); margin-bottom: 16px;
+        }
+        .wf-item {
+            display: flex; align-items: center;
+            gap: 10px; margin-bottom: 8px;
+        }
+        .wf-label {
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--ink-light); width: 120px;
+            flex-shrink: 0; text-align: right;
+        }
+        .wf-track {
+            flex: 1; height: 26px;
+            background: var(--surface);
+            border-radius: 6px; overflow: hidden;
+            position: relative;
+        }
+        .wf-fill {
+            height: 100%; border-radius: 6px;
+            transition: width 0.6s ease;
+            display: flex; align-items: center;
+            justify-content: flex-end; padding-right: 8px;
+            font-size: 0.72rem; font-weight: 700; color: white;
+            min-width: fit-content;
+        }
+        .wf-fill.income { background: var(--green); }
+        .wf-fill.tax     { background: #b33a3a; }
+        .wf-fill.ni      { background: var(--accent); }
+        .wf-fill.pension-d { background: var(--blue); }
+        .wf-fill.student  { background: #7c5cbf; }
+        .wf-fill.rent     { background: #d4930a; }
+        .wf-fill.bills    { background: #6b6b8a; }
+        .wf-fill.living   { background: #8b6914; }
+        .wf-fill.surplus  { background: var(--green); }
+        .wf-fill.deficit  { background: #b33a3a; }
+        .wf-amount {
+            font-size: 0.8rem; font-weight: 700;
+            color: var(--ink); width: 75px;
+            text-align: right; flex-shrink: 0;
+        }
+        .wf-divider {
+            border-top: 2px dashed var(--border);
+            margin: 12px 0 12px 130px;
+        }
+
+        /* Breakdown table */
+        .breakdown-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px;
+            box-shadow: var(--shadow-sm); margin-bottom: 20px;
+        }
+        .breakdown-card h3 {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--ink-muted); margin-bottom: 14px;
+        }
+        .bd-row {
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .bd-row:last-child { border-bottom: none; }
+        .bd-row.total-row {
+            border-top: 2px solid var(--ink);
+            border-bottom: none; padding-top: 12px; margin-top: 4px;
+        }
+        .bd-label {
+            font-size: 0.85rem; color: var(--ink-light);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .bd-label .dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            display: inline-block; flex-shrink: 0;
+        }
+        .bd-value {
+            font-size: 0.88rem; font-weight: 700; color: var(--ink);
+        }
+        .bd-row.total-row .bd-label { font-weight: 700; color: var(--ink); }
+        .bd-row.total-row .bd-value { font-size: 1rem; }
+
+        /* City cost overrides */
+        .cost-override-section {
+            margin-top: 16px; padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .cost-override-toggle {
+            background: none; border: none; cursor: pointer;
+            font-size: 0.82rem; font-weight: 600;
+            color: var(--accent); padding: 0;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .cost-override-toggle svg { transition: transform 0.2s; }
+        .cost-override-toggle.open svg { transform: rotate(180deg); }
+        .cost-overrides { display: none; margin-top: 12px; }
+        .cost-overrides.open { display: block; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .verdict-banner .verdict-label { font-size: 1.5rem; }
+            .wf-label { width: 85px; font-size: 0.72rem; }
+            .wf-amount { width: 60px; font-size: 0.72rem; }
+        }
+    </style>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-mark">£</span>
+                UK Calculator Hub
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/true-cost-employee.html">Employee Cost</a></li>
+                <li><a href="/tools/salary-reality-check.html" class="active">Salary Check</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="breadcrumb"><a href="/">Home</a><span class="sep">›</span><a href="/">Calculators</a><span class="sep">›</span>Salary Reality Check</div>
+            <div class="badge"><span class="dot"></span> Updated for 2025/26 Tax Year</div>
+            <h1>Salary Reality Check<br>Can You Afford Your City?</h1>
+            <p class="subtitle">Enter your gross salary and pick your UK city. We'll calculate your real take-home pay, stack it against actual living costs, and show you exactly what's left each month.</p>
+        </div>
+    </header>
+
+    <!-- CALCULATOR -->
+    <main class="tool-main">
+        <div class="calc-card card card-elevated">
+            <!-- Income Section -->
+            <div class="card-section">
+                <div class="section-label">Your Income</div>
+                <div class="input-grid">
+                    <div class="input-group full-width">
+                        <label for="salary">Annual Gross Salary</label>
+                        <div class="input-wrap">
+                            <span class="prefix">£</span>
+                            <input type="number" id="salary" class="has-prefix" value="35000" min="0" step="500">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="taxRegion">Tax Region</label>
+                        <select id="taxRegion">
+                            <option value="england">England / Wales / NI</option>
+                            <option value="scotland">Scotland</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="pensionRate">Pension Contribution</label>
+                        <div class="hint">Employee share (typically 5%)</div>
+                        <div class="input-wrap">
+                            <input type="number" id="pensionRate" class="has-suffix" value="5" min="0" max="40" step="0.5">
+                            <span class="suffix">%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="studentLoan">Student Loan</label>
+                        <select id="studentLoan">
+                            <option value="none">None</option>
+                            <option value="plan1">Plan 1 (pre-2012)</option>
+                            <option value="plan2">Plan 2 (post-2012)</option>
+                            <option value="plan4">Plan 4 (Scotland)</option>
+                            <option value="plan5">Plan 5 (from 2023)</option>
+                            <option value="postgrad">Postgraduate Loan</option>
+                            <option value="plan2pg">Plan 2 + Postgrad</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="pensionType">Pension Basis</label>
+                        <select id="pensionType">
+                            <option value="qualifying">Qualifying Earnings</option>
+                            <option value="gross">Full Gross Salary</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Section -->
+            <div class="card-section">
+                <div class="section-label">Where You Live</div>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="city">UK City / Region</label>
+                        <select id="city">
+                            <option value="london">London</option>
+                            <option value="manchester">Manchester</option>
+                            <option value="birmingham">Birmingham</option>
+                            <option value="leeds">Leeds</option>
+                            <option value="bristol">Bristol</option>
+                            <option value="glasgow">Glasgow</option>
+                            <option value="edinburgh">Edinburgh</option>
+                            <option value="peterborough">Peterborough</option>
+                            <option value="restofuk" selected>Rest of UK (Average)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="housing">Housing Situation</label>
+                        <select id="housing">
+                            <option value="renting_alone">Renting Alone</option>
+                            <option value="renting_shared">Renting (Flat Share)</option>
+                            <option value="renting_couple">Renting as a Couple</option>
+                            <option value="with_parents">Living with Parents</option>
+                            <option value="mortgage">Paying a Mortgage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Advanced cost overrides -->
+                <div class="cost-override-section">
+                    <button class="cost-override-toggle" onclick="toggleOverrides(this)">
+                        Customise living costs
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="cost-overrides" id="costOverrides">
+                        <div class="hint" style="margin-bottom: 12px;">Adjust any cost to match your real situation. Leave blank to use the city average.</div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="rentOverride">Monthly Rent / Mortgage</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="rentOverride" class="has-prefix" placeholder="City average" min="0" step="25">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="ctOverride">Council Tax</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="ctOverride" class="has-prefix" placeholder="City average" min="0" step="5">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="energyOverride">Energy (Gas + Electric)</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="energyOverride" class="has-prefix" placeholder="City average" min="0" step="5">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="waterOverride">Water</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="waterOverride" class="has-prefix" placeholder="City average" min="0" step="5">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="bbOverride">Broadband</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="bbOverride" class="has-prefix" placeholder="City average" min="0" step="5">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="groceryOverride">Groceries</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="groceryOverride" class="has-prefix" placeholder="City average" min="0" step="10">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="transportOverride">Transport</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="transportOverride" class="has-prefix" placeholder="City average" min="0" step="10">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="phoneOverride">Phone / Mobile</label>
+                                <div class="input-wrap">
+                                    <span class="prefix">£</span>
+                                    <input type="number" id="phoneOverride" class="has-prefix" placeholder="City average" min="0" step="5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="card-section" style="padding: 24px 36px 32px; border-top: 1px solid var(--border);">
+                <button class="btn btn-primary btn-lg" onclick="calculate()" style="width: 100%;">
+                    Check My Salary Reality →
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results-container" id="results">
+            <!-- Verdict Banner -->
+            <div class="verdict-banner" id="verdictBanner">
+                <div class="verdict-tier" id="verdictTier"></div>
+                <div class="verdict-label" id="verdictLabel"></div>
+                <div class="verdict-sub" id="verdictSub"></div>
+            </div>
+
+            <!-- Top Stats -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-label">Monthly Take-Home</div>
+                    <div class="stat-value" id="monthlyNet">—</div>
+                    <div class="stat-note" id="annualNet"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Monthly Living Costs</div>
+                    <div class="stat-value" id="monthlyExpenses">—</div>
+                    <div class="stat-note" id="expensesCity"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Monthly Surplus</div>
+                    <div class="stat-value" id="monthlySurplus">—</div>
+                    <div class="stat-note" id="surplusNote"></div>
+                </div>
+            </div>
+
+            <!-- Visual Waterfall -->
+            <div class="waterfall-card">
+                <h3>Where Your Money Goes — Monthly</h3>
+                <div id="waterfallChart"></div>
+            </div>
+
+            <!-- Deductions Breakdown -->
+            <div class="breakdown-card">
+                <h3>Income &amp; Deductions (Annual)</h3>
+                <div id="incomeBreakdown"></div>
+            </div>
+
+            <!-- Living Costs Breakdown -->
+            <div class="breakdown-card">
+                <h3>Living Costs Breakdown (Monthly)</h3>
+                <div id="costsBreakdown"></div>
+            </div>
+        </div>
+
+        <!-- SEO CONTENT -->
+        <div class="prose" style="margin-top: 48px;">
+            <h2>Is Your Salary Enough for Your City?</h2>
+            <p>Knowing your gross salary doesn't tell you much on its own. What matters is what's left after the taxman takes their share and after you've covered the basics — rent, bills, food, and getting to work. This calculator bridges that gap by combining a full UK tax calculation with real city-specific living costs, giving you a single honest number: your monthly surplus or deficit.</p>
+            <p>Living costs vary enormously across the UK. A £30,000 salary that leaves you comfortable in Leeds could leave you struggling in London, where rents are roughly double. Council tax, energy bills, and transport costs all shift depending on where you live. This tool accounts for those differences using current 2025/26 data so you can compare cities and make informed decisions about job offers, relocations, or salary negotiations.</p>
+
+            <!-- AD UNIT: between explainer and FAQ -->
+            <div class="ad-unit ad-unit--article" style="padding: 0; max-width: 100%;">
+                <div class="ad-unit-inner">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    <span class="ad-placeholder">Ad</span>
+                </div>
+            </div>
+
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">How is take-home pay calculated?</div>
+                    <div class="faq-a">We deduct Income Tax (using 2025/26 bands for England/Wales/NI or Scotland), employee National Insurance (8% on £12,570–£50,270, 2% above), your pension contribution, and any student loan repayments. The result is your monthly net pay — the amount that actually hits your bank account.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Where do the living cost figures come from?</div>
+                    <div class="faq-a">Our city cost profiles are based on the latest available data from ONS, Ofgem (energy price cap at £1,758/year for a medium household), regional council tax band D averages, and rental market data from sources like Rightmove and ONS private rental indices. All figures represent typical costs for a single adult and are updated regularly.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Can I adjust the living costs?</div>
+                    <div class="faq-a">Yes. Click "Customise living costs" to override any category with your actual figure. If you know your exact rent, energy bill, or council tax, enter it for a more accurate result. Any field left blank uses the city average.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">What do the lifestyle tiers mean?</div>
+                    <div class="faq-a"><strong>Surviving</strong> means your costs meet or exceed your income — no room for savings or unexpected expenses. <strong>Tight</strong> means less than 10% left over, which leaves little financial breathing room. <strong>Stable</strong> is 10–20% surplus, enough for modest savings. <strong>Comfortable</strong> is 20–35% surplus, giving you room for holidays, savings goals, and lifestyle spending. <strong>Thriving</strong> means 35%+ surplus — strong financial freedom.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Does this include all living costs?</div>
+                    <div class="faq-a">We cover the main recurring costs: housing, council tax, energy, water, broadband, groceries, transport, and phone. We don't include discretionary spending (eating out, entertainment, clothing, subscriptions) or one-off costs (holidays, car repairs, insurance). Your actual surplus will be lower once discretionary spending is factored in.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Is £30,000 a good salary in the UK?</div>
+                    <div class="faq-a">It depends entirely on where you live and your housing situation. On £30,000, your take-home is roughly £1,990 per month. In Leeds or Glasgow, that could leave you with a comfortable surplus after essentials. In London, you'd likely struggle to cover rent alone without a flat share. Use this calculator with your specific city and housing situation to find out.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">How does Scottish Income Tax differ?</div>
+                    <div class="faq-a">Scotland has six tax bands instead of three: Starter (19%), Basic (20%), Intermediate (21%), Higher (42%), Advanced (45%), and Top (48%). This means Scottish taxpayers earning above £43,663 pay more income tax than equivalent earners in England. National Insurance is the same across the UK. Select "Scotland" as your tax region for accurate Scottish calculations.</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 24px;">Looking at hiring costs from the employer's perspective? Try our <a href="/tools/true-cost-employee.html">True Cost of an Employee Calculator</a> to see what a role really costs your business including employer NI at 15%, pension, and more.</p>
+        </div>
+    </main>
+
+    <!-- AD UNIT: above footer -->
+    <div class="ad-unit">
+        <div class="ad-unit-inner">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6553969093740923" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            <span class="ad-placeholder">Ad</span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo">
+                    <span class="logo-mark">£</span>
+                    UK Calculator Hub
+                </a>
+                <p>Free, fast, accurate UK calculators for employers, businesses and individuals. Updated for the 2025/26 tax year.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Calculators</h4>
+                <ul>
+                    <li><a href="/tools/true-cost-employee.html">True Cost of Employee</a></li>
+                    <li><a href="/tools/salary-reality-check.html">Salary Reality Check</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="https://www.gov.uk/government/publications/rates-and-allowances-national-insurance-contributions" target="_blank" rel="noopener">HMRC NI Rates</a></li>
+                    <li><a href="https://www.gov.uk/income-tax-rates" target="_blank" rel="noopener">HMRC Income Tax Rates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>All calculators are for estimation purposes only and do not constitute financial or tax advice. Consult a qualified accountant for professional guidance. © 2026 UK Calculator Hub.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/core.js"></script>
+    <script>
+    /* ═══════════════════════════════════════════
+       Salary Reality Check — Engine
+       ═══════════════════════════════════════════ */
+
+    // ── 2025/26 Tax Config ──
+    const TAX_ENG = {
+        personalAllowance: 12570,
+        bands: [
+            { from: 0, to: 12570, rate: 0, label: 'Personal Allowance' },
+            { from: 12570, to: 50270, rate: 0.20, label: 'Basic Rate (20%)' },
+            { from: 50270, to: 125140, rate: 0.40, label: 'Higher Rate (40%)' },
+            { from: 125140, to: Infinity, rate: 0.45, label: 'Additional Rate (45%)' }
+        ]
+    };
+
+    const TAX_SCOT = {
+        personalAllowance: 12570,
+        bands: [
+            { from: 0, to: 12570, rate: 0, label: 'Personal Allowance' },
+            { from: 12570, to: 14877, rate: 0.19, label: 'Starter Rate (19%)' },
+            { from: 14877, to: 26561, rate: 0.20, label: 'Basic Rate (20%)' },
+            { from: 26561, to: 43662, rate: 0.21, label: 'Intermediate Rate (21%)' },
+            { from: 43662, to: 75000, rate: 0.42, label: 'Higher Rate (42%)' },
+            { from: 75000, to: 125140, rate: 0.45, label: 'Advanced Rate (45%)' },
+            { from: 125140, to: Infinity, rate: 0.48, label: 'Top Rate (48%)' }
+        ]
+    };
+
+    const NI = { lower: 12570, upper: 50270, rate1: 0.08, rate2: 0.02 };
+
+    const STUDENT_LOANS = {
+        none:    { threshold: 0, rate: 0, threshold2: 0, rate2: 0 },
+        plan1:   { threshold: 24990, rate: 0.09, threshold2: 0, rate2: 0 },
+        plan2:   { threshold: 27295, rate: 0.09, threshold2: 0, rate2: 0 },
+        plan4:   { threshold: 31395, rate: 0.09, threshold2: 0, rate2: 0 },
+        plan5:   { threshold: 25000, rate: 0.09, threshold2: 0, rate2: 0 },
+        postgrad:{ threshold: 21000, rate: 0.06, threshold2: 0, rate2: 0 },
+        plan2pg: { threshold: 27295, rate: 0.09, threshold2: 21000, rate2: 0.06 }
+    };
+
+    const PENSION_QUALIFYING = { lower: 6240, upper: 50270 };
+
+    // ── City Cost Profiles (monthly, single person) ──
+    const CITY_COSTS = {
+        london:      { name: 'London',         rent: 1500, rentShare: 850, rentCouple: 750, council: 180, energy: 147, water: 50, broadband: 35, groceries: 300, transport: 150, phone: 30, mortgage: 1800 },
+        manchester:  { name: 'Manchester',      rent: 900,  rentShare: 550, rentCouple: 450, council: 170, energy: 140, water: 45, broadband: 32, groceries: 260, transport: 80,  phone: 30, mortgage: 1050 },
+        birmingham:  { name: 'Birmingham',      rent: 850,  rentShare: 500, rentCouple: 425, council: 170, energy: 140, water: 45, broadband: 32, groceries: 260, transport: 75,  phone: 30, mortgage: 950 },
+        leeds:       { name: 'Leeds',           rent: 800,  rentShare: 480, rentCouple: 400, council: 170, energy: 135, water: 40, broadband: 30, groceries: 250, transport: 70,  phone: 30, mortgage: 900 },
+        bristol:     { name: 'Bristol',         rent: 1000, rentShare: 600, rentCouple: 500, council: 195, energy: 140, water: 48, broadband: 32, groceries: 270, transport: 80,  phone: 30, mortgage: 1200 },
+        glasgow:     { name: 'Glasgow',         rent: 750,  rentShare: 450, rentCouple: 375, council: 145, energy: 135, water: 38, broadband: 30, groceries: 240, transport: 65,  phone: 28, mortgage: 850 },
+        edinburgh:   { name: 'Edinburgh',       rent: 950,  rentShare: 580, rentCouple: 475, council: 160, energy: 135, water: 40, broadband: 32, groceries: 255, transport: 70,  phone: 30, mortgage: 1100 },
+        peterborough:{ name: 'Peterborough',    rent: 750,  rentShare: 450, rentCouple: 375, council: 175, energy: 140, water: 45, broadband: 30, groceries: 250, transport: 65,  phone: 28, mortgage: 850 },
+        restofuk:    { name: 'Rest of UK (Avg)', rent: 780, rentShare: 470, rentCouple: 390, council: 170, energy: 140, water: 45, broadband: 30, groceries: 250, transport: 70,  phone: 28, mortgage: 900 }
+    };
+
+    // ── Tax Calculation Functions ──
+    function calcIncomeTax(salary, region) {
+        const bands = region === 'scotland' ? TAX_SCOT.bands : TAX_ENG.bands;
+        let pa = 12570;
+        // Taper personal allowance above £100k
+        if (salary > 100000) {
+            pa = Math.max(0, 12570 - Math.floor((salary - 100000) / 2));
+        }
+        let tax = 0;
+        let adjusted = [...bands];
+        adjusted[0] = { ...adjusted[0], to: pa, rate: 0 };
+        if (region === 'scotland') {
+            adjusted[1] = { ...adjusted[1], from: pa };
+        } else {
+            adjusted[1] = { ...adjusted[1], from: pa };
+        }
+
+        for (const band of adjusted) {
+            if (salary <= band.from) continue;
+            const taxable = Math.min(salary, band.to) - band.from;
+            if (taxable > 0) tax += taxable * band.rate;
+        }
+        return Math.max(0, tax);
+    }
+
+    function calcNI(salary) {
+        let ni = 0;
+        if (salary > NI.lower) {
+            ni += Math.min(salary, NI.upper) - NI.lower;
+            ni *= NI.rate1;
+        }
+        if (salary > NI.upper) {
+            ni += (salary - NI.upper) * NI.rate2;
+        }
+        return Math.max(0, ni);
+    }
+
+    function calcStudentLoan(salary, plan) {
+        const sl = STUDENT_LOANS[plan];
+        let total = 0;
+        if (salary > sl.threshold && sl.rate > 0) {
+            total += (salary - sl.threshold) * sl.rate;
+        }
+        if (sl.threshold2 > 0 && salary > sl.threshold2) {
+            total += (salary - sl.threshold2) * sl.rate2;
+        }
+        return Math.max(0, total);
+    }
+
+    function calcPension(salary, rate, basis) {
+        if (basis === 'qualifying') {
+            const qualifying = Math.max(0, Math.min(salary, PENSION_QUALIFYING.upper) - PENSION_QUALIFYING.lower);
+            return qualifying * (rate / 100);
+        }
+        return salary * (rate / 100);
+    }
+
+    function getHousingCost(cityData, housingType) {
+        switch (housingType) {
+            case 'renting_alone': return cityData.rent;
+            case 'renting_shared': return cityData.rentShare;
+            case 'renting_couple': return cityData.rentCouple;
+            case 'with_parents': return 0;
+            case 'mortgage': return cityData.mortgage;
+            default: return cityData.rent;
+        }
+    }
+
+    function getHousingLabel(housingType) {
+        switch (housingType) {
+            case 'renting_alone': return 'Rent (1 bed)';
+            case 'renting_shared': return 'Rent (share)';
+            case 'renting_couple': return 'Rent (half)';
+            case 'with_parents': return 'Housing';
+            case 'mortgage': return 'Mortgage';
+            default: return 'Rent';
+        }
+    }
+
+    // ── Cost Overrides ──
+    function toggleOverrides(btn) {
+        btn.classList.toggle('open');
+        document.getElementById('costOverrides').classList.toggle('open');
+    }
+
+    function getOverride(id, fallback) {
+        const el = document.getElementById(id);
+        return el && el.value !== '' ? parseFloat(el.value) : fallback;
+    }
+
+    // ── Main Calculation ──
+    function calculate() {
+        const salary = parseFloat(document.getElementById('salary').value) || 0;
+        const region = document.getElementById('taxRegion').value;
+        const pensionRate = parseFloat(document.getElementById('pensionRate').value) || 0;
+        const pensionBasis = document.getElementById('pensionType').value;
+        const studentPlan = document.getElementById('studentLoan').value;
+        const cityKey = document.getElementById('city').value;
+        const housingType = document.getElementById('housing').value;
+
+        const cityData = CITY_COSTS[cityKey];
+
+        // Calculate annual deductions
+        const incomeTax = calcIncomeTax(salary, region);
+        const nationalIns = calcNI(salary);
+        const pension = calcPension(salary, pensionRate, pensionBasis);
+        const studentLoan = calcStudentLoan(salary, studentPlan);
+
+        const totalDeductions = incomeTax + nationalIns + pension + studentLoan;
+        const annualNet = salary - totalDeductions;
+        const monthlyNet = annualNet / 12;
+
+        // Calculate monthly living costs (with overrides)
+        const housing = getOverride('rentOverride', getHousingCost(cityData, housingType));
+        const councilTax = getOverride('ctOverride', housingType === 'with_parents' ? 0 : cityData.council);
+        const energy = getOverride('energyOverride', housingType === 'with_parents' ? 0 : cityData.energy);
+        const water = getOverride('waterOverride', housingType === 'with_parents' ? 0 : cityData.water);
+        const broadband = getOverride('bbOverride', housingType === 'with_parents' ? 0 : cityData.broadband);
+        const groceries = getOverride('groceryOverride', cityData.groceries);
+        const transport = getOverride('transportOverride', cityData.transport);
+        const phone = getOverride('phoneOverride', cityData.phone);
+
+        const totalExpenses = housing + councilTax + energy + water + broadband + groceries + transport + phone;
+        const surplus = monthlyNet - totalExpenses;
+        const surplusPercent = monthlyNet > 0 ? (surplus / monthlyNet) * 100 : 0;
+
+        // Determine lifestyle tier
+        let tier, tierLabel, tierClass, tierDesc;
+        if (surplusPercent < 0) {
+            tier = 'DEFICIT'; tierLabel = 'In The Red';
+            tierClass = 'tier-surviving';
+            tierDesc = `You're £${Math.abs(surplus).toFixed(0)} short each month. Essential costs exceed your take-home pay.`;
+        } else if (surplusPercent < 5) {
+            tier = 'SURVIVING'; tierLabel = 'Surviving';
+            tierClass = 'tier-surviving';
+            tierDesc = `Only £${surplus.toFixed(0)} left after essentials. No room for unexpected costs or savings.`;
+        } else if (surplusPercent < 10) {
+            tier = 'TIGHT'; tierLabel = 'Tight Budget';
+            tierClass = 'tier-tight';
+            tierDesc = `£${surplus.toFixed(0)}/mo surplus (${surplusPercent.toFixed(0)}% of take-home). Limited room for savings.`;
+        } else if (surplusPercent < 20) {
+            tier = 'STABLE'; tierLabel = 'Stable';
+            tierClass = 'tier-stable';
+            tierDesc = `£${surplus.toFixed(0)}/mo surplus (${surplusPercent.toFixed(0)}% of take-home). Enough for modest savings and small treats.`;
+        } else if (surplusPercent < 35) {
+            tier = 'COMFORTABLE'; tierLabel = 'Comfortable';
+            tierClass = 'tier-comfortable';
+            tierDesc = `£${surplus.toFixed(0)}/mo surplus (${surplusPercent.toFixed(0)}% of take-home). Room for holidays, savings goals, and lifestyle spending.`;
+        } else {
+            tier = 'THRIVING'; tierLabel = 'Thriving';
+            tierClass = 'tier-thriving';
+            tierDesc = `£${surplus.toFixed(0)}/mo surplus (${surplusPercent.toFixed(0)}% of take-home). Strong financial freedom.`;
+        }
+
+        // ── Render Results ──
+        const resultsEl = document.getElementById('results');
+        resultsEl.classList.add('visible');
+
+        // Verdict banner
+        const banner = document.getElementById('verdictBanner');
+        banner.className = 'verdict-banner ' + tierClass;
+        document.getElementById('verdictTier').textContent = `Lifestyle Tier: ${tier}`;
+        document.getElementById('verdictLabel').textContent = tierLabel;
+        document.getElementById('verdictSub').textContent = tierDesc;
+
+        // Stats
+        document.getElementById('monthlyNet').textContent = formatCurrency(monthlyNet);
+        document.getElementById('annualNet').textContent = formatCurrency(annualNet) + ' / year';
+        document.getElementById('monthlyExpenses').textContent = formatCurrency(totalExpenses);
+        document.getElementById('expensesCity').textContent = cityData.name + ' estimate';
+
+        const surplusEl = document.getElementById('monthlySurplus');
+        surplusEl.textContent = (surplus >= 0 ? '+' : '-') + '£' + Math.abs(surplus).toFixed(0);
+        surplusEl.className = 'stat-value ' + (surplus >= 0 ? 'positive' : 'negative');
+        document.getElementById('surplusNote').textContent = surplus >= 0
+            ? `${surplusPercent.toFixed(0)}% of take-home`
+            : 'Costs exceed income';
+
+        // ── Waterfall Chart ──
+        const maxVal = monthlyNet;
+        function wfPct(v) { return maxVal > 0 ? Math.max(3, (v / maxVal) * 100) : 0; }
+
+        const wfItems = [
+            { label: 'Take-Home', value: monthlyNet, cls: 'income', sign: '' },
+        ];
+
+        // Expense items
+        const expenseItems = [];
+        if (housing > 0) expenseItems.push({ label: getHousingLabel(housingType), value: housing, cls: 'rent' });
+        if (councilTax > 0) expenseItems.push({ label: 'Council Tax', value: councilTax, cls: 'bills' });
+        if (energy > 0) expenseItems.push({ label: 'Energy', value: energy, cls: 'bills' });
+        if (water > 0) expenseItems.push({ label: 'Water', value: water, cls: 'bills' });
+        if (broadband > 0) expenseItems.push({ label: 'Broadband', value: broadband, cls: 'bills' });
+        expenseItems.push({ label: 'Groceries', value: groceries, cls: 'living' });
+        expenseItems.push({ label: 'Transport', value: transport, cls: 'living' });
+        if (phone > 0) expenseItems.push({ label: 'Phone', value: phone, cls: 'living' });
+
+        let wfHTML = wfItems.map(d => `
+            <div class="wf-item">
+                <div class="wf-label">${d.label}</div>
+                <div class="wf-track"><div class="wf-fill ${d.cls}" style="width: ${wfPct(d.value)}%"></div></div>
+                <div class="wf-amount">${formatCurrency(d.value)}</div>
+            </div>`).join('');
+
+        wfHTML += '<div class="wf-divider"></div>';
+
+        wfHTML += expenseItems.map(d => `
+            <div class="wf-item">
+                <div class="wf-label">${d.label}</div>
+                <div class="wf-track"><div class="wf-fill ${d.cls}" style="width: ${wfPct(d.value)}%"></div></div>
+                <div class="wf-amount">-${formatCurrency(d.value)}</div>
+            </div>`).join('');
+
+        wfHTML += '<div class="wf-divider"></div>';
+
+        const surplusCls = surplus >= 0 ? 'surplus' : 'deficit';
+        wfHTML += `
+            <div class="wf-item">
+                <div class="wf-label" style="font-weight: 700; color: var(--ink);">Left Over</div>
+                <div class="wf-track"><div class="wf-fill ${surplusCls}" style="width: ${wfPct(Math.abs(surplus))}%"></div></div>
+                <div class="wf-amount" style="color: ${surplus >= 0 ? 'var(--green)' : '#b33a3a'};">${surplus >= 0 ? '+' : '-'}${formatCurrency(Math.abs(surplus))}</div>
+            </div>`;
+
+        document.getElementById('waterfallChart').innerHTML = wfHTML;
+
+        // ── Income Breakdown ──
+        const incomeRows = [
+            { label: 'Gross Salary', value: salary, color: 'var(--green)' },
+            { label: 'Income Tax', value: -incomeTax, color: '#b33a3a' },
+            { label: 'National Insurance (8%/2%)', value: -nationalIns, color: 'var(--accent)' },
+            { label: `Pension (${pensionRate}%)`, value: -pension, color: 'var(--blue)' },
+        ];
+        if (studentLoan > 0) {
+            const slLabel = studentPlan === 'plan2pg' ? 'Student Loan (Plan 2 + PG)' : `Student Loan (${studentPlan.replace('plan','Plan ').replace('postgrad','Postgrad')})`;
+            incomeRows.push({ label: slLabel, value: -studentLoan, color: '#7c5cbf' });
+        }
+
+        document.getElementById('incomeBreakdown').innerHTML = incomeRows.map(r => `
+            <div class="bd-row">
+                <div class="bd-label"><span class="dot" style="background: ${r.color}"></span>${r.label}</div>
+                <div class="bd-value">${r.value < 0 ? '-' : ''}${formatCurrency(Math.abs(r.value))}</div>
+            </div>`).join('') + `
+            <div class="bd-row total-row">
+                <div class="bd-label">Annual Take-Home Pay</div>
+                <div class="bd-value">${formatCurrency(annualNet)}</div>
+            </div>
+            <div class="bd-row">
+                <div class="bd-label" style="color: var(--ink-muted); font-size: 0.8rem;">Monthly Take-Home</div>
+                <div class="bd-value" style="color: var(--ink-muted);">${formatCurrency(monthlyNet)}</div>
+            </div>`;
+
+        // ── Costs Breakdown ──
+        const costRows = [];
+        if (housing > 0) costRows.push({ label: getHousingLabel(housingType), value: housing, color: '#d4930a' });
+        if (councilTax > 0) costRows.push({ label: 'Council Tax', value: councilTax, color: '#6b6b8a' });
+        if (energy > 0) costRows.push({ label: 'Energy (Gas + Electric)', value: energy, color: '#6b6b8a' });
+        if (water > 0) costRows.push({ label: 'Water', value: water, color: '#6b6b8a' });
+        if (broadband > 0) costRows.push({ label: 'Broadband', value: broadband, color: '#6b6b8a' });
+        costRows.push({ label: 'Groceries', value: groceries, color: '#8b6914' });
+        costRows.push({ label: 'Transport', value: transport, color: '#8b6914' });
+        if (phone > 0) costRows.push({ label: 'Phone / Mobile', value: phone, color: '#8b6914' });
+
+        document.getElementById('costsBreakdown').innerHTML = costRows.map(r => `
+            <div class="bd-row">
+                <div class="bd-label"><span class="dot" style="background: ${r.color}"></span>${r.label}</div>
+                <div class="bd-value">${formatCurrency(r.value)}</div>
+            </div>`).join('') + `
+            <div class="bd-row total-row">
+                <div class="bd-label">Total Monthly Essentials</div>
+                <div class="bd-value">${formatCurrency(totalExpenses)}</div>
+            </div>
+            <div class="bd-row" style="border: none;">
+                <div class="bd-label" style="font-weight: 700; color: ${surplus >= 0 ? 'var(--green)' : '#b33a3a'};">Monthly Surplus / Deficit</div>
+                <div class="bd-value" style="color: ${surplus >= 0 ? 'var(--green)' : '#b33a3a'};">${surplus >= 0 ? '+' : '-'}${formatCurrency(Math.abs(surplus))}</div>
+            </div>`;
+
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Auto-set Scotland tax region when Glasgow/Edinburgh selected
+    document.getElementById('city').addEventListener('change', function() {
+        const v = this.value;
+        if (v === 'glasgow' || v === 'edinburgh') {
+            document.getElementById('taxRegion').value = 'scotland';
+        }
+    });
+
+    // Run on load with defaults
+    calculate();
+    </script>
+</body>
+</html>

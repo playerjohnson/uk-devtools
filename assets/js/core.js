@@ -28,7 +28,6 @@ const TOOLS = [
         url: '/tools/salary-reality-check.html',
         icon: '🏙️',
         color: '#3b6b9a',
-        isComingSoon: true,
         isNew: true,
         updated: '2026-02'
     },
