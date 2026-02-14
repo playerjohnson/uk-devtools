@@ -2,6 +2,14 @@
    UK Calculator Hub — Core JavaScript
    ═══════════════════════════════════════════ */
 
+// ── Base Path (auto-detect for GitHub Pages) ──
+const BASE_PATH = (function() {
+    const depth = window.location.pathname.replace(/\/[^\/]*$/, '').split('/').filter(Boolean).length;
+    const repoSegments = window.location.pathname.match(/^\/uk-devtools/) ? 1 : 0;
+    const levelsUp = depth - repoSegments;
+    return levelsUp > 0 ? '../'.repeat(levelsUp) : './';
+})();
+
 // ── Tool Registry ──
 // Add new tools here and they auto-populate the homepage and nav
 const TOOLS = [
@@ -211,7 +219,7 @@ function renderToolGrid(containerId, filter = 'all') {
 
     container.innerHTML = filtered.map(tool => {
         const tag = tool.isComingSoon ? 'div' : 'a';
-        const href = tool.isComingSoon ? '' : ` href="${tool.url}"`;
+        const href = tool.isComingSoon ? '' : ` href="${BASE_PATH}${tool.url.replace(/^\//, '')}"`;
         const comingSoonClass = tool.isComingSoon ? ' tool-card--soon' : '';
         const badge = tool.isComingSoon
             ? '<span class="tool-badge-soon">Coming Soon</span>'
