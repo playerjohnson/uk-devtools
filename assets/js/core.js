@@ -187,17 +187,58 @@ const CATEGORIES = [
 function initNav() {
     const hamburger = document.querySelector('.nav-hamburger');
     const links = document.querySelector('.nav-links');
-    if (hamburger && links) {
-        hamburger.addEventListener('click', () => {
+    if (!links) return;
+
+    // Build tools dropdown grouped by category
+    const cats = {};
+    TOOLS.forEach(t => {
+        if (!cats[t.category]) cats[t.category] = [];
+        cats[t.category].push(t);
+    });
+    let dropdownHTML = '';
+    Object.keys(cats).forEach(cat => {
+        dropdownHTML += `<div class="nav-dropdown-cat">${cat}</div>`;
+        cats[cat].forEach(t => {
+            dropdownHTML += `<a href="${BASE_PATH}${t.url.replace(/^\//, '')}">${t.icon} ${t.shortTitle}</a>`;
+        });
+    });
+
+    // Replace nav content
+    links.innerHTML = `
+        <li><a href="${BASE_PATH}">Home</a></li>
+        <li class="nav-dropdown">
+            <a href="#">Tools</a>
+            <div class="nav-dropdown-menu">${dropdownHTML}</div>
+        </li>
+        <li><a href="${BASE_PATH}blog/">Blog</a></li>
+    `;
+
+    // Hamburger toggle
+    if (hamburger) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             links.classList.toggle('open');
         });
-        // Close on click outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.site-nav')) {
-                links.classList.remove('open');
-            }
+    }
+
+    // Mobile dropdown toggle
+    const dropdown = links.querySelector('.nav-dropdown > a');
+    if (dropdown) {
+        dropdown.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.parentElement.classList.toggle('open');
         });
     }
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.site-nav')) {
+            links.classList.remove('open');
+            const dd = links.querySelector('.nav-dropdown');
+            if (dd) dd.classList.remove('open');
+        }
+    });
 }
 
 // ── Tool Grid Renderer (for homepage) ──
