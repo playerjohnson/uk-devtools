@@ -746,3 +746,29 @@ select {
 .ad-unit--slim .ad-unit-inner {
     min-height: 60px;
 }
+
+/* ── Scroll Animations (added Feb 2026) ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
+.fade-up { animation: fadeUp .6s ease both; }
+.fade-up-d1 { animation-delay: .1s; }
+.fade-up-d2 { animation-delay: .2s; }
+.fade-up-d3 { animation-delay: .3s; }
+
+/* ── Enhanced card hover ── */
+.tool-card { transition: all .28s cubic-bezier(.4,0,.2,1); }
+.tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+/* ── Improved hero gradient ── */
+.home-hero::after { 
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; 
+    background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; z-index: 1; 
+}
+
+/* ── Blog card improvements ── */
+.blog-card { transition: all .25s ease; }
+.blog-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+
+/* ── Footer email link ── */
+.footer-email { color: var(--accent); font-weight: 500; }
+.footer-email:hover { text-decoration: underline; }
