@@ -32,7 +32,7 @@
   }
 
   /* ── Load AdSense (tool sites only) ── */
-  var AD_SITES = ["uk-devtools","quickdev-tools","public-sector-tools","everyday-tools"];
+  var AD_SITES = ["uk-devtools","quickdev-tools","public-sector-tools","everyday-tools","ict-edge-indicators","freelance-dev"];
   function loadAdSense() {
     if (AD_SITES.indexOf(siteName) === -1) return;
     if (document.querySelector("script[src*=\"pagead2.googlesyndication.com\"]")) return;
