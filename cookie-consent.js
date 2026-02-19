@@ -31,6 +31,18 @@
     document.head.appendChild(s);
   }
 
+  /* ── Load AdSense (tool sites only) ── */
+  var AD_SITES = ["uk-devtools","quickdev-tools","public-sector-tools","everyday-tools"];
+  function loadAdSense() {
+    if (AD_SITES.indexOf(siteName) === -1) return;
+    if (document.querySelector("script[src*=\"pagead2.googlesyndication.com\"]")) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6553969093740923";
+    document.head.appendChild(s);
+  }
+
   /* ── Clear tracking cookies ── */
   function clearCookies() {
     document.cookie.split(';').forEach(function(c){
@@ -65,7 +77,7 @@
   var consent = localStorage.getItem(CONSENT_KEY);
 
   if (consent === 'accepted') {
-    loadGTM();
+    loadGTM(); loadAdSense();
   } else if (consent === 'rejected') {
     /* No tracking */
   } else {
@@ -74,7 +86,7 @@
       document.getElementById('cookie-accept').addEventListener('click', function(){
         localStorage.setItem(CONSENT_KEY, 'accepted');
         banner.remove();
-        loadGTM();
+        loadGTM(); loadAdSense();
         trackEvent('consent_granted');
       });
       document.getElementById('cookie-reject').addEventListener('click', function(){
