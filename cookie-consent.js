@@ -103,12 +103,12 @@
       }
 
       /* Cross-site links bar */
-      if (link.closest('[style*="0a0e1a"]') && href.indexOf('playerjohnson.github.io') > -1) {
+      if (link.closest('[style*="0a0e1a"]') && href.indexOf('anthonyjohnson.dev') > -1) {
         trackEvent('cross_site_click', { link_url: href, destination_site: href.split('/')[3] || '' });
       }
 
       /* Outbound links */
-      if (href.indexOf('playerjohnson.github.io') === -1 && href.startsWith('http')) {
+      if (href.indexOf('anthonyjohnson.dev') === -1 && href.startsWith('http')) {
         trackEvent('outbound_click', { link_url: href, link_text: (link.textContent || '').trim().substring(0, 50) });
       }
     });

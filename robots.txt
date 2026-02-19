@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://playerjohnson.github.io/uk-devtools/sitemap.xml
+Sitemap: https://anthonyjohnson.dev/uk-devtools/sitemap.xml
