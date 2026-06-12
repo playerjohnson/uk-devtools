@@ -1,0 +1,22 @@
+# merge-gate caller — logic lives in playerjohnson/claude-portfolio-marketplace.
+# This file should stay thin; tune behaviour in .github/merge-policy.yml.
+
+name: merge-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: merge-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    uses: playerjohnson/claude-portfolio-marketplace/.github/workflows/auto-merge.yml@main
