@@ -1,0 +1,66 @@
+# merge-policy.yml — risk tiers for merge-gate
+#
+# Read from the BASE branch of each PR by the merge-gate workflow.
+# Precedence: .github/** (hard human, not configurable) > human paths/labels
+# > auto force-labels > size limits > auto path allowlist.
+# A PR is "auto" ONLY if every changed file matches an auto path (or a human
+# applied a force label) — anything unmatched falls through to human.
+#
+# "auto" enables GitHub native auto-merge; the PR still waits for this
+# repo's branch-protection required checks. The gate never skips checks.
+
+version: 1
+
+size_limit:
+  max_changed_lines: 400      # additions + deletions; above this → human
+  max_changed_files: 20
+
+auto:
+  # Every changed file must match one of these for hands-free merge.
+  # Conservative default: docs + lockfiles. Widen per repo once trusted —
+  # e.g. for a static evals site:  - "site/**"  - "evals/**"
+  paths:
+    - "**/*.md"
+    - "docs/**"
+    - "LICENSE"
+    - ".gitignore"
+    - "package-lock.json"
+    - "pnpm-lock.yaml"
+    - "yarn.lock"
+  # Escape hatch: a human applying one of these labels forces the auto tier
+  # (size and path checks skipped; .github/ hard rule still applies).
+  # Agents must never self-apply these — instruction lives in CLAUDE.md.
+  labels:
+    - "automerge-ok"
+
+human:
+  # ANY changed file matching these → human review, regardless of size.
+  paths:
+    - ".github/**"            # also hard-coded in the gate; listed for visibility
+    - "**/auth/**"
+    - "**/middleware.*"       # Next.js auth/session middleware
+    - "**/*.sql"
+    - "**/migrations/**"
+    - "supabase/**"
+    - ".env*"
+    - "**/secrets*"
+    - "Dockerfile*"
+    - "**/*send*"             # outreach sending paths (EPCFix)
+    - "**/*suppress*"         # suppression logic is compliance — always human
+  labels:
+    - "security"
+    - "do-not-merge"
+
+review:
+  # Optional: require an APPROVED review from one of these logins before
+  # auto-merge is enabled (CHANGES_REQUESTED from them forces human).
+  # Wire in the adversarial reviewer's login once its verdict lands as a
+  # PR review, e.g.:  required_review_from: ["codex-reviewer-bot"]
+  required_review_from: []
+
+merge:
+  method: squash              # squash | merge | rebase
+  delete_branch: true
+
+notify:
+  human_label: "needs-anthony"
